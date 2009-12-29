@@ -31,7 +31,7 @@ HRESULT Plan::Create()
 
 HRESULT Plan::Destroy()
 {
-	D_RETURN( Node::Destroy() );
+	D_RETURN( DisplayObject::Destroy() );
 
 	return S_OK;
 }
@@ -44,6 +44,7 @@ void Plan::Render()
 	m_pVertexShader->Bind();
 	m_pPixelShader->Bind();
 	g_pDevice->UnbindGeometryShader();
+	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
 	g_pDxDeviceContext->DrawIndexed( m_nVertex, 0, 0 );
 }
