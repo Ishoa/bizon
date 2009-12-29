@@ -1,0 +1,6 @@
+C:\DoomeR\XNAWalkyrie\SkinnedModel\bin\x86\Release\SkinnedModel.dll
+C:\DoomeR\XNAWalkyrie\SkinnedModel\bin\x86\Release\SkinnedModel.pdb
+C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\ResolveAssemblyReference.cache
+C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\SkinnedModel.dll
+C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\SkinnedModel.pdb
