@@ -36,11 +36,11 @@ protected:
 	Camera					* m_pCamera;
 
 	// Constant Buffer
-	ConstantBufferUpdate	* m_pCameraShaderParam;
-	struct sCameraShaderParam
-	{
-		Matrix4x4	m_mViewProj;
-	};
+//	ConstantBufferUpdate	* m_pCameraShaderParam;
+//	struct sCameraShaderParam
+//	{
+//		Matrix4x4	m_mViewProj;
+//	};
 
 public:
 	Engine();

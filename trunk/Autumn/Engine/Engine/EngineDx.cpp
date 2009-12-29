@@ -83,8 +83,8 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	m_pCamera->BuildViewMatrix();
 	float fAspect = (float)uWidth / (float)uHeight;
 	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 100.0f);
-	m_pCameraShaderParam = new ConstantBufferUpdate;
-	D_RETURN
+//	m_pCameraShaderParam = new ConstantBufferUpdate;
+	//D_RETURN
 
 	
 	return S_OK;
