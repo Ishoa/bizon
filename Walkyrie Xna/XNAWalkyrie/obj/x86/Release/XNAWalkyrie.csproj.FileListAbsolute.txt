@@ -10,3 +10,22 @@ C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.pdb
 C:\DoomeR\XNAWalkyrie\XNAWalkyrie\obj\x86\Release\XNAWalkyrie.dll
 C:\DoomeR\XNAWalkyrie\XNAWalkyrie\obj\x86\Release\XNAWalkyrie.pdb
 C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\ParticleEffect.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\vectorLineRenderer.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\skybox.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\simpleEffect.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\Billboard.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\PointParticule.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\ParticleEffect.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\parallax_normal_mapping.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\Lambert.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\ShadowMapping.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\SkinnedModel.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\Content\TerrainEffect.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.dll
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\SkinnedModel.dll
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\SkinnedModel.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\obj\x86\Release\XNAWalkyrie.dll
+D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\obj\x86\Release\XNAWalkyrie.pdb

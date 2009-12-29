@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Sphere01</Name>
     <Identity>
-      <SourceFilename>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\Models\unitSphere.FBX</SourceFilename>
+      <SourceFilename>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\Models\unitSphere.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>2.54 0 0 0 0 1.55525016E-16 -2.54 0 0 2.54 1.55525016E-16 0 0 0 0 1</Transform>

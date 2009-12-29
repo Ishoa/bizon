@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>Fbx_Root</Name>
     <Identity>
-      <SourceFilename>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\Models\Water_Reservoir.FBX</SourceFilename>
+      <SourceFilename>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\Models\Water_Reservoir.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 6.123032E-17 -1 0 0 1 6.123032E-17 0 0 0 0 1</Transform>

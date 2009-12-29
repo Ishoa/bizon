@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>RootNode</Name>
     <Identity>
-      <SourceFilename>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\Models\testRad.FBX</SourceFilename>
+      <SourceFilename>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\Models\testRad.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -36,7 +36,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>01 - Default</Name>
       <Identity>
-        <SourceFilename>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\Models\testRad.FBX</SourceFilename>
+        <SourceFilename>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\Models\testRad.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
