@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>vectorLineRenderer.fx</Source>
+      <Name>vectorLineRenderer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\vectorLineRenderer.xnb</Output>
+      <Time>2008-06-25T01:36:00+02:00</Time>
+    </Item>
+    <Item>
+      <Source>skybox.fx</Source>
+      <Name>skybox</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\skybox.xnb</Output>
+      <Time>2009-11-09T12:08:21.96875+01:00</Time>
+    </Item>
+    <Item>
+      <Source>simpleEffect.fx</Source>
+      <Name>simpleEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\simpleEffect.xnb</Output>
+      <Time>2009-11-09T17:24:19.53125+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Billboard.fx</Source>
+      <Name>Billboard</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\Billboard.xnb</Output>
+      <Time>2009-11-09T18:00:16.984375+01:00</Time>
+    </Item>
+    <Item>
+      <Source>PointParticule.fx</Source>
+      <Name>PointParticule</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\PointParticule.xnb</Output>
+      <Time>2009-11-12T12:50:38.546875+01:00</Time>
+    </Item>
+    <Item>
+      <Source>ParticleEffect.fx</Source>
+      <Name>ParticleEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\ParticleEffect.xnb</Output>
+      <Time>2007-12-06T09:21:40+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <BuildConfiguration>Release</BuildConfiguration>
+      <CompressContent>true</CompressContent>
+      <RootDirectory>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\Content\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2009-05-28T00:16:14+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2009-05-28T00:16:06+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2009-05-28T00:16:16+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2009-05-28T00:16:26+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2009-05-28T00:16:12+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2009-05-28T00:16:06+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2009-09-22T01:00:07.328125+02:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

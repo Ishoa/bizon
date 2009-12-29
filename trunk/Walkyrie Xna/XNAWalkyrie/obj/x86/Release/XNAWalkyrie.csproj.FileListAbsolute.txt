@@ -1,0 +1,12 @@
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\obj\x86\Release\ResolveAssemblyReference.cache
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\vectorLineRenderer.xnb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\skybox.xnb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\simpleEffect.xnb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\Billboard.xnb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\PointParticule.xnb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.dll
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.pdb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\obj\x86\Release\XNAWalkyrie.dll
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\obj\x86\Release\XNAWalkyrie.pdb
+C:\DoomeR\XNAWalkyrie\XNAWalkyrie\bin\x86\Release\Content\ParticleEffect.xnb
