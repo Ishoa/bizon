@@ -4,3 +4,9 @@ C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\ResolveAssemblyReference.cach
 C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\SkinnedModel.dll
 C:\DoomeR\XNAWalkyrie\SkinnedModel\obj\x86\Release\SkinnedModel.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModel\bin\x86\Release\SkinnedModel.dll
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModel\bin\x86\Release\SkinnedModel.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModel\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModel\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModel\obj\x86\Release\SkinnedModel.dll
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModel\obj\x86\Release\SkinnedModel.pdb

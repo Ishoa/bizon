@@ -1,1 +1,2 @@
 C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\obj\x86\Release\ResolveAssemblyReference.cache

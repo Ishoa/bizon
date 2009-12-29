@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>MP5N:MP5N</Name>
     <Identity>
-      <SourceFilename>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\Models\weapon.fbx</SourceFilename>
+      <SourceFilename>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\Models\weapon.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -32,7 +32,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Model</Name>
       <Identity>
-        <SourceFilename>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\Models\weapon.fbx</SourceFilename>
+        <SourceFilename>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\Models\weapon.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

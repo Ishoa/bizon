@@ -2,518 +2,109 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Graphics="Microsoft.Xna.Framework.Graphics" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Models\blue1024.png</Source>
-      <Name>Models\blue1024</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Sounds\explode4.wav</Source>
+      <Name>Sounds\explode4</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\blue1024.xnb</Output>
-      <Time>2009-05-24T19:25:44+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Sounds\explode4.xnb</Output>
+      <Time>2002-01-08T18:43:02+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\PlayerMarineNormal.tga</Source>
-      <Name>Textures\PlayerMarineNormal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\Lambert.fx</Source>
+      <Name>Effects\Lambert</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\PlayerMarineNormal.xnb</Output>
-      <Time>2008-07-01T00:41:46+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\Lambert.xnb</Output>
+      <Time>2009-12-29T00:45:25.1686328+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\DisplaySprites.PNG</Source>
-      <Name>Textures\DisplaySprites</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\parallax_normal_mapping.fx</Source>
+      <Name>Effects\parallax_normal_mapping</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\DisplaySprites.xnb</Output>
-      <Time>2008-10-27T17:33:42+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\parallax_normal_mapping.xnb</Output>
+      <Time>2009-12-29T00:45:25.171633+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\texturehud7iv.jpg</Source>
-      <Name>Textures\texturehud7iv</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\ParticleEffect.fx</Source>
+      <Name>Effects\ParticleEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\texturehud7iv.xnb</Output>
-      <Time>2009-03-02T12:39:02+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\ParticleEffect.xnb</Output>
+      <Time>2009-12-29T00:45:25.1726331+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\crate.dds</Source>
-      <Name>Textures\crate</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\ShadowMapping.fx</Source>
+      <Name>Effects\ShadowMapping</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\crate.xnb</Output>
-      <Time>2008-01-02T15:28:44+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\ShadowMapping.xnb</Output>
+      <Time>2009-12-29T00:45:25.1736331+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\floor_color_map.dds</Source>
-      <Name>Textures\floor_color_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\ShadowMappingSkinned.fx</Source>
+      <Name>Effects\ShadowMappingSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\floor_color_map.xnb</Output>
-      <Time>2008-11-15T15:17:48+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\ShadowMappingSkinned.xnb</Output>
+      <Time>2009-12-29T00:45:25.188634+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\floor_height_map.dds</Source>
-      <Name>Textures\floor_height_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\SkinnedModel.fx</Source>
+      <Name>Effects\SkinnedModel</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\floor_height_map.xnb</Output>
-      <Time>2008-11-15T15:17:48+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\SkinnedModel.xnb</Output>
+      <Time>2009-12-29T00:45:25.189634+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\floor_normal_map.dds</Source>
-      <Name>Textures\floor_normal_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\skybox.fx</Source>
+      <Name>Effects\skybox</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\floor_normal_map.xnb</Output>
-      <Time>2008-11-15T15:17:48+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\skybox.xnb</Output>
+      <Time>2009-12-29T00:45:25.1906341+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\stone_color_map.dds</Source>
-      <Name>Textures\stone_color_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Effects\TerrainEffect.fx</Source>
+      <Name>Effects\TerrainEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\stone_color_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\TerrainEffect.xnb</Output>
+      <Time>2009-12-29T00:45:25.1916342+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\stone_height_map.dds</Source>
-      <Name>Textures\stone_height_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Fonts\DebugFont.spritefont</Source>
+      <Name>Fonts\DebugFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\stone_height_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Fonts\DebugFont.xnb</Output>
+      <Time>2009-12-29T00:45:42.0495984+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\stone_normal_map.dds</Source>
-      <Name>Textures\stone_normal_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\stone_normal_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\wood_color_map.dds</Source>
-      <Name>Textures\wood_color_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\wood_color_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\wood_height_map.dds</Source>
-      <Name>Textures\wood_height_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\wood_height_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\wood_normal_map.dds</Source>
-      <Name>Textures\wood_normal_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\wood_normal_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\brick_color_map.dds</Source>
-      <Name>Textures\brick_color_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\brick_color_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\brick_height_map.dds</Source>
-      <Name>Textures\brick_height_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\brick_height_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\brick_normal_map.dds</Source>
-      <Name>Textures\brick_normal_map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\brick_normal_map.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\City\city_down.bmp</Source>
-      <Name>Textures\SkyBox\City\city_down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_down.xnb</Output>
-      <Time>2006-06-16T22:59:57.96875+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\City\city_east.bmp</Source>
-      <Name>Textures\SkyBox\City\city_east</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_east.xnb</Output>
-      <Time>2006-06-16T22:59:09.828125+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\City\city_north.bmp</Source>
-      <Name>Textures\SkyBox\City\city_north</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_north.xnb</Output>
-      <Time>2006-06-16T22:59:50.828125+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\City\city_south.bmp</Source>
-      <Name>Textures\SkyBox\City\city_south</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_south.xnb</Output>
-      <Time>2006-06-16T22:59:44.84375+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\City\city_up.bmp</Source>
-      <Name>Textures\SkyBox\City\city_up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_up.xnb</Output>
-      <Time>2006-06-16T22:59:37.953125+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\City\city_west.bmp</Source>
-      <Name>Textures\SkyBox\City\city_west</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_west.xnb</Output>
-      <Time>2006-08-17T12:51:17.453125+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Sky\skybox_back.jpg</Source>
-      <Name>Textures\SkyBox\Sky\skybox_back</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Sky\skybox_back.xnb</Output>
-      <Time>2005-11-22T09:48:54+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Sky\skybox_bottom.jpg</Source>
-      <Name>Textures\SkyBox\Sky\skybox_bottom</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Sky\skybox_bottom.xnb</Output>
-      <Time>2005-11-22T09:48:54+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Sky\skybox_front.jpg</Source>
-      <Name>Textures\SkyBox\Sky\skybox_front</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Sky\skybox_front.xnb</Output>
-      <Time>2005-11-22T09:48:54+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Sky\skybox_left.jpg</Source>
-      <Name>Textures\SkyBox\Sky\skybox_left</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Sky\skybox_left.xnb</Output>
-      <Time>2005-11-22T09:48:56+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Sky\skybox_right.jpg</Source>
-      <Name>Textures\SkyBox\Sky\skybox_right</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Sky\skybox_right.xnb</Output>
-      <Time>2005-11-22T09:48:56+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Sky\skybox_top.jpg</Source>
-      <Name>Textures\SkyBox\Sky\skybox_top</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Sky\skybox_top.xnb</Output>
-      <Time>2005-11-22T09:48:56+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Calm\calm_down.bmp</Source>
-      <Name>Textures\SkyBox\Calm\calm_down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Calm\calm_down.xnb</Output>
-      <Time>2006-06-14T23:30:05.421875+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Calm\calm_east.bmp</Source>
-      <Name>Textures\SkyBox\Calm\calm_east</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Calm\calm_east.xnb</Output>
-      <Time>2006-06-14T23:29:57.765625+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Calm\calm_north.bmp</Source>
-      <Name>Textures\SkyBox\Calm\calm_north</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Calm\calm_north.xnb</Output>
-      <Time>2006-06-14T23:28:57.984375+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Calm\calm_south.bmp</Source>
-      <Name>Textures\SkyBox\Calm\calm_south</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Calm\calm_south.xnb</Output>
-      <Time>2006-06-14T23:28:53.984375+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Calm\calm_up.bmp</Source>
-      <Name>Textures\SkyBox\Calm\calm_up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Calm\calm_up.xnb</Output>
-      <Time>2006-06-14T23:28:47.859375+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Calm\calm_west.bmp</Source>
-      <Name>Textures\SkyBox\Calm\calm_west</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Calm\calm_west.xnb</Output>
-      <Time>2006-06-14T23:28:43.96875+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Hourglass\hourglass_down.bmp</Source>
-      <Name>Textures\SkyBox\Hourglass\hourglass_down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_down.xnb</Output>
-      <Time>2006-08-22T15:08:39.25+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Hourglass\hourglass_east.bmp</Source>
-      <Name>Textures\SkyBox\Hourglass\hourglass_east</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_east.xnb</Output>
-      <Time>2006-08-22T15:12:50.171875+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Hourglass\hourglass_north.bmp</Source>
-      <Name>Textures\SkyBox\Hourglass\hourglass_north</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_north.xnb</Output>
-      <Time>2006-08-22T15:12:50.65625+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Hourglass\hourglass_south.bmp</Source>
-      <Name>Textures\SkyBox\Hourglass\hourglass_south</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_south.xnb</Output>
-      <Time>2006-08-22T15:08:14.671875+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Hourglass\hourglass_up.bmp</Source>
-      <Name>Textures\SkyBox\Hourglass\hourglass_up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_up.xnb</Output>
-      <Time>2006-08-22T15:08:04+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SkyBox\Hourglass\hourglass_west.bmp</Source>
-      <Name>Textures\SkyBox\Hourglass\hourglass_west</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_west.xnb</Output>
-      <Time>2006-08-22T15:07:53.84375+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\woodplanks.tga</Source>
-      <Name>Textures\woodplanks</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\woodplanks.xnb</Output>
-      <Time>2009-07-20T15:45:50+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\woodplanks_normal.tga</Source>
-      <Name>Textures\woodplanks_normal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\woodplanks_normal.xnb</Output>
-      <Time>2009-07-20T15:46:00+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Particules\Fire.dds</Source>
-      <Name>Textures\Particules\Fire</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\Fire.xnb</Output>
-      <Time>2008-05-10T18:27:50+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Particules\smoke.bmp</Source>
-      <Name>Textures\Particules\smoke</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke.xnb</Output>
-      <Time>2009-01-11T01:54:30+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Particules\smoke2.png</Source>
-      <Name>Textures\Particules\smoke2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke2.xnb</Output>
-      <Time>2008-12-16T17:04:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Particules\explosion.png</Source>
-      <Name>Textures\Particules\explosion</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="GenerateMipmaps">True</Data>
-        <Data Key="TextureFormat">DxtCompressed</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\explosion.xnb</Output>
-      <Time>2007-11-26T12:33:18+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Particules\Fire2.png</Source>
-      <Name>Textures\Particules\Fire2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\Fire2.xnb</Output>
-      <Time>2007-11-26T12:33:18+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Particules\smoke3.png</Source>
-      <Name>Textures\Particules\smoke3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke3.xnb</Output>
-      <Time>2007-11-26T12:33:18+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\viseur2.png</Source>
-      <Name>Textures\viseur2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\viseur2.xnb</Output>
-      <Time>2009-03-04T13:06:34+01:00</Time>
-    </Item>
-    <Item>
-      <Source>viseur3.PNG</Source>
-      <Name>viseur3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\viseur3.xnb</Output>
-      <Time>2009-11-16T01:18:00.84375+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\viseur3.PNG</Source>
-      <Name>Textures\viseur3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\viseur3.xnb</Output>
-      <Time>2009-03-04T13:09:32+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\WHTCON.JPG</Source>
-      <Name>Textures\WHTCON</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\WHTCON.xnb</Output>
-      <Time>2001-01-15T12:09:00+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\bluetest.FBX</Source>
-      <Name>Models\bluetest</Name>
+      <Source>Models\EnemyBeast.fbx</Source>
+      <Name>Models\EnemyBeast</Name>
       <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
+      <Processor>SkinnedModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\bluetest.xnb</Output>
-      <Time>2009-05-24T22:43:48+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeast.xnb</Output>
+      <Time>2009-12-29T00:46:40.6599507+01:00</Time>
       <Dependency>
-        <Key>obj\x86\Release\Models\bluetest_0.xml</Key>
-        <Value>2009-11-18T00:14:28.84375+01:00</Value>
+        <Key>obj\x86\Release\Models\EnemyBeast_0.xml</Key>
+        <Value>2009-12-29T19:52:45.2974252+01:00</Value>
       </Dependency>
-      <Request>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\max\blue1024_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\box.FBX</Source>
-      <Name>Models\box</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\box.xnb</Output>
-      <Time>2007-12-31T04:59:16+01:00</Time>
-      <Dependency>
-        <Key>obj\x86\Release\Models\box_0.xml</Key>
-        <Value>2009-11-18T00:14:30.328125+01:00</Value>
-      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeastDiffuse_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\SkinnedModel.xnb</Request>
     </Item>
     <Item>
       <Source>Models\PlayerMarine.fbx</Source>
@@ -521,66 +112,14 @@
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarine.xnb</Output>
-      <Time>2008-07-01T00:40:52+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarine.xnb</Output>
+      <Time>2009-12-29T00:46:48.2743862+01:00</Time>
       <Dependency>
         <Key>obj\x86\Release\Models\PlayerMarine_0.xml</Key>
-        <Value>2009-11-18T00:14:38.875+01:00</Value>
+        <Value>2009-12-29T19:52:53.5438019+01:00</Value>
       </Dependency>
-      <Request>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\PlayerMarineDiffuse_0.xnb</Request>
-      <Request>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\SkinnedModel.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\scene1.FBX</Source>
-      <Name>Models\scene1</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\scene1.xnb</Output>
-      <Time>2009-05-16T13:26:18+02:00</Time>
-      <Dependency>
-        <Key>obj\x86\Release\Models\scene1_0.xml</Key>
-        <Value>2009-11-18T00:14:42.15625+01:00</Value>
-      </Dependency>
-    </Item>
-    <Item>
-      <Source>Models\scene3.fbx</Source>
-      <Name>Models\scene3</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\scene3.xnb</Output>
-      <Time>2009-05-23T04:10:46+02:00</Time>
-      <Dependency>
-        <Key>obj\x86\Release\Models\scene3_0.xml</Key>
-        <Value>2009-11-18T00:14:42.53125+01:00</Value>
-      </Dependency>
-    </Item>
-    <Item>
-      <Source>Models\scene5.FBX</Source>
-      <Name>Models\scene5</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\scene5.xnb</Output>
-      <Time>2009-05-24T00:21:06+02:00</Time>
-      <Dependency>
-        <Key>obj\x86\Release\Models\scene5_0.xml</Key>
-        <Value>2009-11-18T00:14:43.1875+01:00</Value>
-      </Dependency>
-    </Item>
-    <Item>
-      <Source>Models\test1.fbx</Source>
-      <Name>Models\test1</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\test1.xnb</Output>
-      <Time>2009-05-23T06:50:12+02:00</Time>
-      <Dependency>
-        <Key>obj\x86\Release\Models\test1_0.xml</Key>
-        <Value>2009-11-18T00:14:43.546875+01:00</Value>
-      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarineDiffuse_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\SkinnedModel.xnb</Request>
     </Item>
     <Item>
       <Source>Models\testRad.FBX</Source>
@@ -588,13 +127,26 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\testRad.xnb</Output>
-      <Time>2009-05-24T18:59:22+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\testRad.xnb</Output>
+      <Time>2009-12-29T00:47:02.9362248+01:00</Time>
       <Dependency>
         <Key>obj\x86\Release\Models\testRad_0.xml</Key>
-        <Value>2009-11-18T00:14:44.53125+01:00</Value>
+        <Value>2009-12-29T19:52:56.1125914+01:00</Value>
       </Dependency>
-      <Request>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\box.FBX</Source>
+      <Name>Models\box</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\box.xnb</Output>
+      <Time>2009-12-29T00:47:22.3553355+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\box_0.xml</Key>
+        <Value>2009-12-29T19:52:58.2751246+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Models\unitSphere.FBX</Source>
@@ -602,11 +154,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\unitSphere.xnb</Output>
-      <Time>2009-05-23T07:53:40+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\unitSphere.xnb</Output>
+      <Time>2009-12-29T00:47:22.3663362+01:00</Time>
       <Dependency>
         <Key>obj\x86\Release\Models\unitSphere_0.xml</Key>
-        <Value>2009-11-18T00:14:46.890625+01:00</Value>
+        <Value>2009-12-29T19:52:58.3838762+01:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -615,13 +167,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\weapon.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\weapon.xnb</Output>
+      <Time>2009-12-29T00:47:32.6449241+01:00</Time>
       <Dependency>
         <Key>obj\x86\Release\Models\weapon_0.xml</Key>
-        <Value>2009-11-18T00:14:47.53125+01:00</Value>
+        <Value>2009-12-29T19:52:58.7476318+01:00</Value>
       </Dependency>
-      <Request>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Water_Reservoir.FBX</Source>
@@ -629,76 +181,569 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\Water_Reservoir.xnb</Output>
-      <Time>2009-05-22T01:24:06.2813678+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Water_Reservoir.xnb</Output>
+      <Time>2009-12-29T00:47:42.5734919+01:00</Time>
       <Dependency>
         <Key>obj\x86\Release\Models\Water_Reservoir_0.xml</Key>
-        <Value>2009-11-18T00:14:48.1875+01:00</Value>
+        <Value>2009-12-29T19:52:59.2301392+01:00</Value>
       </Dependency>
     </Item>
     <Item>
-      <Source>Fonts\DebugFont.spritefont</Source>
-      <Name>Fonts\DebugFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
+      <Source>Models\bridge.FBX</Source>
+      <Name>Models\bridge</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Fonts\DebugFont.xnb</Output>
-      <Time>2009-05-23T03:03:02+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\bridge.xnb</Output>
+      <Time>2009-12-29T00:47:52.5350617+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\bridge_0.xml</Key>
+        <Value>2009-12-29T19:52:59.7226468+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
-      <Source>Effects\parallax_normal_mapping.fx</Source>
-      <Name>Effects\parallax_normal_mapping</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Source>Models\Palm.FBX</Source>
+      <Name>Models\Palm</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Effects\parallax_normal_mapping.xnb</Output>
-      <Time>2008-11-15T15:18:24+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Palm.xnb</Output>
+      <Time>2009-12-29T00:49:58.2252508+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\Palm_0.xml</Key>
+        <Value>2009-12-29T19:53:00.4101574+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
-      <Source>SkinnedModel.fx</Source>
-      <Name>SkinnedModel</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Source>Textures\crate.dds</Source>
+      <Name>Textures\crate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\SkinnedModel.xnb</Output>
-      <Time>2009-04-28T10:44:30+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\crate.xnb</Output>
+      <Time>2009-12-29T00:48:42.6419277+01:00</Time>
     </Item>
     <Item>
-      <Source>skybox.fx</Source>
-      <Name>skybox</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Source>Textures\WHTCON.JPG</Source>
+      <Name>Textures\WHTCON</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\skybox.xnb</Output>
-      <Time>2009-11-09T15:18:51.515625+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\WHTCON.xnb</Output>
+      <Time>2009-12-29T00:48:42.6429277+01:00</Time>
     </Item>
     <Item>
-      <Source>ParticleEffect.fx</Source>
-      <Name>ParticleEffect</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Source>Textures\Terrain\DensiteEau.tga</Source>
+      <Name>Textures\Terrain\DensiteEau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\ParticleEffect.xnb</Output>
-      <Time>2007-12-06T09:21:40+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\DensiteEau.xnb</Output>
+      <Time>2009-12-29T00:49:02.8000806+01:00</Time>
     </Item>
     <Item>
-      <Source>Sounds\explode4.wav</Source>
-      <Name>Sounds\explode4</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
+      <Source>Textures\Terrain\DensiteTerre.tga</Source>
+      <Name>Textures\Terrain\DensiteTerre</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Sounds\explode4.xnb</Output>
-      <Time>2002-01-08T18:43:02+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\DensiteTerre.xnb</Output>
+      <Time>2009-12-29T00:49:02.8380828+01:00</Time>
     </Item>
     <Item>
-      <Source>Models\bluetest.FBX</Source>
+      <Source>Textures\Terrain\Herbe.dds</Source>
+      <Name>Textures\Terrain\Herbe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\Herbe.xnb</Output>
+      <Time>2009-12-29T00:49:02.8520836+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Terrain\MapTerrain.tga</Source>
+      <Name>Textures\Terrain\MapTerrain</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TerrainProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\MapTerrain.xnb</Output>
+      <Time>2009-12-29T00:49:02.9010864+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Terrain\Terre.dds</Source>
+      <Name>Textures\Terrain\Terre</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\Terre.xnb</Output>
+      <Time>2009-12-29T00:49:02.9690903+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Terrain\terrain.bmp</Source>
+      <Name>Textures\Terrain\terrain</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\terrain.xnb</Output>
+      <Time>2009-12-29T00:49:02.9030865+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Particules\explosion.png</Source>
+      <Name>Textures\Particules\explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\explosion.xnb</Output>
+      <Time>2009-12-29T00:49:41.567298+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Particules\Fire2.png</Source>
+      <Name>Textures\Particules\Fire2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\Fire2.xnb</Output>
+      <Time>2009-12-29T00:49:41.5692981+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Particules\smoke.bmp</Source>
+      <Name>Textures\Particules\smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke.xnb</Output>
+      <Time>2009-12-29T00:49:41.5702982+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Particules\smoke2.png</Source>
+      <Name>Textures\Particules\smoke2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke2.xnb</Output>
+      <Time>2009-12-29T00:49:41.5712982+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Particules\smoke3.png</Source>
+      <Name>Textures\Particules\smoke3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke3.xnb</Output>
+      <Time>2009-12-29T00:49:41.5722983+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Particules\Fire.dds</Source>
+      <Name>Textures\Particules\Fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\Fire.xnb</Output>
+      <Time>2009-12-29T00:49:41.5682981+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Interfaces\DisplaySprites.PNG</Source>
+      <Name>Textures\Interfaces\DisplaySprites</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\DisplaySprites.xnb</Output>
+      <Time>2009-12-29T00:51:10.2523705+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Interfaces\texturehud7iv.jpg</Source>
+      <Name>Textures\Interfaces\texturehud7iv</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\texturehud7iv.xnb</Output>
+      <Time>2009-12-29T00:51:10.2543706+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Interfaces\viseur2.png</Source>
+      <Name>Textures\Interfaces\viseur2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\viseur2.xnb</Output>
+      <Time>2009-12-29T00:51:10.2563707+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Interfaces\viseur3.PNG</Source>
+      <Name>Textures\Interfaces\viseur3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\viseur3.xnb</Output>
+      <Time>2009-12-29T00:51:10.2573708+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\EnemyBeastDiffuse.jpg</Source>
+      <Name>Models\EnemyBeastDiffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeastDiffuse.xnb</Output>
+      <Time>2009-12-29T00:56:22.0722056+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\PlayerMarineDiffuse.jpg</Source>
+      <Name>Models\PlayerMarineDiffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarineDiffuse.xnb</Output>
+      <Time>2009-12-29T00:56:47.833679+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Object04CompleteMap.tga</Source>
+      <Name>Models\Object04CompleteMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap.xnb</Output>
+      <Time>2009-12-29T00:57:08.7858774+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\hk_mp5n.jpg</Source>
+      <Name>Models\hk_mp5n</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n.xnb</Output>
+      <Time>2009-12-29T00:57:54.0794681+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\brick_color_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\brick_color_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\brick_color_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.506925+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\brick_height_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\brick_height_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\brick_height_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.5189257+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\brick_normal_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\brick_normal_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\brick_normal_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.541927+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\floor_color_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\floor_color_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\floor_color_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.5989302+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\floor_height_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\floor_height_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\floor_height_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.6569335+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\floor_normal_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\floor_normal_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\floor_normal_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.7259375+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\wood_color_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\wood_color_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\wood_color_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.8209429+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\wood_height_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\wood_height_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\wood_height_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.8719458+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\wood_normal_map.dds</Source>
+      <Name>Textures\ColorNormalHeightMap\wood_normal_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\wood_normal_map.xnb</Output>
+      <Time>2009-12-29T01:07:56.8969473+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\woodplanks.tga</Source>
+      <Name>Textures\ColorNormalHeightMap\woodplanks</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\woodplanks.xnb</Output>
+      <Time>2009-12-29T01:09:26.0090442+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ColorNormalHeightMap\woodplanks_normal.tga</Source>
+      <Name>Textures\ColorNormalHeightMap\woodplanks_normal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\woodplanks_normal.xnb</Output>
+      <Time>2009-12-29T01:09:26.0110443+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\City\city_down.bmp</Source>
+      <Name>Textures\SkyBox\City\city_down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_down.xnb</Output>
+      <Time>2009-12-29T01:10:37.0971102+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\City\city_east.bmp</Source>
+      <Name>Textures\SkyBox\City\city_east</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_east.xnb</Output>
+      <Time>2009-12-29T01:10:37.1711144+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\City\city_north.bmp</Source>
+      <Name>Textures\SkyBox\City\city_north</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_north.xnb</Output>
+      <Time>2009-12-29T01:10:37.2321179+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\City\city_south.bmp</Source>
+      <Name>Textures\SkyBox\City\city_south</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_south.xnb</Output>
+      <Time>2009-12-29T01:10:37.320123+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\City\city_up.bmp</Source>
+      <Name>Textures\SkyBox\City\city_up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_up.xnb</Output>
+      <Time>2009-12-29T01:10:37.391127+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\City\city_west.bmp</Source>
+      <Name>Textures\SkyBox\City\city_west</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_west.xnb</Output>
+      <Time>2009-12-29T01:10:37.5401355+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Grass\grassCUBE_page_001.dds</Source>
+      <Name>Textures\SkyBox\Grass\grassCUBE_page_001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_001.xnb</Output>
+      <Time>2009-12-29T01:10:45.8296097+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Grass\grassCUBE_page_002.dds</Source>
+      <Name>Textures\SkyBox\Grass\grassCUBE_page_002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_002.xnb</Output>
+      <Time>2009-12-29T01:10:45.8626116+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Grass\grassCUBE_page_003.dds</Source>
+      <Name>Textures\SkyBox\Grass\grassCUBE_page_003</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_003.xnb</Output>
+      <Time>2009-12-29T01:10:45.887613+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Grass\grassCUBE_page_004.dds</Source>
+      <Name>Textures\SkyBox\Grass\grassCUBE_page_004</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_004.xnb</Output>
+      <Time>2009-12-29T01:10:45.9346157+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Grass\grassCUBE_page_005.dds</Source>
+      <Name>Textures\SkyBox\Grass\grassCUBE_page_005</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_005.xnb</Output>
+      <Time>2009-12-29T01:10:45.9496165+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Grass\grassCUBE_page_006.dds</Source>
+      <Name>Textures\SkyBox\Grass\grassCUBE_page_006</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_006.xnb</Output>
+      <Time>2009-12-29T01:10:45.9716178+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Hourglass\hourglass_down.bmp</Source>
+      <Name>Textures\SkyBox\Hourglass\hourglass_down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_down.xnb</Output>
+      <Time>2009-12-29T01:10:55.2621492+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Hourglass\hourglass_east.bmp</Source>
+      <Name>Textures\SkyBox\Hourglass\hourglass_east</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_east.xnb</Output>
+      <Time>2009-12-29T01:10:55.3801559+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Hourglass\hourglass_north.bmp</Source>
+      <Name>Textures\SkyBox\Hourglass\hourglass_north</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_north.xnb</Output>
+      <Time>2009-12-29T01:10:55.5721669+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Hourglass\hourglass_south.bmp</Source>
+      <Name>Textures\SkyBox\Hourglass\hourglass_south</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_south.xnb</Output>
+      <Time>2009-12-29T01:10:55.7321761+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Hourglass\hourglass_up.bmp</Source>
+      <Name>Textures\SkyBox\Hourglass\hourglass_up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_up.xnb</Output>
+      <Time>2009-12-29T01:10:55.8411823+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SkyBox\Hourglass\hourglass_west.bmp</Source>
+      <Name>Textures\SkyBox\Hourglass\hourglass_west</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_west.xnb</Output>
+      <Time>2009-12-29T01:10:55.9181867+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\OAK1.TGA</Source>
+      <Name>Models\OAK1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\OAK1.xnb</Output>
+      <Time>2009-12-29T01:33:39.8311981+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannermiddle_diff.dds</Source>
+      <Name>Models\scannermiddle_diff</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermiddle_diff.xnb</Output>
+      <Time>2009-12-29T14:09:58.606348+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannerroom_diff.dds</Source>
+      <Name>Models\scannerroom_diff</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom_diff.xnb</Output>
+      <Time>2009-12-29T14:10:19.046662+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Japanese Stair Case.x</Source>
+      <Name>Models\Japanese Stair Case</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Japanese Stair Case.xnb</Output>
+      <Time>2009-12-29T01:33:28.4765486+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\Japanese Stair Case_0.xml</Key>
+        <Value>2009-12-29T19:54:27.4569981+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\OAK1_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\scannerroom.x</Source>
+      <Name>Models\scannerroom</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom.xnb</Output>
+      <Time>2009-12-29T14:08:00.2820306+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\scannerroom_0.xml</Key>
+        <Value>2009-12-29T19:54:30.3520425+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermiddle_diff_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom_diff_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\EnemyBeast.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Release\Models\bluetest_0.xml</Output>
-      <Time>2009-05-24T22:43:48+02:00</Time>
+      <Output>obj\x86\Release\Models\EnemyBeast_0.xml</Output>
+      <Time>2009-12-29T00:46:40.6599507+01:00</Time>
     </Item>
     <Item>
-      <Source>max\blue1024.png</Source>
+      <Source>Models\EnemyBeastDiffuse.jpg</Source>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Parameters>
@@ -709,25 +754,18 @@
         <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\max\blue1024_0.xnb</Output>
-      <Time>2009-05-24T19:25:44+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\box.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Release\Models\box_0.xml</Output>
-      <Time>2007-12-31T04:59:16+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeastDiffuse_0.xnb</Output>
+      <Time>2009-12-29T00:56:22.0722056+01:00</Time>
     </Item>
     <Item>
       <Source>Models\PlayerMarine.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Release\Models\PlayerMarine_0.xml</Output>
-      <Time>2008-07-01T00:40:52+02:00</Time>
+      <Time>2009-12-29T00:46:48.2743862+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\PlayerMarineDiffuse.jpg</Source>
+      <Source>Models\PlayerMarineDiffuse.jpg</Source>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Parameters>
@@ -738,43 +776,15 @@
         <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Textures\PlayerMarineDiffuse_0.xnb</Output>
-      <Time>2008-07-01T00:41:46+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\scene1.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Release\Models\scene1_0.xml</Output>
-      <Time>2009-05-16T13:26:18+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\scene3.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Release\Models\scene3_0.xml</Output>
-      <Time>2009-05-23T04:10:46+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\scene5.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Release\Models\scene5_0.xml</Output>
-      <Time>2009-05-24T00:21:06+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\test1.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Release\Models\test1_0.xml</Output>
-      <Time>2009-05-23T06:50:12+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarineDiffuse_0.xnb</Output>
+      <Time>2009-12-29T00:56:47.833679+01:00</Time>
     </Item>
     <Item>
       <Source>Models\testRad.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Release\Models\testRad_0.xml</Output>
-      <Time>2009-05-24T18:59:22+02:00</Time>
+      <Time>2009-12-29T00:47:02.9362248+01:00</Time>
     </Item>
     <Item>
       <Source>Models\Object04CompleteMap.tga</Source>
@@ -788,22 +798,29 @@
         <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap_0.xnb</Output>
-      <Time>2009-05-24T18:57:36+02:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap_0.xnb</Output>
+      <Time>2009-12-29T00:57:08.7858774+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\box.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\box_0.xml</Output>
+      <Time>2009-12-29T00:47:22.3553355+01:00</Time>
     </Item>
     <Item>
       <Source>Models\unitSphere.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Release\Models\unitSphere_0.xml</Output>
-      <Time>2009-05-23T07:53:40+02:00</Time>
+      <Time>2009-12-29T00:47:22.3663362+01:00</Time>
     </Item>
     <Item>
       <Source>Models\weapon.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Release\Models\weapon_0.xml</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
+      <Time>2009-12-29T00:47:32.6449241+01:00</Time>
     </Item>
     <Item>
       <Source>Models\hk_mp5n.jpg</Source>
@@ -817,58 +834,147 @@
         <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n_0.xnb</Output>
-      <Time>2008-12-21T23:23:34+01:00</Time>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n_0.xnb</Output>
+      <Time>2009-12-29T00:57:54.0794681+01:00</Time>
     </Item>
     <Item>
       <Source>Models\Water_Reservoir.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Release\Models\Water_Reservoir_0.xml</Output>
-      <Time>2009-05-22T01:24:06.2813678+02:00</Time>
+      <Time>2009-12-29T00:47:42.5734919+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\bridge.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\bridge_0.xml</Output>
+      <Time>2009-12-29T00:47:52.5350617+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Palm.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\Palm_0.xml</Output>
+      <Time>2009-12-29T00:49:58.2252508+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Japanese Stair Case.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\Japanese Stair Case_0.xml</Output>
+      <Time>2009-12-29T01:33:28.4765486+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\OAK1.TGA</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\OAK1_0.xnb</Output>
+      <Time>2009-12-29T01:33:39.8311981+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannerroom.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\scannerroom_0.xml</Output>
+      <Time>2009-12-29T14:08:00.2820306+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannermiddle_diff.dds</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermiddle_diff_0.xnb</Output>
+      <Time>2009-12-29T14:09:58.606348+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannerroom_diff.dds</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom_diff_0.xnb</Output>
+      <Time>2009-12-29T14:10:19.046662+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <BuildConfiguration>Release</BuildConfiguration>
       <CompressContent>true</CompressContent>
-      <RootDirectory>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\Content\obj\x86\Release\</IntermediateDirectory>
-      <OutputDirectory>C:\DoomeR\XNAWalkyrie\XnaWalkyrieSample\bin\x86\Release\Content\</OutputDirectory>
+      <RootDirectory>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\</RootDirectory>
+      <LoggerRootDirectory>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\Content\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\DoomeR\XNAWalkyrie\SkinnedModelPipeline\bin\x86\Release\SkinnedModelPipeline.dll</Key>
-        <Value>2009-11-18T00:12:46.046875+01:00</Value>
+        <Key>D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.dll</Key>
+        <Value>2009-12-29T19:52:30.8789411+01:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2009-05-28T00:16:14+02:00</Value>
+        <Key>C:\Windows\assembly\GAC\Microsoft.DirectX.DirectInput\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.DirectInput.dll</Key>
+        <Value>2009-12-28T13:38:06.2165203+01:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2009-05-28T00:16:06+02:00</Value>
+        <Key>C:\Windows\assembly\GAC\Microsoft.DirectX\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.dll</Key>
+        <Value>2009-12-28T13:38:05.2554653+01:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2009-05-28T00:16:16+02:00</Value>
+        <Key>C:\Windows\assembly\GAC_32\Microsoft.Xna.Framework.Game\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Game.dll</Key>
+        <Value>2009-12-13T18:10:23.1007816+01:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2009-05-28T00:16:26+02:00</Value>
+        <Key>D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\bin\x86\Release\SkinnedModelPipeline.dll</Key>
+        <Value>2009-12-29T19:52:19.5250167+01:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2009-05-28T00:16:12+02:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2009-05-28T01:16:14+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2009-05-28T00:16:06+02:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2009-05-28T01:16:06+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2009-09-22T01:00:07.328125+02:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2009-05-28T01:16:16+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2009-05-28T01:16:26+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2009-05-28T01:16:12+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2009-05-28T01:16:06+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2009-12-13T18:12:18.3969741+01:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

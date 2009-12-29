@@ -5,3 +5,10 @@ C:\DoomeR\XNAWalkyrie\SkinnedModelPipeline\bin\x86\Release\SkinnedModel.pdb
 C:\DoomeR\XNAWalkyrie\SkinnedModelPipeline\obj\x86\Release\ResolveAssemblyReference.cache
 C:\DoomeR\XNAWalkyrie\SkinnedModelPipeline\obj\x86\Release\SkinnedModelPipeline.dll
 C:\DoomeR\XNAWalkyrie\SkinnedModelPipeline\obj\x86\Release\SkinnedModelPipeline.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\bin\x86\Release\SkinnedModelPipeline.dll
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\bin\x86\Release\SkinnedModelPipeline.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\bin\x86\Release\SkinnedModel.dll
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\bin\x86\Release\SkinnedModel.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\obj\x86\Release\SkinnedModelPipeline.dll
+D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\obj\x86\Release\SkinnedModelPipeline.pdb
