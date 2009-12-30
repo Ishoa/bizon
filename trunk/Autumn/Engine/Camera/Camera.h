@@ -36,6 +36,9 @@ public:
 	Camera();
 	virtual ~Camera();
 
+	virtual HRESULT Create();
+	virtual HRESULT Destroy();
+
 	inline Vector3	GetPos() const { return m_vPos; }
 	inline void		SetPos(Vector3 val) { m_vPos = val; }
 

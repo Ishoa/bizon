@@ -16,7 +16,9 @@ public:
 
 	virtual HRESULT Create(unsigned int size, unsigned int nElts, const void * data);
 	virtual HRESULT Destroy();
-	void Update(void * _pData);
+	void *	Map();
+	void	Unmap();
+	void	Update(void * _pData, unsigned int size);
 };
 
 #endif // _CONSTANT_BUFFER_UPDATE_

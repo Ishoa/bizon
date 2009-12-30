@@ -31,6 +31,8 @@ HRESULT IndexBuffer::Create(unsigned int size, unsigned int nElts, const void * 
 
 	D3D11_SUBRESOURCE_DATA InitData;
 	InitData.pSysMem = data;
+	InitData.SysMemPitch = 0;
+	InitData.SysMemSlicePitch = 0;
 	
 	D_RETURN( g_pDxDevice->CreateBuffer( &bd, &InitData, &m_pBuffer ) );
 

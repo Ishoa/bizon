@@ -1,6 +1,6 @@
-cbuffer cb : register(c0)
+cbuffer cb : register(b0)
 {
-	row_major float4x4 mWorldViewProj;
+	row_major float4x4 mWorldViewProj : packoffset( c0 );
 }
 
 struct VSin

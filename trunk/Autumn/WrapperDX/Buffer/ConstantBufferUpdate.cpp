@@ -5,7 +5,7 @@
 #endif
 
 #ifndef _CONSTANT_BUFFER_UPDATE_
-#include "ConstantBufferUpdate.h"
+#include "WrapperDx/Buffer/ConstantBufferUpdate.h"
 #endif
 
 
@@ -47,12 +47,26 @@ HRESULT ConstantBufferUpdate::Destroy()
 	return Buffer::Destroy();
 }
 
-void ConstantBufferUpdate::Update(void * _pData)
+void * ConstantBufferUpdate::Map()
 {
-	D3D11_MAPPED_SUBRESOURCE Map;
-	g_pDxDeviceContext->Map(m_pBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &Map );
+	D3D11_MAPPED_SUBRESOURCE oMap;
+	g_pDxDeviceContext->Map(m_pBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &oMap );
 
-	CopyMemory(&Map.pData, _pData, m_iSize);
+	return oMap.pData;
+}
+
+void ConstantBufferUpdate::Unmap()
+{
+	g_pDxDeviceContext->Unmap(m_pBuffer, 0);
+}
+
+void ConstantBufferUpdate::Update(void * _pData, unsigned int size)
+{
+	D3D11_MAPPED_SUBRESOURCE oMap;
+	g_pDxDeviceContext->Map(m_pBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &oMap );
+
+	ZeroMemory(&oMap, sizeof(D3D11_MAPPED_SUBRESOURCE));
+	CopyMemory(&oMap.pData, _pData, m_iSize);
 
 	g_pDxDeviceContext->Unmap(m_pBuffer, 0);
 }

@@ -26,6 +26,7 @@
 
 
 class Node;
+class EngineCamera;
 
 class Node
 {
@@ -53,7 +54,7 @@ public:
 	void Rotate(float x, float y, float z);
 	void Scale(float x, float y, float z);
 
-	virtual void Render();
+	virtual void Render( EngineCamera * _pCamera );
 	virtual bool Culling();
 
 };

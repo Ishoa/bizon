@@ -17,7 +17,7 @@ HRESULT Viewer::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	D_RETURN(Engine::Create(_hWnd, _uWidth, _uHeight, _bFullscreen));
 
 	m_pPlan = new Plan;
-	m_pPlan->Set( Vector3(0,0,1), 10.0f );
+	m_pPlan->Set( 10.0f );
 	D_RETURN( m_pPlan->Create() );
 
 	return S_OK;
@@ -44,7 +44,7 @@ void Viewer::Render()
 {
 	Engine::BeginRender();
 
-	m_pPlan->Render();
+	m_pPlan->Render( m_pCamera );
 
 	Engine::EndRender();
 }

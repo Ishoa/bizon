@@ -1,5 +1,9 @@
 #include "stdafx.h"
 
+#ifndef _ENGINE_CAMERA_
+#include "Engine/Engine/EngineCamera.h"
+#endif
+
 #ifndef _DISPLAY_OBJECT_
 #include "Engine/SceneGraph/DisplayObject.h"
 #endif
@@ -52,7 +56,7 @@ HRESULT DisplayObject::Destroy()
 	return S_OK;
 }
 
-void DisplayObject::Render()
+void DisplayObject::Render( EngineCamera * _pCamera )
 {
 	
 }
