@@ -1,0 +1,114 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_STARTER DIALOGEX 0, 0, 203, 230
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Lancement DoomeRX"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,146,209,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,73,209,50,14
+    GROUPBOX        "Scene",IDC_STATIC,7,6,189,198
+    CONTROL         "Basique",IDC_RADIO_BASIQUE,"Button",BS_AUTORADIOBUTTON,15,20,41,10
+    CONTROL         "Survol Terrain 3D + CameraLibre",IDC_RADIO_SURVOL,
+                    "Button",BS_AUTORADIOBUTTON,15,142,121,10
+    CONTROL         "Demo MipMapping",IDC_RADIO_MIPMAP,"Button",BS_AUTORADIOBUTTON,15,45,73,10
+    CONTROL         "Teapot + TrackBall",IDC_TEAPOT,"Button",BS_AUTORADIOBUTTON,15,58,76,10
+    CONTROL         "MultipleVertexBuffers + TrackBall",IDC_MULTIPLEVERTEXBUFFERS,
+                    "Button",BS_AUTORADIOBUTTON,15,72,122,10
+    CONTROL         "Systeme Solaire ( Bump Mapping Natif )",IDC_SYSTEMSOLAIRE,
+                    "Button",BS_AUTORADIOBUTTON,15,115,141,10
+    CONTROL         "Normal Mapping",IDC_NORMAL_MAPPING,"Button",BS_AUTORADIOBUTTON,15,85,67,10
+    CONTROL         "Labyrinthe",IDC_Laby,"Button",BS_AUTORADIOBUTTON,15,129,50,10
+    CONTROL         "Shader",IDC_SHADER,"Button",BS_AUTORADIOBUTTON,15,101,39,10
+    CONTROL         "Scene de Test",IDC_TEST,"Button",BS_AUTORADIOBUTTON,15,32,61,10
+    CONTROL         "Shadow Volume",IDC_Shadow,"Button",BS_AUTORADIOBUTTON,15,156,66,10
+    CONTROL         "Systeme de Particules",IDC_PARTICULE,"Button",BS_AUTORADIOBUTTON,15,170,86,10
+    CONTROL         "EffectDX",IDC_EFFECTDX,"Button",BS_AUTORADIOBUTTON,15,183,44,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_STARTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 223
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

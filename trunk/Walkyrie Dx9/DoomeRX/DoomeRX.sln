@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DoomeRX", "DoomeRX\DoomeRX.vcproj", "{9918543F-14CB-4568-BB36-CAB6BBD139AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{77BED49F-9148-484D-97E5-DC77A36D9DCF} = {77BED49F-9148-484D-97E5-DC77A36D9DCF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Valkyrie", "..\Valkyrie\Valkyrie\Valkyrie.vcproj", "{77BED49F-9148-484D-97E5-DC77A36D9DCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9918543F-14CB-4568-BB36-CAB6BBD139AC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9918543F-14CB-4568-BB36-CAB6BBD139AC}.Debug|Win32.Build.0 = Debug|Win32
+		{9918543F-14CB-4568-BB36-CAB6BBD139AC}.Release|Win32.ActiveCfg = Release|Win32
+		{9918543F-14CB-4568-BB36-CAB6BBD139AC}.Release|Win32.Build.0 = Release|Win32
+		{77BED49F-9148-484D-97E5-DC77A36D9DCF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{77BED49F-9148-484D-97E5-DC77A36D9DCF}.Debug|Win32.Build.0 = Debug|Win32
+		{77BED49F-9148-484D-97E5-DC77A36D9DCF}.Release|Win32.ActiveCfg = Release|Win32
+		{77BED49F-9148-484D-97E5-DC77A36D9DCF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
