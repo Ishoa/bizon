@@ -5,11 +5,12 @@
 #include "Engine/SceneGraph/DisplayObject.h"
 #endif
 
+class EngineCamera;
+
 class Plan : public DisplayObject
 {
 protected:
 
-	Vector3 m_vUp;
 	float	m_fSize;
 
 	virtual HRESULT	CompileShaders();
@@ -19,12 +20,12 @@ public:
 	Plan();
 	virtual ~Plan();
 
-	void Set(const Vector3 & _vUp, const float & _fSize);
+	void Set(const float & _fSize);
 
 	virtual HRESULT Create();
 	virtual HRESULT Destroy();
 
-	virtual void Render();
+	virtual void Render( EngineCamera * _pCamera );
 	//virtual void RenderShadow();
 	virtual bool Culling();
 

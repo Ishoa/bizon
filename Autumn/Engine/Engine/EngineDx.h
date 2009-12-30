@@ -1,15 +1,21 @@
 #ifndef _ENGINE_DX_ 
 #define _ENGINE_DX_
 
+
 #ifndef _VIEW_PORT_
 #include "WrapperDX/Device/ViewPort.h"
+#endif
+
+#ifndef _MATRIX4X4_
+#include "Core/Math/Matrix4x4.h"
 #endif
 
 class Device3D;
 class RenderTarget;
 class DepthStencil;
 class TimeManager;
-class Camera;
+class EngineCamera;
+class ConstantBufferUpdate;
 
 
 class Engine
@@ -33,14 +39,7 @@ protected:
 	TimeManager				* m_pTimeManager;
 
 	// Camera
-	Camera					* m_pCamera;
-
-	// Constant Buffer
-//	ConstantBufferUpdate	* m_pCameraShaderParam;
-//	struct sCameraShaderParam
-//	{
-//		Matrix4x4	m_mViewProj;
-//	};
+	EngineCamera			* m_pCamera;
 
 public:
 	Engine();

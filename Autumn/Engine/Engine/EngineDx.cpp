@@ -1,14 +1,11 @@
 #include "stdafx.h"
 
-#define _USE_MATH_DEFINES
-#include <math.h>
-
 #ifndef _TIME_MANAGER_
 #include "Engine/Manager/TimeManager.h"
 #endif
 
 #ifndef _CAMERA_
-#include "Engine/Camera/Camera.h"
+#include "Engine/Engine/EngineCamera.h"
 #endif
 
 #ifndef _ENGINE_DX_
@@ -78,13 +75,12 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	E_RETURN( m_pTimeManager->Create(), "Create TimeManager : " );
 
 	// Camera
-	m_pCamera = new Camera;
+	m_pCamera = new EngineCamera;
+	D_RETURN( m_pCamera->Create() );
 	m_pCamera->SetView(Vector3(-25.0f, 0.0f, 10.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 	m_pCamera->BuildViewMatrix();
 	float fAspect = (float)uWidth / (float)uHeight;
 	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 100.0f);
-//	m_pCameraShaderParam = new ConstantBufferUpdate;
-	//D_RETURN
 
 	
 	return S_OK;
@@ -96,8 +92,7 @@ HRESULT Engine::Destroy()
 	SAFE_DESTROY( m_pDefaultRenderTarget );
 	SAFE_DESTROY( m_pDefaultDepthStencil );
 	SAFE_DESTROY( m_pTimeManager );
-
-	SAFE_DELETE( m_pCamera );
+	SAFE_DESTROY( m_pCamera );
 	
 	return S_OK;
 }

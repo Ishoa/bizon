@@ -14,6 +14,7 @@ class IndexBuffer;
 class VertexShader;
 class PixelShader;
 template< class Vertextype >class VertexLayout;
+class EngineCamera;
 
 class DisplayObject : public Node
 {
@@ -38,7 +39,7 @@ public:
 	virtual HRESULT Create();
 	virtual HRESULT Destroy();
 
-	virtual void Render();
+	virtual void Render( EngineCamera * _pCamera );
 	virtual bool Culling();
 
 };

@@ -14,6 +14,17 @@ Camera::~Camera()
 {
 }
 
+
+HRESULT Camera::Create()
+{
+	return S_OK;
+}
+
+HRESULT Camera::Destroy()
+{
+	return S_OK;
+}
+
 void Camera::SetAspect(float _fAspect)
 {
 	BuildProjectionMatrix(m_fFov, _fAspect, m_fZNear, m_fZFar);

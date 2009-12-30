@@ -18,6 +18,9 @@
 #include <D3DX11tex.h>
 #include <D3Dcompiler.h>
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #ifndef _UTILS_
 #include "Core/Utils/Utils.h"
 #endif

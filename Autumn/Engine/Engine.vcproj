@@ -147,6 +147,14 @@
 			Name="Engine"
 			>
 			<File
+				RelativePath=".\Engine\EngineCamera.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Engine\EngineCamera.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Engine\EngineDx.cpp"
 				>
 			</File>

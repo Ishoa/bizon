@@ -1,5 +1,9 @@
 #include "stdafx.h"
 
+#ifndef _ENGINE_CAMERA_
+#include "Engine/Engine/EngineCamera.h"
+#endif
+
 #ifndef _PLAN_
 #include "Engine/SceneGraph/Plan.h"
 #endif
@@ -7,7 +11,7 @@
 Plan::Plan()
 : DisplayObject()
 {
-	Set( Vector3(0,0,1), 10.0f );
+	Set( 10.0f );
 }
 
 Plan::~Plan()
@@ -36,17 +40,18 @@ HRESULT Plan::Destroy()
 	return S_OK;
 }
 
-void Plan::Render()
+void Plan::Render( EngineCamera * _pCamera )
 {
+	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+	_pCamera->SetWorld( m_mGlobalMatrix );
 	m_pIndexBuffer->Bind();
 	m_pVertexBuffer->Bind();
 	m_pVertexLayout->Bind();
 	m_pVertexShader->Bind();
+	m_pVertexShader->SetConstantBuffer( 0, _pCamera->GetCameraShaderParamBuffer() );
 	m_pPixelShader->Bind();
 	g_pDevice->UnbindGeometryShader();
-	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
-	g_pDxDeviceContext->DrawIndexed( m_nVertex, 0, 0 );
+	g_pDxDeviceContext->DrawIndexed( m_nIndex, 0, 0 );
 }
 
 bool Plan::Culling()
@@ -74,7 +79,7 @@ HRESULT Plan::BuildGeometry()
 	D_RETURN( m_pVertexLayout->Create( m_pVertexShader ) );
 
 	m_nVertex = 4;
-	m_nIndex = 6;
+	m_nIndex = 12;
 
 	// VertexBuffer
 	{
@@ -105,11 +110,17 @@ HRESULT Plan::BuildGeometry()
 		unsigned int * IndexData = new unsigned int[m_nIndex];
 
 		IndexData[0] = 0;
-		IndexData[1] = 1;
-		IndexData[2] = 2;
+		IndexData[1] = 2;
+		IndexData[2] = 1;
 		IndexData[3] = 0;
-		IndexData[4] = 2;
-		IndexData[5] = 3;
+		IndexData[4] = 3;
+		IndexData[5] = 2;
+		IndexData[6] = 0;
+		IndexData[7] = 1;
+		IndexData[8] = 2;
+		IndexData[9] = 0;
+		IndexData[10] = 2;
+		IndexData[11] = 3;
 
 		m_pIndexBuffer = new IndexBuffer;
 		D_RETURN( m_pIndexBuffer->Create( sizeof(unsigned int), m_nIndex, IndexData ) );
@@ -120,8 +131,7 @@ HRESULT Plan::BuildGeometry()
 	return S_OK;
 }
 
-void Plan::Set( const Vector3 & _vUp, const float & _fSize )
+void Plan::Set( const float & _fSize )
 {
-	m_vUp = _vUp;
 	m_fSize = _fSize;
 }
