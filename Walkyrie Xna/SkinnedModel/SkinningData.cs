@@ -26,12 +26,14 @@ namespace SkinnedModel
         /// </summary>
         public SkinningData(Dictionary<string, AnimationClip> animationClips,
                             List<Matrix> bindPose, List<Matrix> inverseBindPose,
-                            List<int> skeletonHierarchy)
+                            List<int> skeletonHierarchy,
+                            Dictionary<string, int> boneIndices)
         {
             AnimationClips = animationClips;
             BindPose = bindPose;
             InverseBindPose = inverseBindPose;
             SkeletonHierarchy = skeletonHierarchy;
+            BoneIndices = boneIndices;
         }
 
 
@@ -72,5 +74,12 @@ namespace SkinnedModel
         /// </summary>
         [ContentSerializer]
         public List<int> SkeletonHierarchy { get; private set; }
+
+
+        /// <summary>
+        /// Dictionary mapping bone names to their indices in the preceding lists.
+        /// </summary>
+        [ContentSerializer]
+        public Dictionary<string, int> BoneIndices { get; private set; }
     }
 }
