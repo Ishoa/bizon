@@ -177,11 +177,13 @@ namespace XNAWalkyrie
     {
         public enum ListParticuleSystem
         {
+
             ExplosionParticuleSystem,
             ExplosionAlienParticuleSystem,
             ExplosionSmokdeParticuleSystem,
             ExplosionSmokeAliensParticleSystem,
             FireParticuleSystem,
+            TeleportParticuleSystem,
             SmokePlumeParticule,
             ProjectileTailParticuleSystem,
             ProjectileAlienTrailParticuleStsytem,
@@ -220,7 +222,7 @@ namespace XNAWalkyrie
             SystemsParticules[(int)ListParticuleSystem.ProjectileTailParticuleSystem] = new ProjectileTrailParticleSystem(Utility.Game, Utility.Game.Content);
             SystemsParticules[(int)ListParticuleSystem.SmokePlumeParticuleSystem] = new SmokePlumeParticleSystem(Utility.Game, Utility.Game.Content);
             SystemsParticules[(int)ListParticuleSystem.ProjectileAlienTrailParticuleStsytem] = new ProjectileAlienTrailParticuleStsytem(Utility.Game, Utility.Game.Content);
-
+            SystemsParticules[(int)ListParticuleSystem.TeleportParticuleSystem] = new TeleportParticuleSystem(Utility.Game, Utility.Game.Content);
             
             // Set the draw order so the explosions and fire
             // will appear over the top of the smoke.
@@ -232,6 +234,7 @@ namespace XNAWalkyrie
             SystemsParticules[(int)ListParticuleSystem.ProjectileAlienTrailParticuleStsytem].DrawOrder = 600;
             SystemsParticules[(int)ListParticuleSystem.ExplosionParticuleSystem].DrawOrder = 700;
             SystemsParticules[(int)ListParticuleSystem.FireParticuleSystem].DrawOrder = 800;
+            SystemsParticules[(int)ListParticuleSystem.TeleportParticuleSystem].DrawOrder = 900;
 
             for(int i = 0; i<(int)ListParticuleSystem.NbparticuleSystem;i++)
                 Utility.Game.Components.Add(SystemsParticules[i]);

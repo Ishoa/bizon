@@ -109,6 +109,7 @@
     <Compile Include="ModelExtensions.cs" />
     <Compile Include="NormalMappingManager.cs" />
     <Compile Include="OCTree.cs" />
+    <Compile Include="ParticuleSystem\TeleportParticuleSystem.cs" />
     <Compile Include="ParticuleSystem\ExplosionAlienParticuleSystem.cs" />
     <Compile Include="ParticuleSystem\ExplosionSmokeAliensParticleSystem.cs" />
     <Compile Include="ParticuleSystem\ExplosionParticleSystem.cs" />

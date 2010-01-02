@@ -536,6 +536,8 @@ namespace OCTreeTest
         AnimationPlayer animationPlayer;
         AnimationClip Iddle, Run;
         AnimationClip previousAnim;
+        SkinningData skinningData;
+        Matrix[] boneTransforms;
 
         public Matrix MatrixWeapon;
         public Model ModelWeapon;
@@ -630,6 +632,9 @@ namespace OCTreeTest
             }
             
             animationPlayer.Update(gameTime.ElapsedGameTime, true, WorldPerso);
+
+            // Copy the transforms into our own array, so we can safely modify the values.
+            animationPlayer.GetBoneTransforms().CopyTo(boneTransforms, 0);
         }
 
 
@@ -648,11 +653,13 @@ namespace OCTreeTest
             QuaternionPersoOrientation = Quaternion.Identity;
 
             // Look up our custom skinning information.
-            SkinningData skinningData = modelPerso.Tag as SkinningData;
+            skinningData = modelPerso.Tag as SkinningData;
 
             if (skinningData == null)
                 throw new InvalidOperationException
                     ("This model does not contain a SkinningData tag.");
+
+            boneTransforms = new Matrix[skinningData.BindPose.Count];
 
             // Create an animation player, and start decoding an animation clip.
             animationPlayer = new AnimationPlayer(skinningData);
@@ -691,10 +698,20 @@ namespace OCTreeTest
                         mesh.Draw();
                     }
 
+                    // Modify the transform matrices for the head and upper left arm bones.
+                    int HandIndex = skinningData.BoneIndices["R_Hand"];
+
+                    Matrix[] worldTransforms = animationPlayer.GetWorldTransforms();
+
+                    Matrix WeaponWorldTransform = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(-1.0f,2.0f,-4.0f)*Matrix.CreateRotationY(1.75f) * Matrix.CreateRotationX(-1.57f) *
+                                               worldTransforms[HandIndex];
+
+                    ModelWeapon.Draw(WeaponWorldTransform);
 
                     if(Utility.InputState.IsKeyDown(Keys.C))
                         ModelDebugColliderSphere.Draw(Matrix.CreateScale(ColliderSphere.Bounds.Radius / 2.0f) * Matrix.CreateTranslation(VectPersoPosition));
                     break;
+
 
 
             }
@@ -735,6 +752,7 @@ namespace OCTreeTest
         private const int NB_Caisse = 13;
         private const int NB_Palmier = 1;
         private const int NB_Bridge = 2;
+        private const int NB_Teleport = 2;
 
         //##########################################################
         // Personnages de la scene
@@ -750,6 +768,9 @@ namespace OCTreeTest
         Model Palmier;
         Model Escalier;
         Model ScannerRoom;
+        Model ScannerMonitor;
+        Model Gunship;
+        Model RotateBlade;
 
         //##########################################################
         // Texture affecté au model
@@ -765,6 +786,9 @@ namespace OCTreeTest
         private Matrix MatrixEscalier;
         private Matrix MatrixReservoir;
         private Matrix MatrixScannerRoom;
+        private Matrix MatrixGunship;
+        private Matrix MatrixRotateBlade;
+        private Matrix MatrixTerrain;
 
         //##########################################################
         // Données génération du Terrain
@@ -773,7 +797,7 @@ namespace OCTreeTest
         float TerrainBumppiness = 512.0f;
         float HauteurOriginTerrain = -400.0f;
 
-        private Effect TerrainEffect;
+        //private Effect TerrainEffect;
 
         private Texture2D TextureTerre;
         private Texture2D Herbe;
@@ -807,6 +831,7 @@ namespace OCTreeTest
         private Texture2D Interface;
         private Texture2D InterfaceDetail;
         private Texture2D InterfaceViseur;
+        private Texture2D InterfaceTeleport;
 
         //##########################################################
         // Constante Caméra
@@ -837,6 +862,7 @@ namespace OCTreeTest
 
         private ShadowTechnique shadowTechnique;
         private Effect effectLambert;
+        private Effect effectTerrainLambert;
 
         private enum ShadowTechnique
         {
@@ -853,6 +879,28 @@ namespace OCTreeTest
         private Light light;
         private float lightAngle;
         private Material material;
+        private float RotationBlade = 0.0f;
+
+        //##########################################################
+        // Données Téléport
+        private float timeBetweenSalveTeleport = 0.3f;
+        private float CurrentTimeSalve = 0.0f;
+        private float RayonTeleport = 20.0f;
+
+        private Vector3[] PositionTeleport = new Vector3[NB_Teleport];
+        private float fInterfaceTeleport = 1.0f;
+        private int IncrementTeleport = -1;
+
+        //##########################################################
+        // Données etat player
+        enum EPlayerSituation
+        {
+            InsideLabo,
+            Out,
+            None,
+        };
+
+        EPlayerSituation ePlayerSituation;
 
         //##########################################################
         // Données pour la création d'un environnement texturé
@@ -937,7 +985,7 @@ namespace OCTreeTest
             MatrixCaisse[11] = Matrix.CreateTranslation(100.0f, -295.0f, 200.0f);
             MatrixCaisse[12] = Matrix.CreateTranslation(100.0f, -270.0f, 225.0f);
 
-            MatrixEscalier = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(-150.0f, -315.0f, 160.0f);
+            MatrixEscalier = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(-150.0f, -300.0f, 160.0f);
 
             MatrixBridge[0] = Matrix.CreateScale(0.7f, 0.1f, 1.4f) * Matrix.CreateTranslation(-20.0f, -219, 470.0f);
             MatrixBridge[1] = Matrix.CreateScale(0.7f, 0.1f, 1.4f) * Matrix.CreateTranslation(-20.0f, -219, 60.0f);
@@ -946,8 +994,15 @@ namespace OCTreeTest
 
             MatrixPalmier[0] = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(100.0f, -300.0f, 0.0f);
 
-            MatrixScannerRoom = Matrix.CreateScale(20.0f) * Matrix.CreateTranslation(500.0f, -290.0f, 100.0f); ;
+            MatrixScannerRoom = Matrix.CreateScale(20.0f) * Matrix.CreateTranslation(-400.0f, -450.0f, 0.0f);
 
+            PositionTeleport[0] = new Vector3(-400.0f, -295.0f, 0.0f);
+            PositionTeleport[1] = new Vector3(-400.0f, -435.0f, 0.0f);
+
+            MatrixGunship = Matrix.CreateScale(34.0f) * Matrix.CreateRotationX(-1.57f) * Matrix.CreateTranslation(0.0f, -300.0f, -650.0f);
+            MatrixRotateBlade = Matrix.CreateRotationY(RotationBlade) * MatrixGunship;
+
+            MatrixTerrain = Matrix.CreateScale(TerrainScale, TerrainBumppiness, TerrainScale) * Matrix.CreateTranslation(0.0f, HauteurOriginTerrain, -275.0f);
             MyParralaxEnv = new Environnement(ref light, ref material);
             MyParralaxEnv.Initialize();
 
@@ -959,6 +1014,10 @@ namespace OCTreeTest
 
             shadowMapFar = new ShadowMap(GraphicsDevice, Content,1024);
             shadowMapFar.DepthBias = 0.001f;
+
+            player = new FPSPlayer();
+
+            ePlayerSituation = EPlayerSituation.Out;
 
             base.Initialize();
         }
@@ -973,6 +1032,7 @@ namespace OCTreeTest
             Interface = Content.Load<Texture2D>(@"Textures\Interfaces\DisplaySprites");
             InterfaceDetail = Content.Load<Texture2D>(@"Textures\Interfaces\texturehud7iv");
             InterfaceViseur = Content.Load<Texture2D>(@"Textures\Interfaces\viseur3");
+            InterfaceTeleport = Content.Load<Texture2D>(@"Textures\Interfaces\Teleport");
 
             //scene = Content.Load<Model>("scene5");
             scene = Content.Load<Model>(@"Models\testRad");
@@ -982,9 +1042,13 @@ namespace OCTreeTest
             Escalier = Content.Load<Model>(@"Models\Japanese Stair Case");
             Palmier = Content.Load<Model>(@"Models\Palm");
             ScannerRoom = Content.Load<Model>(@"Models\scannerroom");
+            ScannerMonitor = Content.Load<Model>(@"Models\scannermonitors");
+            Gunship = Content.Load<Model>(@"Models\GunshipWhole");
+            RotateBlade = Content.Load<Model>(@"Models\rotablade");
 
             // Setup effects.
             effectLambert = Content.Load<Effect>(@"Effects\Lambert");
+            effectTerrainLambert = Content.Load<Effect>(@"Effects\TerrainLambertEffect");
 
             TextureCaisse = Content.Load<Texture2D>(@"Textures\crate");
             TextureReservoir = Content.Load<Texture2D>(@"Textures\WHTCON");
@@ -1005,11 +1069,12 @@ namespace OCTreeTest
 
             Terrain = Content.Load<Model>(@"Textures\Terrain\MapTerrain");
             //Terrain = Content.Load<Model>(@"Textures\Terrain\terrain"); 
-            TerrainEffect = Content.Load<Effect>(@"Effects\TerrainEffect");
+            //TerrainEffect = Content.Load<Effect>(@"Effects\TerrainEffect");
 
-            TerrainEffect.Parameters["TerreTexture"].SetValue(TextureTerre);
-            TerrainEffect.Parameters["HerbeTexture"].SetValue(Herbe);
-            TerrainEffect.Parameters["DensiteTerreTexture"].SetValue(DensiteTerre);
+            //TerrainEffect.Parameters["TerreTexture"].SetValue(TextureTerre);
+            //TerrainEffect.Parameters["DensiteTerreTexture"].SetValue(DensiteTerre);
+
+            Terrain.SetTexture(Herbe);
 
             foreach (ModelMesh mesh in Terrain.Meshes)
             {
@@ -1020,7 +1085,9 @@ namespace OCTreeTest
                     if (basicEffect != null)
                         modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
 
-                    part.Effect = TerrainEffect;
+                    //part.Effect = TerrainEffect;
+                    //part.Effect = effectTerrainLambert;
+                    part.Effect = effectLambert;
                 }
             }
 
@@ -1117,6 +1184,7 @@ namespace OCTreeTest
             OCTreeBuilder.ModelAndMatrix SceneModelMatrix = new OCTreeBuilder.ModelAndMatrix();
             SceneModelMatrix.Matrix = Matrix.Identity;
             SceneModelMatrix.Model = scene;
+            ListMeshScene.Add(SceneModelMatrix);
 
             OCTreeBuilder.ModelAndMatrix EscalierModelMatrix = new OCTreeBuilder.ModelAndMatrix();
             EscalierModelMatrix.Matrix = MatrixEscalier;
@@ -1128,6 +1196,11 @@ namespace OCTreeTest
             ScannerRoomModelMatrix.Model = ScannerRoom;
             //ListMeshScene.Add(ScannerRoomModelMatrix);
 
+            OCTreeBuilder.ModelAndMatrix ScannerMonitorsModelMatrix = new OCTreeBuilder.ModelAndMatrix();
+            ScannerMonitorsModelMatrix.Matrix = MatrixScannerRoom;
+            ScannerMonitorsModelMatrix.Model = ScannerMonitor;
+            //ListMeshScene.Add(ScannerMonitorsModelMatrix);
+
             for(int i = 0; i<NB_Bridge; i++)
             {
                 OCTreeBuilder.ModelAndMatrix BridgeModelMatrix = new OCTreeBuilder.ModelAndMatrix();
@@ -1138,8 +1211,9 @@ namespace OCTreeTest
             }
 
             OCTreeBuilder.ModelAndMatrix TerrainModelMatrix = new OCTreeBuilder.ModelAndMatrix();
-            TerrainModelMatrix.Matrix = Matrix.CreateScale(TerrainScale, TerrainBumppiness, TerrainScale) * Matrix.CreateTranslation(0.0f, HauteurOriginTerrain, -275.0f);
+            TerrainModelMatrix.Matrix = MatrixTerrain;
             TerrainModelMatrix.Model = Terrain;
+            //ListMeshScene.Add(TerrainModelMatrix);
 
             OCTreeBuilder.ModelAndMatrix ReservoirModelMatrix =  new OCTreeBuilder.ModelAndMatrix();
             ReservoirModelMatrix.Matrix = MatrixReservoir;
@@ -1156,12 +1230,12 @@ namespace OCTreeTest
                 ListMeshScene.Add(ObjetModelMatrix);
             }
 
-            ListMeshScene.Add(TerrainModelMatrix);
-            ListMeshScene.Add(SceneModelMatrix);
+            
+            
             
             sceneOct = builder.Build(ListMeshScene);
 
-            player = new FPSPlayer();
+
             player.LoadContent();
 
             for (int i = 0; i < NB_Enemy; i++)
@@ -1478,6 +1552,45 @@ namespace OCTreeTest
         {
             if (Utility.InputState.IsBackOrEscapePress())
                 this.Exit();
+            int CurrentTeleport = InTeleport();
+            if (CurrentTeleport  != -1 && Utility.InputState.IsKeyPress(Keys.LeftShift))
+            {
+                switch (CurrentTeleport)
+                {
+                    case 0:
+                        {
+                            switch (Utility.Camera.CurrentBehavior)
+                            {
+                                case Camera.Behavior.FirstPerson:
+                                    Utility.Camera.Position = new Vector3(-400.0f, -400.0f, 0.0f);
+                                    break;
+                                case Camera.Behavior.ThirdPerson:
+                                    Utility.Camera.OrbitTarget = new Vector3(-400.0f, -400.0f, 0.0f);
+                                    break;
+                            }
+                            ePlayerSituation = EPlayerSituation.InsideLabo;
+                        }
+                    break;
+
+                    case 1:
+                    {
+                        switch (Utility.Camera.CurrentBehavior)
+                        {
+                            case Camera.Behavior.FirstPerson:
+                                Utility.Camera.Position = new Vector3(-400.0f, -265.0f, 0.0f);
+                                break;
+                            case Camera.Behavior.ThirdPerson:
+                                Utility.Camera.OrbitTarget = new Vector3(-400.0f, -265.0f, 0.0f);
+                                break;
+                        }
+                        ePlayerSituation = EPlayerSituation.Out;
+                    }
+                    break;
+                }
+
+                
+            }   
+             
 
             ProcessInput();
             UpdateProjectiles(gameTime);
@@ -1486,6 +1599,26 @@ namespace OCTreeTest
 
             //Fumée
             Utility.ParticuleManager.AddParticule(ParticuleManager.ListParticuleSystem.SmokePlumeParticuleSystem, new Vector3(500.0f, -295.0f, 0.0f), Vector3.Zero);
+
+            //Teleport 
+            CurrentTimeSalve -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(CurrentTimeSalve <= 0.0f)
+            {
+                for (int j = 0; j < NB_Teleport; j++)
+                {
+                    for (double i = 0; i < MathHelper.Pi * 2; i += MathHelper.Pi * 2 / 50.0f)
+                    {
+                        Vector3 posParticule = PositionTeleport[j] + new Vector3((float)(Math.Cos(i) * RayonTeleport), 0.0f, (float)(Math.Sin(i) * RayonTeleport));
+                        Utility.ParticuleManager.AddParticule(ParticuleManager.ListParticuleSystem.TeleportParticuleSystem, posParticule, Vector3.Zero);
+                    }
+                }
+
+                CurrentTimeSalve = timeBetweenSalveTeleport;
+            }
+            
+            fInterfaceTeleport += IncrementTeleport * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (fInterfaceTeleport <= 0.3f || fInterfaceTeleport >= 1.0f)
+                IncrementTeleport = -IncrementTeleport;
 
             base.Update(gameTime);
 
@@ -1556,6 +1689,12 @@ namespace OCTreeTest
                 light.Direction.Normalize();
             }
 
+            RotationBlade += 0.3f;
+            if(RotationBlade >= 2 * MathHelper.Pi)
+                RotationBlade = 0.0f;
+
+            MatrixRotateBlade = Matrix.CreateRotationZ(RotationBlade) * MatrixGunship;
+
             UpdateShadowMap();
 
             //UpdateTerrain();
@@ -1583,11 +1722,13 @@ namespace OCTreeTest
             {
                 displayShadows = !displayShadows;
                 displayShadowMap = !displayShadowMap;
+                
                 if (displayShadows)
                     MySkyBox.Textures = texturesSkyNight;
                 else
                     //MySkyBox.Textures = texturesSky;
                     MySkyBox.Textures = texturesSkyGrass;
+                 
                 
             }
 
@@ -1629,6 +1770,17 @@ namespace OCTreeTest
                 LightRotation = !LightRotation;
             }
 
+        }
+
+        //############################################################
+        private int InTeleport()
+        {
+
+            for(int i = 0; i < NB_Teleport; i++)
+                if (Vector3.Distance(player.VectPersoPosition, PositionTeleport[i]) <= RayonTeleport)
+                    return i;
+
+            return -1;
         }
 
         //############################################################
@@ -1754,6 +1906,21 @@ namespace OCTreeTest
                  1f);
         }
 
+        private void DrawTeleport()
+        {
+
+            spriteBatch.Draw(InterfaceTeleport, // Texture
+                 new Vector2(GraphicsDevice.DisplayMode.Width - 340, 420.0f), //Position
+                 new Rectangle(0, 0, InterfaceTeleport.Width, InterfaceTeleport.Height),
+                 new Color(1.0f, 1.0f, 1.0f, fInterfaceTeleport), // Color
+                 0f, // rotation
+                 new Vector2(0, 0), // Origin
+                 1.0f, // Scale
+                 SpriteEffects.None,
+                 1f);
+
+        }
+
         //############################################################
         private void DrawInterface()
         {
@@ -1764,6 +1931,8 @@ namespace OCTreeTest
             DrawAmmo();
             if(Utility.Camera.CurrentBehavior == Camera.Behavior.FirstPerson)
                 DrawViseur();
+            if (InTeleport() != -1)
+                DrawTeleport();
             //DrawJaugeEndurance();
             spriteBatch.End();
         }
@@ -1908,7 +2077,7 @@ namespace OCTreeTest
                 if (displayShadows)
                 {
                     WalkyrieFog.FogColor = Color.TransparentBlack;//Color.DarkGray;
-                    WalkyrieFog.FogEnd = FocaleCamera +300.0f;
+                    WalkyrieFog.FogEnd = FocaleCamera + 1000.0f;
                 }
                 else
                 {
@@ -1927,37 +2096,59 @@ namespace OCTreeTest
                 }
                 */
 
-                Matrix[] bones = Terrain.GetAboluteBoneTransforms();
-                foreach (ModelMesh mesh in Terrain.Meshes)
+                if (ePlayerSituation == EPlayerSituation.InsideLabo)
                 {
-                    foreach (Effect eff in mesh.Effects)
-                    {
-                        Matrix matWorld = bones[mesh.ParentBone.Index] * Matrix.CreateScale(TerrainScale, TerrainBumppiness, TerrainScale) * Matrix.CreateTranslation(0.0f, HauteurOriginTerrain, -275.0f) * Utility.Camera.ViewProjectionMatrix;
-                        eff.Parameters["WorldViewProjection"].SetValue(matWorld);
-                    }
-                    mesh.Draw();
+                    ModelExtensions.Draw(ScannerRoom, MatrixScannerRoom);
+                    ModelExtensions.Draw(ScannerMonitor, MatrixScannerRoom);
                 }
+                else
+                {
+                    /*
+                    Matrix[] bones = Terrain.GetAboluteBoneTransforms();
+                    foreach (ModelMesh mesh in Terrain.Meshes)
+                    {
+                        foreach (Effect eff in mesh.Effects)
+                        {
+                            eff.Parameters["WorldViewProjection"].SetValue(bones[mesh.ParentBone.Index] * MatrixTerrain * Utility.Camera.ViewProjectionMatrix);
+                        }
+                        mesh.Draw();
+                    }
+                    */
 
-                DrawModelShadow(scene, Matrix.Identity);
-                DrawModelShadow(Reservoir, MatrixReservoir);
+                    
 
-                for (int i = 0; i < NB_Caisse; i++)
-                    DrawModelShadow(Caisse, MatrixCaisse[i]);
+                    DrawModelShadow(scene, Matrix.Identity);
+                    
+                    DrawModelShadow(Reservoir, MatrixReservoir);
+
+                    for (int i = 0; i < NB_Caisse; i++)
+                        DrawModelShadow(Caisse, MatrixCaisse[i]);
+
+                    //DrawTerrainShadow();
+                    DrawModelShadow(Terrain, MatrixTerrain);
+
+                    for (int i = 0; i < NB_Enemy; i++)
+                        enemy[i].Draw(gameTime);
+
+                    for (int i = 0; i < NB_Bridge; i++)
+                        DrawModelShadow(Bridge, MatrixBridge[i]);
+
+                    DrawModelShadow(Escalier, MatrixEscalier);
+
+                    for (int i = 0; i < NB_Palmier; i++)
+                        DrawModelShadow(Palmier, MatrixPalmier[i]);
+
+                    //ModelExtensions.Draw(Gunship, MatrixGunship);
+                    //ModelExtensions.Draw(RotateBlade, MatrixRotateBlade);
+                    //ModelExtensions.Draw(RotateBlade, Matrix.CreateRotationZ(0.75f) * MatrixRotateBlade);
+
+                    
+                }
 
                 player.Draw(gameTime);
 
-                for (int i = 0; i < NB_Enemy; i++)
-                    enemy[i].Draw(gameTime);
 
-                for(int i = 0; i< NB_Bridge;i++)
-                    DrawModelShadow(Bridge, MatrixBridge[i]);
 
-                DrawModelShadow(Escalier, MatrixEscalier);
-
-                for(int i = 0; i< NB_Palmier;i++)
-                    DrawModelShadow(Palmier, MatrixPalmier[i]);
-
-                //ModelExtensions.Draw(ScannerRoom, MatrixScannerRoom);
             }
 
             if (Utility.InputState.IsButtonDown(Buttons.B) || Utility.InputState.IsKeyDown(Keys.B))
@@ -2101,7 +2292,6 @@ namespace OCTreeTest
                         e.Parameters["textureScaleBias"].SetValue(shadowMapNear.TextureScaleBiasMatrix);
                         e.Parameters["depthBias"].SetValue(shadowMapNear.DepthBias);
                         e.Parameters["shadowMap"].SetValue(shadowMapNear.ShadowMapTexture);
-                        //e.Parameters["shadowMapFar"].SetValue(shadowMapNear.ShadowMapTexture);
                     }
 
                     e.Parameters["world"].SetValue(bones[m.ParentBone.Index] * world);
@@ -2115,6 +2305,64 @@ namespace OCTreeTest
                     e.Parameters["materialAmbient"].SetValue(material.Ambient.ToVector4());
                     e.Parameters["materialDiffuse"].SetValue(material.Diffuse.ToVector4());
                     e.Parameters["colorMap"].SetValue(modelTextures[m.GetHashCode()]);
+
+                    e.CommitChanges();
+                }
+
+                m.Draw();
+            }
+        }
+
+        private void DrawTerrainShadow()
+        {
+
+            Matrix[] bones = Terrain.GetAboluteBoneTransforms();
+            foreach (ModelMesh m in Terrain.Meshes)
+            {
+                foreach (Effect e in m.Effects)
+                {
+                    if (!displayShadows)
+                    {
+                        e.CurrentTechnique = e.Techniques["Lambert"];
+                    }
+                    else
+                    {
+                        switch (shadowTechnique)
+                        {
+                            case ShadowTechnique.ShadowMapping:
+                                e.CurrentTechnique = e.Techniques["LambertWithShadows"];
+                                break;
+
+                            case ShadowTechnique.ShadowMappingWith2x2PercentageCloserFiltering:
+                                e.CurrentTechnique = e.Techniques["LambertWithShadows2x2PCF"];
+                                e.Parameters["texelSize"].SetValue(shadowMapNear.TexelSize);
+                                break;
+
+                            case ShadowTechnique.ShadowMappingWith3x3PercentageCloserFiltering:
+                                e.CurrentTechnique = e.Techniques["LambertWithShadows3x3PCF"];
+                                e.Parameters["texelSize"].SetValue(shadowMapNear.TexelSize);
+                                break;
+                        }
+
+                        e.Parameters["lightViewProjection"].SetValue(shadowMapNear.LightViewProjectionMatrix);
+                        e.Parameters["textureScaleBias"].SetValue(shadowMapNear.TextureScaleBiasMatrix);
+                        e.Parameters["depthBias"].SetValue(shadowMapNear.DepthBias);
+                        e.Parameters["shadowMap"].SetValue(shadowMapNear.ShadowMapTexture);
+                    }
+
+                    e.Parameters["world"].SetValue(bones[m.ParentBone.Index] * MatrixTerrain);
+
+                    e.Parameters["view"].SetValue(Utility.Camera.ViewMatrix);
+                    e.Parameters["projection"].SetValue(Utility.Camera.ProjectionMatrix);
+
+                    e.Parameters["TerreTexture"].SetValue(TextureTerre);
+                    e.Parameters["DensiteTerreTexture"].SetValue(DensiteTerre);
+
+                    e.Parameters["lightDir"].SetValue(light.Direction);
+                    e.Parameters["lightColor"].SetValue(light.Diffuse.ToVector4());
+                    e.Parameters["materialAmbient"].SetValue(material.Ambient.ToVector4());
+                    e.Parameters["materialDiffuse"].SetValue(material.Diffuse.ToVector4());
+                    e.Parameters["herbeTexture"].SetValue(modelTextures[m.GetHashCode()]);
 
                     e.CommitChanges();
                 }

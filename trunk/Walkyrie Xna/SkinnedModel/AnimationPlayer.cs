@@ -39,7 +39,7 @@ namespace SkinnedModel
         }
 
         StateOfAnimation eStateOfAnimation;
-        
+
         bool boucle;
 
         // Current animation transform matrices.
@@ -106,7 +106,7 @@ namespace SkinnedModel
                            Matrix rootTransform)
         {
             UpdateBoneTransforms(time, relativeToCurrentTime);
-            UpdateWorldTransforms(rootTransform);
+            UpdateWorldTransforms(rootTransform, boneTransforms);
             UpdateSkinTransforms();
         }
 
@@ -178,7 +178,7 @@ namespace SkinnedModel
         /// <summary>
         /// Helper used by the Update method to refresh the WorldTransforms data.
         /// </summary>
-        public void UpdateWorldTransforms(Matrix rootTransform)
+        public void UpdateWorldTransforms(Matrix rootTransform, Matrix[] boneTransforms)
         {
             // Root bone.
             worldTransforms[0] = boneTransforms[0] * rootTransform;
@@ -263,6 +263,5 @@ namespace SkinnedModel
             get { return SpeedAnimation; }
             set { speedAnimation = value; }
         }
-        
     }
 }

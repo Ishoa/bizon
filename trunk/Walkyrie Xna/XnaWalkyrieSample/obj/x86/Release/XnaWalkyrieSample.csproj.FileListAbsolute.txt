@@ -174,3 +174,4 @@ D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\ResolveAss
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\XnaWalkyrieSample.exe
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\XnaWalkyrieSample.pdb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\flare.xnb
