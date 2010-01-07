@@ -35,16 +35,10 @@ HRESULT Viewer::Destroy()
 void Viewer::Update()
 {
 	Engine::Update();
-
-	Render();
 }
 
 
 void Viewer::Render()
 {
-	Engine::BeginRender();
-
 	m_pPlan->Render( m_pCamera );
-
-	Engine::EndRender();
 }

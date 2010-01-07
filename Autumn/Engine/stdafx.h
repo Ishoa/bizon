@@ -56,8 +56,12 @@
 #include "WrapperDX/Geometry/DisplayObjectTypeVertex.h"
 #endif
 
-#ifndef _VERTEXBUFFER_
+#ifndef _VERTEX_BUFFER_
 #include "WrapperDX/Buffer/VertexBuffer.h"
+#endif
+
+#ifndef _VERTEX_BUFFER_EX_
+#include "WrapperDX/Buffer/VertexBufferEx.h"
 #endif
 
 #ifndef _INDEXBUFFER_
@@ -112,3 +116,5 @@
 #include "Core/Math/Matrix4x4.h"
 #endif
 
+#include "Core/TinyXML/tinystr.h"
+#include "Core/TinyXML/tinyxml.h"

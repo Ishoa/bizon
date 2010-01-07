@@ -4,7 +4,7 @@
 #include "WrapperDx/Device/Device.h"
 #endif
 
-#ifndef _VERTEXBUFFER_
+#ifndef _VERTEX_BUFFER_
 #include "WrapperDx/Buffer/VertexBuffer.h"
 #endif
 

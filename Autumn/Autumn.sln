@@ -23,9 +23,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BAB9ED5C-1ED0-4F94-8F1C-3E25F32F3519}"
-	ProjectSection(SolutionItems) = preProject
-		todo.txt = todo.txt
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcproj", "{49468A28-C1F5-4F0C-BF6D-40A9669A0901}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -38,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{31A6
 	ProjectSection(SolutionItems) = preProject
 		Data\Shaders\DisplayObject.psh = Data\Shaders\DisplayObject.psh
 		Data\Shaders\DisplayObject.vsh = Data\Shaders\DisplayObject.vsh
+		Data\Shaders\ScreenText.psh = Data\Shaders\ScreenText.psh
+		Data\Shaders\ScreenText.vsh = Data\Shaders\ScreenText.vsh
 	EndProjectSection
 EndProject
 Global

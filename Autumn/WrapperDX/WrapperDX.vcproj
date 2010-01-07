@@ -235,6 +235,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Buffer\VertexBufferEx.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Buffer\VertexBufferEx.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Buffer\VertexLayout.cpp"
 				>
 			</File>
@@ -288,6 +296,14 @@
 			</File>
 			<File
 				RelativePath=".\Geometry\DisplayObjectTypeVertex.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Geometry\ScreenTextTypeVertex.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Geometry\ScreenTextTypeVertex.h"
 				>
 			</File>
 			<File

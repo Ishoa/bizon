@@ -1,5 +1,5 @@
-#ifndef _VERTEXBUFFER_
-#define _VERTEXBUFFER_
+#ifndef _VERTEX_BUFFER_
+#define _VERTEX_BUFFER_
 
 #ifndef _BUFFER_
 #include "WrapperDX/Buffer/Buffer.h"

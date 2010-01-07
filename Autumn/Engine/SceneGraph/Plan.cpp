@@ -21,7 +21,7 @@ Plan::~Plan()
 
 HRESULT Plan::Create()
 {
-	D_RETURN( Node::Create() );
+	D_RETURN( DisplayObject::Create() );
 
 	// Shader
 	D_RETURN( CompileShaders() );
