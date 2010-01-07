@@ -239,6 +239,46 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="File"
+			>
+			<File
+				RelativePath=".\File\File.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\File\File.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="TinyXML"
+			>
+			<File
+				RelativePath=".\TinyXML\tinystr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TinyXML\tinystr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TinyXML\tinyxml.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TinyXML\tinyxml.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TinyXML\tinyxmlerror.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TinyXML\tinyxmlparser.cpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\stdafx.cpp"
 			>

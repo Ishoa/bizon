@@ -162,6 +162,14 @@
 				RelativePath=".\Engine\EngineDx.h"
 				>
 			</File>
+			<File
+				RelativePath=".\Engine\ScreenText.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Engine\ScreenText.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Manager"
@@ -220,6 +228,18 @@
 			</File>
 			<File
 				RelativePath=".\SceneGraph\Plan.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Atlas"
+			>
+			<File
+				RelativePath=".\Atlas\Atlas.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Atlas\Atlas.h"
 				>
 			</File>
 		</Filter>

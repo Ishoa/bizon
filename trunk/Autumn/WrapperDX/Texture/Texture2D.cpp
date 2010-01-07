@@ -30,11 +30,19 @@ void Texture2D::SetName(const char * _strFilename)
 	strcpy_s(m_strFilename, _strFilename);
 }
 
-HRESULT Texture2D::Create()
+HRESULT Texture2D::Create(bool _bUseTexturePath/* = true*/)
 {
 	char buf[256];
-	strcpy_s(buf, TEXTURE_PATH);
-	strcat_s(buf, m_strFilename);
+	if( _bUseTexturePath )
+	{
+		strcpy_s(buf, TEXTURE_PATH);
+		strcat_s(buf, m_strFilename);
+	}
+	else
+	{
+		strcpy_s(buf, m_strFilename);
+	}
+	
 
 	D3DX11_IMAGE_LOAD_INFO LoadInfo;
 	LoadInfo.BindFlags = D3D11_BIND_SHADER_RESOURCE;
@@ -53,8 +61,8 @@ HRESULT Texture2D::Create()
  	pResource->QueryInterface(__uuidof(ID3D11Texture2D), (void **)&m_pTexture);
  	D3D11_TEXTURE2D_DESC desc;
  	m_pTexture->GetDesc(&desc);
-// 	m_nHeight = desc.Height;
-// 	m_nWidth = desc.Width;
+	m_iHeight = desc.Height;
+	m_iWidth = desc.Width;
 // 	m_Format = desc.Format;
 
 	// Create the SRV

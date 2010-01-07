@@ -29,18 +29,6 @@ HRESULT DisplayObject::Create()
 {
 	D_RETURN( Node::Create() );
 
-	// Vertex Shader
-	m_pVertexShader = new VertexShader("DisplayObject.vsh");
-	D_RETURN( m_pVertexShader->CompileAndCreate() );
-
-	// Pixel Shader
-	m_pPixelShader = new PixelShader("DisplayObject.psh");
-	D_RETURN( m_pPixelShader->CompileAndCreate() );
-
-	// Vertex Layout
-	m_pVertexLayout = new VertexLayout< DisplayObjectTypeVertex >;
-	D_RETURN( m_pVertexLayout->Create( m_pVertexShader ) );
-
 	return S_OK;
 }
 

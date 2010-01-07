@@ -4,6 +4,10 @@
 #include "Engine/Manager/TimeManager.h"
 #endif
 
+#ifndef _SCREEN_TEXT_
+#include "Engine/Engine/ScreenText.h"
+#endif
+
 #ifndef _CAMERA_
 #include "Engine/Engine/EngineCamera.h"
 #endif
@@ -82,6 +86,10 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	float fAspect = (float)uWidth / (float)uHeight;
 	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 100.0f);
 
+	// Screen Text
+	m_pScreenText = new ScreenText;
+	E_RETURN( m_pScreenText->Create(), "Create ScreenText : " );
+
 	
 	return S_OK;
 }
@@ -93,6 +101,7 @@ HRESULT Engine::Destroy()
 	SAFE_DESTROY( m_pDefaultDepthStencil );
 	SAFE_DESTROY( m_pTimeManager );
 	SAFE_DESTROY( m_pCamera );
+	SAFE_DESTROY( m_pScreenText );
 	
 	return S_OK;
 }
@@ -100,8 +109,12 @@ HRESULT Engine::Destroy()
 void Engine::Update()
 {
 	m_pTimeManager->Update();
+	
+	BeginRender();
+	m_pScreenText->DrawText("test", 0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
 
 	Render();
+	EndRender();
 }
 
 
@@ -166,10 +179,14 @@ void Engine::BeginRender()
 	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
 	ClearRenderTarget(m_pDefaultRenderTarget);
 	ClearDepthStencil(m_pDefaultDepthStencil);
+
+	m_pScreenText->Begin();
 }
 
 void Engine::EndRender()
 {
+	m_pScreenText->End();
+
 	g_pDevice->EndRender();
 }
 

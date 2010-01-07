@@ -22,6 +22,9 @@
 #include "Core/Console/Console.h"
 #endif
 
+#include "Core/TinyXML/tinystr.h"
+#include "Core/TinyXML/tinyxml.h"
+
 #include <DXGI.h>
 #pragma comment(lib, "DXGI.lib")
 

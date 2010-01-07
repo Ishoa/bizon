@@ -15,7 +15,7 @@ class RenderTarget;
 class DepthStencil;
 class TimeManager;
 class EngineCamera;
-class ConstantBufferUpdate;
+class ScreenText;
 
 
 class Engine
@@ -40,6 +40,9 @@ protected:
 
 	// Camera
 	EngineCamera			* m_pCamera;
+
+	// Screen Text
+	ScreenText				* m_pScreenText;
 
 public:
 	Engine();

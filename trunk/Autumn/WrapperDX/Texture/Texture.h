@@ -10,7 +10,7 @@ public:
 	Texture();
 	virtual ~Texture();
 
-	virtual HRESULT Create() = 0;
+	virtual HRESULT Create(bool _bUseTexturePath = true) = 0;
 	virtual HRESULT Destroy();
 	inline ID3D11ShaderResourceView * GetResourceView() const { return m_pResourceShaderView; }
 };
