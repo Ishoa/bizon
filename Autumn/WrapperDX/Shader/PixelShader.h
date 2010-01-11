@@ -23,6 +23,7 @@ public:
 	virtual void			Bind();
 	virtual void			SetConstantBuffer( unsigned int _iSlot, ConstantBuffer * _pBuffer );
 	virtual void			SetTexture( unsigned int _iSlot, Texture * _pTexture );
+	virtual void			SetSampler( unsigned int _iSlot, SamplerBase * _pSampler );
 
 	inline ID3D11PixelShader * GetPixelShader() { return m_pPixelShader; };
 };

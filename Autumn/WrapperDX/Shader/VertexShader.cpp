@@ -12,6 +12,10 @@
 #include "WrapperDX/Texture/Texture.h"
 #endif
 
+#ifndef _SAMPLER_
+#include "WrapperDX/Texture/Sampler/Sampler.h"
+#endif
+
 #ifndef _VERTEX_SHADER_
 #include "VertexShader.h"
 #endif
@@ -87,4 +91,10 @@ void VertexShader::SetTexture( unsigned int _iSlot, Texture * _pTexture )
 {
 	ID3D11ShaderResourceView * pSRV = _pTexture->GetResourceView();
 	g_pDxDeviceContext->VSSetShaderResources(_iSlot, 1, &pSRV );
+}
+
+void VertexShader::SetSampler( unsigned int _iSlot, SamplerBase * _pSampler )
+{
+	ID3D11SamplerState * pST = _pSampler->GetSampler();
+	g_pDxDeviceContext->VSSetSamplers(_iSlot, 1, &pST );
 }

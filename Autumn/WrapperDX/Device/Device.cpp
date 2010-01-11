@@ -65,6 +65,10 @@ void Device3D::EndRender()
 
 HRESULT Device3D::Reset(unsigned int _iWidth, unsigned int _iHeight, bool _bFullscreen)
 {
+	m_iWidth		= _iWidth;
+	m_iHeight		= _iHeight;
+	m_bFullscreen	= _bFullscreen;
+
 	m_pSwapChain->SetFullscreenState(_bFullscreen, NULL);
 
 	DXGI_MODE_DESC ModeDesc;

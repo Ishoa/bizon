@@ -271,14 +271,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Shader\ShaderParam.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Shader\ShaderParam.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Shader\VertexShader.cpp"
 				>
 			</File>
@@ -334,6 +326,42 @@
 				RelativePath=".\Texture\Texture2D.h"
 				>
 			</File>
+			<Filter
+				Name="Sampler"
+				>
+				<File
+					RelativePath=".\Texture\Sampler\Sampler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\Sampler.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\SamplerAniso.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\SamplerAniso.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\SamplerLinear.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\SamplerLinear.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\SamplerPoint.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Texture\Sampler\SamplerPoint.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\stdafx.cpp"

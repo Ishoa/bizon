@@ -1,5 +1,5 @@
-Texture2D tFontTexture;
-SamplerState sFontSampler;
+Texture2D tFontTexture : register(t0);
+SamplerState sFontSampler : register(s0);
 
 struct PSin
 {
@@ -11,5 +11,5 @@ struct PSin
 
 float4 PSMain( PSin Pin ) : SV_Target
 {
-	return Pin.Color * tFontTexture.Sample(sFontSampler, Pin.TexCoord);
+	return float4(tFontTexture.Sample(sFontSampler, Pin.TexCoord).aaa, 1);
 }

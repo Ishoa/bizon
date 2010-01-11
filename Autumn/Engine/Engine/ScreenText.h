@@ -12,6 +12,7 @@ class VertexShader;
 class PixelShader;
 class VertexBufferEx;
 template< class ScreenTextTypeVertex >class VertexLayout;
+template< class SamplerLinear >class Sampler;
 
 class ScreenText
 {
@@ -23,6 +24,8 @@ private:
 	VertexBufferEx							* m_pVertexBuffer;
 	VertexLayout< ScreenTextTypeVertex >	* m_pVertexLayout;
 	Atlas									* m_pAtlas;
+	Sampler< SamplerLinear >				* m_pSampler;
+
 
 	void AddCharacter(char _c, unsigned int _Index, unsigned int _x, unsigned int _y, const Color & _rgba);
 

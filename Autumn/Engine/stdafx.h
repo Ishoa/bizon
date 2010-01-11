@@ -96,6 +96,22 @@
 #include "WrapperDX/Texture/Texture2D.h"
 #endif
 
+#ifndef _SAMPLER_ANISO_
+#include "WrapperDX/Texture/Sampler/SamplerAniso.h"
+#endif
+
+#ifndef _SAMPLER_LINEAR_
+#include "WrapperDX/Texture/Sampler/SamplerLinear.h"
+#endif
+
+#ifndef _SAMPLER_POINT_
+#include "WrapperDX/Texture/Sampler/SamplerPoint.h"
+#endif
+
+#ifndef _SAMPLER_
+#include "WrapperDX/Texture/Sampler/Sampler.h"
+#endif
+
 #ifndef _VECTOR1_
 #include "Core/Math/Vector1.h"
 #endif

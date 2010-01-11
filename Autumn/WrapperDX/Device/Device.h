@@ -51,6 +51,10 @@ public:
 	inline IDXGISwapChain		* GetSwapChain()		const { return m_pSwapChain; }
 	// retrieve max feature level
 	inline D3D_FEATURE_LEVEL	GetMaxFeatureLevel()	const { return m_eMaxFeatureLevel; }
+	// retrieve device's width
+	inline unsigned int			GetWidth()				const { return m_iWidth; }
+	// retrieve device's height
+	inline unsigned int			GetHeight()				const { return m_iHeight; }
 	// Unbind VertexShader
 	void UnbindVertexShader() const;
 	// Unbind GeometryShader
