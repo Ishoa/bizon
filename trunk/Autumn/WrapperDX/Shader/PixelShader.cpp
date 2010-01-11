@@ -8,12 +8,16 @@
 #include "WrapperDX/Buffer/ConstantBuffer.h"
 #endif
 
+#ifndef _SAMPLER_
+#include "WrapperDX/Texture/Sampler/Sampler.h"
+#endif
+
 #ifndef _TEXTURE_
 #include "WrapperDX/Texture/Texture.h"
 #endif
 
 #ifndef _PIXEL_SHADER_
-#include "PixelShader.h"
+#include "WrapperDx/Shader/PixelShader.h"
 #endif
 
 
@@ -87,4 +91,10 @@ void PixelShader::SetTexture( unsigned int _iSlot, Texture * _pTexture )
 {
 	ID3D11ShaderResourceView * pSRV = _pTexture->GetResourceView();
 	g_pDxDeviceContext->PSSetShaderResources(_iSlot, 1, &pSRV );
+}
+
+void PixelShader::SetSampler( unsigned int _iSlot, SamplerBase * _pSampler )
+{
+	ID3D11SamplerState * pST = _pSampler->GetSampler();
+	g_pDxDeviceContext->PSSetSamplers(_iSlot, 1, &pST );
 }

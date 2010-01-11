@@ -3,6 +3,7 @@
 
 class ConstantBuffer;
 class Texture;
+class SamplerBase;
 
 class Shader
 {
@@ -22,6 +23,7 @@ public:
 
 	virtual void SetConstantBuffer( unsigned int _iSlot, ConstantBuffer * _pBuffer ) = 0;
 	virtual void SetTexture( unsigned int _iSlot, Texture * _pTexture ) = 0;
+	virtual void SetSampler( unsigned int _iSlot, SamplerBase * _pSampler ) = 0;
 
 	inline const void * GetShaderCode() const { if(m_pBin) return m_pBin->GetBufferPointer(); else return NULL; };
 	inline SIZE_T		GetShaderSize() const { if(m_pBin) return m_pBin->GetBufferSize(); else return 0; };

@@ -111,7 +111,18 @@ void Engine::Update()
 	m_pTimeManager->Update();
 	
 	BeginRender();
-	m_pScreenText->DrawText("test", 0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
+	
+	static float fDeltaTime = 0.0f;
+	static float fTime = 0.0f;
+	fDeltaTime += m_pTimeManager->GetDeltaTime();
+	if( fDeltaTime > 1000.0f )
+	{
+		fTime = m_pTimeManager->GetDeltaTime();
+		fDeltaTime = 0.0f;
+	}
+	char buf[32];
+	sprintf_s(buf, "FPS : %.2f", 1000.0f / fTime );
+	m_pScreenText->DrawText(buf, 0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
 
 	Render();
 	EndRender();

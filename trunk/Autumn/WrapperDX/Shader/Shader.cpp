@@ -47,9 +47,13 @@ HRESULT Shader::Compile()
 	{
 		LOG_INFO( strFile );
 		if( ! pErrors )
+		{
 			LOG_INFOLN( " :Fichier introuvable" );
+		}
 		else
+		{
 			LOG_INFOLN( " : Failed\n" << (LPCSTR)( pErrors->GetBufferPointer() ) );
+		}
 		return E_FAIL;
 	}
 
