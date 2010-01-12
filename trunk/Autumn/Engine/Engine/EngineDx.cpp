@@ -22,6 +22,7 @@ Engine::Engine()
 , m_pDefaultDepthStencil(NULL)
 , m_pTimeManager(NULL)
 , m_pCamera(NULL)
+, m_bDisplayText(false)
 {
 
 }
@@ -112,19 +113,11 @@ void Engine::Update()
 	
 	BeginRender();
 	
-	static float fDeltaTime = 0.0f;
-	static float fTime = 0.0f;
-	fDeltaTime += m_pTimeManager->GetDeltaTime();
-	if( fDeltaTime > 1000.0f )
-	{
-		fTime = m_pTimeManager->GetDeltaTime();
-		fDeltaTime = 0.0f;
-	}
-	char buf[32];
-	sprintf_s(buf, "FPS : %.2f", 1000.0f / fTime );
-	m_pScreenText->DrawText(buf, 0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
+	if( m_bDisplayText )
+		RenderText();
 
 	Render();
+
 	EndRender();
 }
 
@@ -185,18 +178,38 @@ unsigned int Engine::GetHeight()
 //////////////////////////////////////////////////////////////////////////
 // render
 
+void Engine::RenderText()
+{
+	static float fDeltaTime = 0.0f;
+	static float fCurrentFrames = 0.0f;
+	static unsigned int nFrames = 0;
+	nFrames++;
+	fDeltaTime += m_pTimeManager->GetDeltaTime();
+	if( fDeltaTime > 1000.0f )
+	{
+		fCurrentFrames = (float)nFrames / fDeltaTime * 1000.0f;
+		fDeltaTime = 0.0f;
+		nFrames = 0;
+	}
+	char buf[32];
+	sprintf_s(buf, "FPS : %.2f", fCurrentFrames );
+	m_pScreenText->DrawText(buf, 0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
+}
+
 void Engine::BeginRender()
 {
 	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
 	ClearRenderTarget(m_pDefaultRenderTarget);
 	ClearDepthStencil(m_pDefaultDepthStencil);
 
-	m_pScreenText->Begin();
+	if( m_bDisplayText )
+		m_pScreenText->Begin();
 }
 
 void Engine::EndRender()
 {
-	m_pScreenText->End();
+	if( m_bDisplayText )
+		m_pScreenText->End();
 
 	g_pDevice->EndRender();
 }
@@ -207,6 +220,7 @@ void Engine::OnKeyPressed(int _key)
 {
 	switch( _key )
 	{
+	case VK_F1		: m_bDisplayText = ! m_bDisplayText; break;
 	case VK_F2		: ToggleFullScreen(); break;
 // 	case VK_LEFT	: m_pCamera->Move(DIRECTION_LEFT); break;
 // 	case VK_RIGHT	: m_pCamera->Move(DIRECTION_RIGHT); break;

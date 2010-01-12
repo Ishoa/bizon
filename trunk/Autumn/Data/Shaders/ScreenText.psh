@@ -11,5 +11,5 @@ struct PSin
 
 float4 PSMain( PSin Pin ) : SV_Target
 {
-	return float4(tFontTexture.Sample(sFontSampler, Pin.TexCoord).aaa, 1);
+	return Pin.Color * float4(tFontTexture.Sample(sFontSampler, Pin.TexCoord).aaa, 1);
 }
