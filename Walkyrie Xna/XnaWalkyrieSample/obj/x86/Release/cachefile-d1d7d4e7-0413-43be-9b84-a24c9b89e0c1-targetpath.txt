@@ -7,6 +7,8 @@ Content\Effects\ShadowMappingSkinned.xnb
 Content\Effects\SkinnedModel.xnb
 Content\Effects\skybox.xnb
 Content\Effects\TerrainEffect.xnb
+Content\Effects\TerrainLambertEffect.xnb
+Content\Effects\LambertDoubleMap.xnb
 Content\Fonts\DebugFont.xnb
 Content\Models\EnemyBeast.xnb
 Content\Models\PlayerMarine.xnb
@@ -71,8 +73,15 @@ Content\Textures\SkyBox\Hourglass\hourglass_west.xnb
 Content\Models\OAK1.xnb
 Content\Models\scannermiddle_diff.xnb
 Content\Models\scannerroom_diff.xnb
+Content\Textures\Particules\flare.xnb
+Content\Textures\Interfaces\Teleport.xnb
+Content\Models\monitors.xnb
+Content\Models\gunmap.xnb
 Content\Models\Japanese Stair Case.xnb
 Content\Models\scannerroom.xnb
+Content\Models\scannermonitors.xnb
+Content\Models\GunshipWhole.xnb
+Content\Models\rotablade.xnb
 Content\Models\EnemyBeastDiffuse_0.xnb
 Content\Models\PlayerMarineDiffuse_0.xnb
 Content\Models\Object04CompleteMap_0.xnb
@@ -80,3 +89,5 @@ Content\Models\hk_mp5n_0.xnb
 Content\Models\OAK1_0.xnb
 Content\Models\scannermiddle_diff_0.xnb
 Content\Models\scannerroom_diff_0.xnb
+Content\Models\Monitors_0.xnb
+Content\Models\gunmap_0.xnb

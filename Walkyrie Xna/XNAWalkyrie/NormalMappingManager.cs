@@ -183,6 +183,10 @@ namespace XNAWalkyrie
             public Texture2D textureNormalMap;
             public Texture2D textureHeightMap;
 
+            public ShadowMap ShadowMapNear;
+            public ShadowMap ShadowMapFar;
+            public float FocaleCameraNear;
+
             protected Effect effectParrallalaxMapping;
 
             protected bool disableColorMap;
@@ -229,8 +233,9 @@ namespace XNAWalkyrie
             public virtual void LoadContent()
             {
 
-                effectParrallalaxMapping = Utility.Game.Content.Load<Effect>(@"Effects\parallax_normal_mapping");
-
+                //effectParrallalaxMapping = Utility.Game.Content.Load<Effect>(@"Effects\parallax_normal_mapping");
+                effectParrallalaxMapping = Utility.Game.Content.Load<Effect>(@"Effects\parallax_normal_mapping_DoubleMap"); 
+                
                 nullTexture = new Texture2D(Utility.Game.GraphicsDevice, 1, 1, 0, TextureUsage.None, SurfaceFormat.Color);
 
                 Color[] pixels = { Color.White };
@@ -245,14 +250,6 @@ namespace XNAWalkyrie
 
             public virtual void Update(GameTime gameTime)
             {
-                /*
-                effectParrallalaxMapping.Parameters["worldMatrix"].SetValue(World);
-                effectParrallalaxMapping.Parameters["worldInverseTransposeMatrix"].SetValue(Matrix.Invert(World));
-                effectParrallalaxMapping.Parameters["worldViewProjectionMatrix"].SetValue(World * Utility.Camera.ViewProjectionMatrix);
-
-                effectParrallalaxMapping.Parameters["colorMapTexture"].SetValue((disableColorMap) ? nullTexture : textureColorMap);
-                effectParrallalaxMapping.Parameters["normalMapTexture"].SetValue(textureNormalMap);
-                effectParrallalaxMapping.Parameters["heightMapTexture"].SetValue(textureHeightMap);
 
                 // Set the shader camera position parameter.
                 effectParrallalaxMapping.Parameters["cameraPos"].SetValue(Utility.Camera.Position);
@@ -260,60 +257,20 @@ namespace XNAWalkyrie
                 // Set the shader global ambiance parameters.
                 effectParrallalaxMapping.Parameters["globalAmbient"].SetValue(0.0f);
 
-                // Set the shader parallax scale and bias parameter.
-                effectParrallalaxMapping.Parameters["scaleBias"].SetValue(scaleBias);
 
-                // Set the shader lighting parameters.
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["dir"].SetValue(light.Direction);
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["pos"].SetValue(light.Position);
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["ambient"].SetValue(light.Ambient.ToVector4());
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["diffuse"].SetValue(light.Diffuse.ToVector4());
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["specular"].SetValue(light.Specular.ToVector4());
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["spotInnerCone"].SetValue(light.SpotInnerConeRadians);
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["spotOuterCone"].SetValue(light.SpotOuterConeRadians);
-                effectParrallalaxMapping.Parameters["light"].StructureMembers["radius"].SetValue(light.Radius);
+                effectParrallalaxMapping.Parameters["lightViewProjectionNear"].SetValue(ShadowMapNear.LightViewProjectionMatrix);
+                effectParrallalaxMapping.Parameters["textureScaleBiasNear"].SetValue(ShadowMapNear.TextureScaleBiasMatrix);
+                effectParrallalaxMapping.Parameters["depthBiasNear"].SetValue(ShadowMapNear.DepthBias);
+                effectParrallalaxMapping.Parameters["shadowMapNear"].SetValue(ShadowMapNear.ShadowMapTexture);
 
-                // Set the shader material parameters.
-                effectParrallalaxMapping.Parameters["material"].StructureMembers["ambient"].SetValue(material.Ambient.ToVector4());
-                effectParrallalaxMapping.Parameters["material"].StructureMembers["diffuse"].SetValue(material.Diffuse.ToVector4());
-                effectParrallalaxMapping.Parameters["material"].StructureMembers["emissive"].SetValue(material.Emissive.ToVector4());
-                effectParrallalaxMapping.Parameters["material"].StructureMembers["specular"].SetValue(material.Specular.ToVector4());
-                effectParrallalaxMapping.Parameters["material"].StructureMembers["shininess"].SetValue(material.Shininess);
+                effectParrallalaxMapping.Parameters["lightViewProjectionFar"].SetValue(ShadowMapFar.LightViewProjectionMatrix);
+                effectParrallalaxMapping.Parameters["textureScaleBiasFar"].SetValue(ShadowMapFar.TextureScaleBiasMatrix);
+                effectParrallalaxMapping.Parameters["depthBiasFar"].SetValue(ShadowMapFar.DepthBias);
+                effectParrallalaxMapping.Parameters["shadowMapFar"].SetValue(ShadowMapFar.ShadowMapTexture);
 
-                // Select the shader based on light type.
-                switch (light.Type)
-                {
-                    case Light.LightType.DirectionalLight:
-                        if (disableParallax)
-                            effectParrallalaxMapping.CurrentTechnique = effectParrallalaxMapping.Techniques["NormalMappingDirectionalLighting"];
-                        else
-                            effectParrallalaxMapping.CurrentTechnique = effectParrallalaxMapping.Techniques["ParallaxNormalMappingDirectionalLighting"];
-                        break;
-
-                    case Light.LightType.PointLight:
-                        if (disableParallax)
-                            effectParrallalaxMapping.CurrentTechnique = effectParrallalaxMapping.Techniques["NormalMappingPointLighting"];
-                        else
-                            effectParrallalaxMapping.CurrentTechnique = effectParrallalaxMapping.Techniques["ParallaxNormalMappingPointLighting"];
-                        break;
-
-                    case Light.LightType.SpotLight:
-                        if (disableParallax)
-                            effectParrallalaxMapping.CurrentTechnique = effectParrallalaxMapping.Techniques["NormalMappingSpotLighting"];
-                        else
-                            effectParrallalaxMapping.CurrentTechnique = effectParrallalaxMapping.Techniques["ParallaxNormalMappingSpotLighting"];
-                        break;
-
-                    default:
-                        break;
-                }
-                */
-
-                // Set the shader camera position parameter.
-                effectParrallalaxMapping.Parameters["cameraPos"].SetValue(Utility.Camera.Position);
-
-                // Set the shader global ambiance parameters.
-                effectParrallalaxMapping.Parameters["globalAmbient"].SetValue(0.0f);
+                effectParrallalaxMapping.Parameters["depthNear"].SetValue(FocaleCameraNear);
+                effectParrallalaxMapping.Parameters["texelSizeNear"].SetValue(ShadowMapNear.TexelSize);
+                effectParrallalaxMapping.Parameters["texelSizeFar"].SetValue(ShadowMapFar.TexelSize);
             }
 
             public virtual void Draw(GameTime gameTime)

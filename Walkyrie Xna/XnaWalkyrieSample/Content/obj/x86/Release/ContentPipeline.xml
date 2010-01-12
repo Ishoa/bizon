@@ -17,7 +17,7 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\Lambert.xnb</Output>
-      <Time>2009-12-29T00:45:25.1686328+01:00</Time>
+      <Time>2010-01-09T19:32:10.4278748+01:00</Time>
     </Item>
     <Item>
       <Source>Effects\parallax_normal_mapping.fx</Source>
@@ -83,6 +83,24 @@
       <Time>2009-12-29T00:45:25.1916342+01:00</Time>
     </Item>
     <Item>
+      <Source>Effects\TerrainLambertEffect.fx</Source>
+      <Name>Effects\TerrainLambertEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\TerrainLambertEffect.xnb</Output>
+      <Time>2010-01-04T00:34:58.8672177+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Effects\LambertDoubleMap.fx</Source>
+      <Name>Effects\LambertDoubleMap</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\LambertDoubleMap.xnb</Output>
+      <Time>2010-01-10T23:13:47.2490571+01:00</Time>
+    </Item>
+    <Item>
       <Source>Fonts\DebugFont.spritefont</Source>
       <Name>Fonts\DebugFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -98,12 +116,13 @@
       <Processor>SkinnedModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeast.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:46:40.6599507+01:00</Time>
       <Dependency>
         <Key>obj\x86\Release\Models\EnemyBeast_0.xml</Key>
-        <Value>2009-12-30T16:19:51.7718496+01:00</Value>
+        <Value>2010-01-10T19:40:26.4540623+01:00</Value>
       </Dependency>
       <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeastDiffuse_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\SkinnedModel.xnb</Request>
     </Item>
     <Item>
       <Source>Models\PlayerMarine.fbx</Source>
@@ -112,7 +131,13 @@
       <Processor>SkinnedModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarine.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:46:48.2743862+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\PlayerMarine_0.xml</Key>
+        <Value>2010-01-10T19:40:34.6769242+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarineDiffuse_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\SkinnedModel.xnb</Request>
     </Item>
     <Item>
       <Source>Models\testRad.FBX</Source>
@@ -121,7 +146,12 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\testRad.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:47:02.9362248+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\testRad_0.xml</Key>
+        <Value>2010-01-10T19:40:37.0535483+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\box.FBX</Source>
@@ -130,7 +160,11 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\box.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:47:22.3553355+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\box_0.xml</Key>
+        <Value>2010-01-10T19:40:38.3233597+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Models\unitSphere.FBX</Source>
@@ -139,7 +173,11 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\unitSphere.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:47:22.3663362+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\unitSphere_0.xml</Key>
+        <Value>2010-01-10T19:40:38.4726161+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Models\weapon.fbx</Source>
@@ -148,7 +186,12 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\weapon.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:47:32.6449241+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\weapon_0.xml</Key>
+        <Value>2010-01-10T19:40:39.1046457+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Water_Reservoir.FBX</Source>
@@ -157,7 +200,11 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Water_Reservoir.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:47:42.5734919+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\Water_Reservoir_0.xml</Key>
+        <Value>2010-01-10T19:40:39.4991657+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Models\bridge.FBX</Source>
@@ -166,7 +213,11 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\bridge.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:47:52.5350617+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\bridge_0.xml</Key>
+        <Value>2010-01-10T19:40:39.8029304+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Models\Palm.FBX</Source>
@@ -175,7 +226,11 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Palm.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:58.2252508+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\Palm_0.xml</Key>
+        <Value>2010-01-10T19:40:40.2461986+01:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Textures\crate.dds</Source>
@@ -184,7 +239,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\crate.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:48:42.6419277+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\WHTCON.JPG</Source>
@@ -193,7 +248,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\WHTCON.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:48:42.6429277+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Terrain\DensiteEau.tga</Source>
@@ -202,7 +257,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\DensiteEau.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:02.8000806+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Terrain\DensiteTerre.tga</Source>
@@ -211,7 +266,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\DensiteTerre.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:02.8380828+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Terrain\Herbe.dds</Source>
@@ -220,7 +275,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\Herbe.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:02.8520836+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Terrain\MapTerrain.tga</Source>
@@ -229,7 +284,7 @@
       <Processor>TerrainProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\MapTerrain.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:02.9010864+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Terrain\Terre.dds</Source>
@@ -238,7 +293,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\Terre.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:02.9690903+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Terrain\terrain.bmp</Source>
@@ -247,7 +302,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\terrain.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:02.9030865+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\explosion.png</Source>
@@ -256,7 +311,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\explosion.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:41.567298+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\Fire2.png</Source>
@@ -265,7 +320,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\Fire2.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:41.5692981+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\smoke.bmp</Source>
@@ -274,7 +329,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:41.5702982+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\smoke2.png</Source>
@@ -283,7 +338,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke2.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:41.5712982+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\smoke3.png</Source>
@@ -292,7 +347,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\smoke3.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:41.5722983+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\Fire.dds</Source>
@@ -301,7 +356,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\Fire.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:49:41.5682981+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Interfaces\DisplaySprites.PNG</Source>
@@ -310,7 +365,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\DisplaySprites.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:51:10.2523705+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Interfaces\texturehud7iv.jpg</Source>
@@ -319,7 +374,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\texturehud7iv.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:51:10.2543706+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Interfaces\viseur2.png</Source>
@@ -331,7 +386,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\viseur2.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:51:10.2563707+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Interfaces\viseur3.PNG</Source>
@@ -343,7 +398,7 @@
       </Parameters>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\viseur3.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:51:10.2573708+01:00</Time>
     </Item>
     <Item>
       <Source>Models\EnemyBeastDiffuse.jpg</Source>
@@ -352,7 +407,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeastDiffuse.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:56:22.0722056+01:00</Time>
     </Item>
     <Item>
       <Source>Models\PlayerMarineDiffuse.jpg</Source>
@@ -361,7 +416,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarineDiffuse.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:56:47.833679+01:00</Time>
     </Item>
     <Item>
       <Source>Models\Object04CompleteMap.tga</Source>
@@ -370,7 +425,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:57:08.7858774+01:00</Time>
     </Item>
     <Item>
       <Source>Models\hk_mp5n.jpg</Source>
@@ -379,7 +434,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:57:54.0794681+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\brick_color_map.dds</Source>
@@ -388,7 +443,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\brick_color_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.506925+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\brick_height_map.dds</Source>
@@ -397,7 +452,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\brick_height_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.5189257+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\brick_normal_map.dds</Source>
@@ -406,7 +461,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\brick_normal_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.541927+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\floor_color_map.dds</Source>
@@ -415,7 +470,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\floor_color_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.5989302+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\floor_height_map.dds</Source>
@@ -424,7 +479,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\floor_height_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.6569335+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\floor_normal_map.dds</Source>
@@ -433,7 +488,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\floor_normal_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.7259375+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\wood_color_map.dds</Source>
@@ -442,7 +497,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\wood_color_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.8209429+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\wood_height_map.dds</Source>
@@ -451,7 +506,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\wood_height_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.8719458+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\wood_normal_map.dds</Source>
@@ -460,7 +515,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\wood_normal_map.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:07:56.8969473+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\woodplanks.tga</Source>
@@ -469,7 +524,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\woodplanks.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:09:26.0090442+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\ColorNormalHeightMap\woodplanks_normal.tga</Source>
@@ -478,7 +533,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\ColorNormalHeightMap\woodplanks_normal.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:09:26.0110443+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\City\city_down.bmp</Source>
@@ -487,7 +542,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_down.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:37.0971102+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\City\city_east.bmp</Source>
@@ -496,7 +551,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_east.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:37.1711144+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\City\city_north.bmp</Source>
@@ -505,7 +560,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_north.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:37.2321179+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\City\city_south.bmp</Source>
@@ -514,7 +569,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_south.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:37.320123+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\City\city_up.bmp</Source>
@@ -523,7 +578,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_up.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:37.391127+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\City\city_west.bmp</Source>
@@ -532,7 +587,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\City\city_west.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:37.5401355+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Grass\grassCUBE_page_001.dds</Source>
@@ -541,7 +596,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_001.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:45.8296097+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Grass\grassCUBE_page_002.dds</Source>
@@ -550,7 +605,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_002.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:45.8626116+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Grass\grassCUBE_page_003.dds</Source>
@@ -559,7 +614,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_003.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:45.887613+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Grass\grassCUBE_page_004.dds</Source>
@@ -568,7 +623,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_004.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:45.9346157+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Grass\grassCUBE_page_005.dds</Source>
@@ -577,7 +632,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_005.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:45.9496165+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Grass\grassCUBE_page_006.dds</Source>
@@ -586,7 +641,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Grass\grassCUBE_page_006.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:45.9716178+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Hourglass\hourglass_down.bmp</Source>
@@ -595,7 +650,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_down.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:55.2621492+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Hourglass\hourglass_east.bmp</Source>
@@ -604,7 +659,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_east.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:55.3801559+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Hourglass\hourglass_north.bmp</Source>
@@ -613,7 +668,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_north.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:55.5721669+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Hourglass\hourglass_south.bmp</Source>
@@ -622,7 +677,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_south.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:55.7321761+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Hourglass\hourglass_up.bmp</Source>
@@ -631,7 +686,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_up.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:55.8411823+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyBox\Hourglass\hourglass_west.bmp</Source>
@@ -640,7 +695,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\SkyBox\Hourglass\hourglass_west.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:10:55.9181867+01:00</Time>
     </Item>
     <Item>
       <Source>Models\OAK1.TGA</Source>
@@ -649,7 +704,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\OAK1.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:33:39.8311981+01:00</Time>
     </Item>
     <Item>
       <Source>Models\scannermiddle_diff.dds</Source>
@@ -658,7 +713,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermiddle_diff.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T14:09:58.606348+01:00</Time>
     </Item>
     <Item>
       <Source>Models\scannerroom_diff.dds</Source>
@@ -667,7 +722,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom_diff.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T14:10:19.046662+01:00</Time>
     </Item>
     <Item>
       <Source>Textures\Particules\flare.bmp</Source>
@@ -676,7 +731,34 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\flare.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-30T13:30:07.8773972+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Interfaces\Teleport.jpg</Source>
+      <Name>Textures\Interfaces\Teleport</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\Teleport.xnb</Output>
+      <Time>2009-12-30T19:00:50.6133037+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\monitors.dds</Source>
+      <Name>Models\monitors</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\monitors.xnb</Output>
+      <Time>2009-12-30T23:12:13.3557277+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\gunmap.png</Source>
+      <Name>Models\gunmap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap.xnb</Output>
+      <Time>2009-12-31T12:35:06.6932567+01:00</Time>
     </Item>
     <Item>
       <Source>Models\Japanese Stair Case.x</Source>
@@ -685,7 +767,12 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Japanese Stair Case.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T01:33:28.4765486+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\Japanese Stair Case_0.xml</Key>
+        <Value>2010-01-10T19:42:03.1428747+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\OAK1_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\scannerroom.x</Source>
@@ -694,7 +781,55 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T14:08:00.2820306+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\scannerroom_0.xml</Key>
+        <Value>2010-01-10T19:42:05.8392449+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermiddle_diff_0.xnb</Request>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom_diff_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\scannermonitors.x</Source>
+      <Name>Models\scannermonitors</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermonitors.xnb</Output>
+      <Time>2009-12-30T23:10:23.1145435+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\scannermonitors_0.xml</Key>
+        <Value>2010-01-10T19:42:10.1271064+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Monitors_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\GunshipWhole.x</Source>
+      <Name>Models\GunshipWhole</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\GunshipWhole.xnb</Output>
+      <Time>2009-12-31T12:34:26.2989463+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\GunshipWhole_0.xml</Key>
+        <Value>2010-01-10T19:42:10.4496113+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\rotablade.x</Source>
+      <Name>Models\rotablade</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\rotablade.xnb</Output>
+      <Time>2009-12-31T13:01:02.575248+01:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\rotablade_0.xml</Key>
+        <Value>2010-01-10T19:42:11.3671254+01:00</Value>
+      </Dependency>
+      <Request>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\EnemyBeast.fbx</Source>
@@ -716,9 +851,220 @@
       </Parameters>
       <Options>None</Options>
       <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\EnemyBeastDiffuse_0.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2009-12-29T00:56:22.0722056+01:00</Time>
     </Item>
-    <BuildSuccessful>false</BuildSuccessful>
+    <Item>
+      <Source>Models\PlayerMarine.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\PlayerMarine_0.xml</Output>
+      <Time>2009-12-29T00:46:48.2743862+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\PlayerMarineDiffuse.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\PlayerMarineDiffuse_0.xnb</Output>
+      <Time>2009-12-29T00:56:47.833679+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\testRad.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\testRad_0.xml</Output>
+      <Time>2009-12-29T00:47:02.9362248+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Object04CompleteMap.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Object04CompleteMap_0.xnb</Output>
+      <Time>2009-12-29T00:57:08.7858774+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\box.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\box_0.xml</Output>
+      <Time>2009-12-29T00:47:22.3553355+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\unitSphere.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\unitSphere_0.xml</Output>
+      <Time>2009-12-29T00:47:22.3663362+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\weapon.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\weapon_0.xml</Output>
+      <Time>2009-12-29T00:47:32.6449241+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\hk_mp5n.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\hk_mp5n_0.xnb</Output>
+      <Time>2009-12-29T00:57:54.0794681+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Water_Reservoir.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\Water_Reservoir_0.xml</Output>
+      <Time>2009-12-29T00:47:42.5734919+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\bridge.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\bridge_0.xml</Output>
+      <Time>2009-12-29T00:47:52.5350617+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Palm.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\Palm_0.xml</Output>
+      <Time>2009-12-29T00:49:58.2252508+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Japanese Stair Case.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\Japanese Stair Case_0.xml</Output>
+      <Time>2009-12-29T01:33:28.4765486+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\OAK1.TGA</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\OAK1_0.xnb</Output>
+      <Time>2009-12-29T01:33:39.8311981+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannerroom.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\scannerroom_0.xml</Output>
+      <Time>2009-12-29T14:08:00.2820306+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannermiddle_diff.dds</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermiddle_diff_0.xnb</Output>
+      <Time>2009-12-29T14:09:58.606348+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannerroom_diff.dds</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannerroom_diff_0.xnb</Output>
+      <Time>2009-12-29T14:10:19.046662+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\scannermonitors.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\scannermonitors_0.xml</Output>
+      <Time>2009-12-30T23:10:23.1145435+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Monitors.dds</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Monitors_0.xnb</Output>
+      <Time>2009-12-30T23:12:13.3557277+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\GunshipWhole.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\GunshipWhole_0.xml</Output>
+      <Time>2009-12-31T12:34:26.2989463+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\gunmap.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Graphics:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap_0.xnb</Output>
+      <Time>2009-12-31T12:35:06.6932567+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\rotablade.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\rotablade_0.xml</Output>
+      <Time>2009-12-31T13:01:02.575248+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <BuildConfiguration>Release</BuildConfiguration>
@@ -731,7 +1077,7 @@
     <Assemblies>
       <Assembly>
         <Key>D:\Bizon Project\trunk\Walkyrie Xna\XNAWalkyrie\bin\x86\Release\XNAWalkyrie.dll</Key>
-        <Value>2009-12-30T16:19:45.6655003+01:00</Value>
+        <Value>2010-01-10T19:40:11.9485696+01:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\assembly\GAC\Microsoft.DirectX.DirectInput\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.DirectInput.dll</Key>
@@ -747,7 +1093,7 @@
       </Assembly>
       <Assembly>
         <Key>D:\Bizon Project\trunk\Walkyrie Xna\SkinnedModelPipeline\bin\x86\Release\SkinnedModelPipeline.dll</Key>
-        <Value>2009-12-30T16:19:43.2893644+01:00</Value>
+        <Value>2010-01-10T19:40:09.6100029+01:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>

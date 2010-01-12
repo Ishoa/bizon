@@ -4,735 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using XNAWalkyrie;
+using XnaWalkyrieSample;
 using System;
 using SkinnedModel;
 using Microsoft.Xna.Framework.Audio;
 
 namespace OCTreeTest
 {
-
-    public class MovingSphere
-    {
-        public BoundingSphere Bounds;
-        public Vector3 Velocity;
-    }
-
-    public class Environnement
-    {
-        enum Mur
-        {
-            Sol = 0,
-            Sol_High,
-            MurDroit,
-            MurGauche,
-            MurAvant,
-            MurArriere,
-            Nb_Mur,
-        }
-
-        private Texture2D floorColorMap;
-        private Texture2D floorNormalMap;
-        private Texture2D floorHeightMap;
-
-        private Texture2D WoodColorMap;
-        private Texture2D WoodNormalMap;
-        private Texture2D WoodHeightMap;
-
-        private Texture2D briqueColorMap;
-        private Texture2D briqueNormalMap;
-        private Texture2D briqueHeightMap;
-
-        private Light light;
-        private Material material;
-
-        private XNAWalkyrie.Utility.NormalMappedQuad[] NormalMappedQuad;
-        private XNAWalkyrie.Utility.NormalMappedModel NormalMappedModel;
-        private Model modelTest;
-
-
-        public Environnement(ref Light l, ref Material m)
-        {
-            light = l;
-            material = m;
-        }
-
-        public void Initialize()
-        {
-
-
-            NormalMappedQuad = new XNAWalkyrie.Utility.NormalMappedQuad[(int)Mur.Nb_Mur];
-
-            //########################################### SOL #################################################################
-
-            NormalMappedQuad[(int)Mur.Sol] = new XNAWalkyrie.Utility.NormalMappedQuad(ref light,ref material,
-                                                            new Vector3(100.0f, -295.0f, -280.0f), Vector3.Up, Vector3.Forward,
-                                                            1400.0f, 1200.0f, 20.0f, 15.0f);
-            
-            //########################################### SOL_HIGH #################################################################
-
-            NormalMappedQuad[(int)Mur.Sol_High] = new XNAWalkyrie.Utility.NormalMappedQuad(ref light, ref material,
-                                                            new Vector3(-35.5f, -293.5f, 1.0f), Vector3.Up, Vector3.Forward,
-                                                            391.0f, 322.0f, 10.0f, 5.0f);
-
-
-            //########################################### RIGHT #################################################################
-
-            NormalMappedQuad[(int)Mur.MurDroit] = new XNAWalkyrie.Utility.NormalMappedQuad(ref light, ref material,
-                                                            new Vector3(-528.0f, -258.0f, -280.0f), Vector3.Right, Vector3.Forward,
-                                                            75.0f, 1100.0f, 20.0f, 1.0f);
-
-
-            //########################################### LEFT #################################################################
-
-            NormalMappedQuad[(int)Mur.MurGauche] = new XNAWalkyrie.Utility.NormalMappedQuad(ref light, ref material,
-                                                            new Vector3(686.0f, -258.0f, -280.0f), Vector3.Left, Vector3.Forward,
-                                                            75.0f, 1100.0f, 20.0f, 1.0f);
-
-
-            //########################################### BEHIND #################################################################
-
-            NormalMappedQuad[(int)Mur.MurArriere] = new XNAWalkyrie.Utility.NormalMappedQuad(ref light, ref material,
-                                                            new Vector3(100.0f, -258.0f, -800.0f), Vector3.UnitZ, Vector3.Right,
-                                                            75.0f, 1300.0f, 20.0f, 1.0f);
-
-
-            //########################################### FORWARD #################################################################
-
-            NormalMappedQuad[(int)Mur.MurAvant] = new XNAWalkyrie.Utility.NormalMappedQuad(ref light, ref material,
-                                                            new Vector3(100.0f, -258.0f, 235.0f), -Vector3.UnitZ, Vector3.Right,
-                                                            75.0f, 1300.0f, 20.0f, 1.0f);
-            for (int i = 0; i < (int)Mur.Nb_Mur; i++)
-            {
-                NormalMappedQuad[i].Initialize();
-            }
-
-           
-
-        }
-
-        public void LoadContent()
-        {
-            floorColorMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\floor_color_map");
-            floorNormalMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\floor_normal_map");
-            floorHeightMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\floor_height_map");
-
-            briqueColorMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\brick_color_map");
-            briqueNormalMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\brick_normal_map");
-            briqueHeightMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\brick_height_map");
-
-            //WoodColorMap = Utility.Game.Content.Load<Texture2D>(@"Textures\wood_color_map");
-            WoodColorMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\woodplanks");
-            //WoodNormalMap = Utility.Game.Content.Load<Texture2D>(@"Textures\wood_normal_map");
-            WoodNormalMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\woodplanks_normal");
-            WoodHeightMap = Utility.Game.Content.Load<Texture2D>(@"Textures\ColorNormalHeightMap\wood_height_map");
-
-
-            modelTest =  Utility.Game.Content.Load<Model>(@"Models\box");
-
-            NormalMappedModel = new XNAWalkyrie.Utility.NormalMappedModel(ref light, ref material, ref modelTest);
-            NormalMappedModel.Initialize();
-
-            for (int i = 0; i < (int)Mur.Nb_Mur; i++)
-            {
-                NormalMappedQuad[i].LoadContent();
-            }
-
-            NormalMappedModel.LoadContent();
-
-            NormalMappedModel.textureColorMap = WoodColorMap;
-            NormalMappedModel.textureNormalMap = WoodNormalMap;
-            NormalMappedModel.textureHeightMap = WoodHeightMap;
-            NormalMappedModel.World = Matrix.CreateTranslation(-300.0f, -295.0f, -200.0f);
-            NormalMappedQuad[(int)Mur.Sol].textureColorMap = floorColorMap;
-            NormalMappedQuad[(int)Mur.Sol].textureNormalMap = floorNormalMap;
-            NormalMappedQuad[(int)Mur.Sol].textureHeightMap = floorHeightMap;
-
-            NormalMappedQuad[(int)Mur.Sol_High].textureColorMap = WoodColorMap;
-            NormalMappedQuad[(int)Mur.Sol_High].textureNormalMap = WoodNormalMap;
-            NormalMappedQuad[(int)Mur.Sol_High].textureHeightMap = WoodHeightMap;
-
-            for (int i = (int)Mur.MurDroit; i < (int)Mur.Nb_Mur; i++)
-            {
-                NormalMappedQuad[i].textureColorMap = briqueColorMap;
-                NormalMappedQuad[i].textureNormalMap = briqueNormalMap;
-                NormalMappedQuad[i].textureHeightMap = briqueHeightMap;
-            }
-
-            
-        }
-
-
-        public void UnloadContent()
-        {
-
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            NormalMappedModel.Update(gameTime);
-
-            for (int i = 0; i < (int)Mur.Nb_Mur; i++)
-            {
-                NormalMappedQuad[i].Update(gameTime);
-            }
-            
-
-        }
-
-        public void Draw(GameTime gameTime)
-        {
-            for (int i = 0; i < (int)Mur.Nb_Mur; i++)
-            {
-                NormalMappedQuad[i].Draw(gameTime);
-            }
-            NormalMappedModel.Draw(gameTime);
-        }
-    }
-
-    public class FPSEnemy
-    {
-        public MovingSphere ColliderSphere;
-
-        public Model ModelDebugColliderSphere;
-
-        public Model modelEnemy;
-        public Vector3 VectEnemyPosition;
-        public Vector3 VectEnemyDestination;
-        public Vector3 PreviousVectEnemyPosition;
-        public Quaternion QuaternionEnemyOrientation;
-        private Matrix WorldEnemy;
-
-        public enum StateEnemy
-        {
-            IddleState = 0,
-            RunState,
-            BiteState,
-            DamageState,
-            DeadState
-        }
-
-        AnimationPlayer animationEnemy;
-        AnimationClip Iddle, Run, Bite, Damage, Die;
-        AnimationClip previousAnim;
-
-        public float MyAngle;
-        public float DistanceObjectif;
-        float Movespeed = 10.0f;
-
-        StateEnemy eStateEnemy;
-
-        public  float Endurance = 100;
-        private Vector3 dirEnemy;
-        private float nextShoot = 0.0f;
-
-        Random rand;
-        private float HauteurEnemy = -270.0f;
-
-        static int indice = 0;
-
-        public FPSEnemy(Vector3 initpos)
-        {
-            VectEnemyPosition = initpos;
-            VectEnemyDestination = VectEnemyPosition;
-
-            indice++;
-            rand = new Random(indice);
-
-            eStateEnemy = StateEnemy.IddleState;
-        }
-
-
-        public void Update(GameTime gameTime,OCTree sceneOct)
-        {
-            
-            PreviousVectEnemyPosition = VectEnemyPosition;
-            nextShoot -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            DistanceObjectif = Vector3.DistanceSquared(VectEnemyDestination, VectEnemyPosition);
-            if (Endurance > 0.0f && DistanceObjectif < 10.0f)
-            {
-                VectEnemyDestination = new Vector3(
-                                                    ((float)rand.NextDouble()) * 1010.0f - 420.0f,
-                                                    HauteurEnemy,
-                                                    ((float)rand.NextDouble()) * 830.0f - 700.0f
-                                                    );
-
-                Vector3 vec1, vec2;
-                vec1 = new Vector3(VectEnemyPosition.X, 0.0f, VectEnemyPosition.Z);
-                vec2 = new Vector3(VectEnemyDestination.X, 0.0f, VectEnemyDestination.Z);
-
-                dirEnemy = vec2 - vec1;
-                dirEnemy.Normalize();
-
-                
-                Ray direction = new Ray(VectEnemyPosition, dirEnemy);
-
-                OCTreeIntersection ResultatIntersection;
-
-                sceneOct.GetIntersectingPolygon(ref direction, out ResultatIntersection);
-
-
-                if (ResultatIntersection.IntersectType == OCTreeIntersectionType.Inside && ResultatIntersection.IntersectType != OCTreeIntersectionType.None)
-                {
-                    VectEnemyDestination = new Vector3(ResultatIntersection.IntersectionPoint.X, HauteurEnemy, ResultatIntersection.IntersectionPoint.Z) - dirEnemy * (ColliderSphere.Bounds.Radius * 1.5f);
-
-                }
-
-                vec1 = new Vector3(VectEnemyPosition.X, 0.0f, VectEnemyPosition.Z);
-                vec2 = new Vector3(VectEnemyDestination.X, 0.0f, VectEnemyDestination.Z);
-
-                dirEnemy = vec2 - vec1;
-                dirEnemy.Normalize();
-
-                
-            }
-
-            if (DistanceObjectif > 20.0f)
-                DistanceObjectif = 10.0f;
-
-            if (eStateEnemy == StateEnemy.RunState)// && eStateEnemy != StateEnemy.BiteState && Endurance > 0.0f)
-                VectEnemyPosition += dirEnemy * Movespeed * DistanceObjectif * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            Vector3 Direction = Vector3.One;
-
-            if (eStateEnemy != StateEnemy.BiteState)
-            {
-                Direction = dirEnemy;
-            }
-            else
-            {
-                if(Utility.Camera.CurrentBehavior == Camera.Behavior.FirstPerson)
-                    Direction = Utility.Camera.Position - VectEnemyPosition;
-                else if(Utility.Camera.CurrentBehavior == Camera.Behavior.ThirdPerson)
-                    Direction = Utility.Camera.OrbitTarget - VectEnemyPosition;
-                Direction = new Vector3(Direction.X, 0.0f,Direction.Z);
-                Direction.Normalize();
-            }
-
-            if (eStateEnemy != StateEnemy.IddleState && eStateEnemy != StateEnemy.DamageState)
-            {
-                double scalar = Vector3.Dot(Direction, new Vector3(0.0f, 0.0f, 1.0f));
-                //double scalar = dir.Z;
-
-                if (Direction.X < 0.0f)
-                    MyAngle = (float)-Math.Acos(scalar);
-                else
-                    MyAngle = (float)Math.Acos(scalar);
-
-            }
-
-            QuaternionEnemyOrientation = Quaternion.CreateFromAxisAngle(new Vector3(0.0f, 1.0f, 0.0f), MyAngle);
-
-
-            WorldEnemy = Matrix.CreateFromQuaternion(QuaternionEnemyOrientation) * Matrix.CreateScale(0.3f) * Matrix.CreateTranslation(new Vector3(VectEnemyPosition.X, VectEnemyPosition.Y - ColliderSphere.Bounds.Radius - 5.0f, VectEnemyPosition.Z));
-
-
-            ColliderSphere.Bounds.Center = VectEnemyPosition;
-            ColliderSphere.Bounds.Center.Y -= 15.0f;
-            UpdateAnimation(gameTime);
-        }
-
-        public void UpdateAnimation(GameTime gameTime)
-        {
-
-            switch (eStateEnemy)
-            {
-                case StateEnemy.IddleState:
-                    if (previousAnim != Iddle)
-                    {
-                        animationEnemy.StartClip(Iddle);
-                        previousAnim = Iddle;
-                    }
-
-                    if (VectEnemyPosition != VectEnemyDestination)
-                        eStateEnemy = StateEnemy.RunState;
-
-                    break;
-
-                case StateEnemy.RunState:
-
-                        if (previousAnim != Run)
-                        {
-                            animationEnemy.StartClip(Run);
-                            previousAnim = Run;
-                        }
-
-                        if (VectEnemyPosition == PreviousVectEnemyPosition)
-                        {
-                            eStateEnemy = StateEnemy.IddleState;
-                        }
-                    break;
-
-                case StateEnemy.BiteState:
-                    if (animationEnemy.EStateOfAnimation == AnimationPlayer.StateOfAnimation.EndAnimation)
-                        eStateEnemy = StateEnemy.IddleState;
-                    break;
-
-
-                case StateEnemy.DamageState:
-                    if (animationEnemy.EStateOfAnimation == AnimationPlayer.StateOfAnimation.EndAnimation)
-                        eStateEnemy = StateEnemy.IddleState;
-                    break;
-
-                case StateEnemy.DeadState:
-                    break;
-
-                default:
-                    break;
-            }
-
-            if (Endurance <= 0.0f)
-                if (animationEnemy.EStateOfAnimation == AnimationPlayer.StateOfAnimation.EndAnimation)
-                {
-                    eStateEnemy = StateEnemy.DeadState;
-                }
-
-            animationEnemy.Update(gameTime.ElapsedGameTime, true, WorldEnemy);
-
-        }
-
-        public void LoadContent()
-        {
-            ColliderSphere = new MovingSphere();
-            modelEnemy = Utility.Game.Content.Load<Model>(@"Models\EnemyBeast");
-
-            ModelDebugColliderSphere = Utility.Game.Content.Load<Model>(@"Models\unitSphere");
-
-            ColliderSphere.Velocity = Vector3.Zero;
-            ColliderSphere.Bounds = ModelExtensions.GetBoundingSphere(modelEnemy);
-            ColliderSphere.Bounds.Radius *= 0.2f;
-            QuaternionEnemyOrientation = Quaternion.Identity;
-
-            // Look up our custom skinning information.
-            SkinningData skinningData = modelEnemy.Tag as SkinningData;
-
-            if (skinningData == null)
-                throw new InvalidOperationException
-                    ("This model does not contain a SkinningData tag.");
-
-            // Create an animation player, and start decoding an animation clip.
-            animationEnemy = new AnimationPlayer(skinningData);
-
-            Iddle = skinningData.AnimationClips["Idle"];
-            Run = skinningData.AnimationClips["Run"];
-            Bite = skinningData.AnimationClips["Bite"];
-            Damage = skinningData.AnimationClips["Take Damage"];
-            Die = skinningData.AnimationClips["Die"];
-            animationEnemy.StartClip(Iddle);
-        }
-
-        public void Draw(GameTime gameTime)
-        {
-            Matrix[] bones = animationEnemy.GetSkinTransforms();
-
-            // Render the skinned mesh.
-            foreach (ModelMesh mesh in modelEnemy.Meshes)
-            {
-                foreach (Effect effect in mesh.Effects)
-                {
-                    effect.Parameters["Bones"].SetValue(bones);
-                    effect.Parameters["ViewProjection"].SetValue(Utility.Camera.ViewProjectionMatrix);
-                }
-
-                mesh.Draw();
-            }
-
-            if (Utility.InputState.IsKeyDown(Keys.V))
-                Utility.VectorRenderer.DrawLine(VectEnemyPosition,VectEnemyDestination);
-
-            if (Utility.InputState.IsKeyDown(Keys.C))
-                ModelDebugColliderSphere.Draw(Matrix.CreateScale(ColliderSphere.Bounds.Radius / 2.0f) * Matrix.CreateTranslation(ColliderSphere.Bounds.Center));
-
-        }
-
-
-        public Vector3 Position
-        {
-            get { return VectEnemyPosition; }
-        }
-
-        public bool IsDead()
-        {
-            return eStateEnemy == StateEnemy.DeadState;
-        }
-
-
-        public void TakeDamage()
-        {
-            if (Endurance > 0.0f)
-            {
-                eStateEnemy = StateEnemy.DamageState;
-                animationEnemy.StartClip(Damage,false);
-
-                previousAnim = Damage;
-
-                Endurance -= 10.0f;
-                if (Endurance <= 0.0f)
-                {
-                    animationEnemy.StartClip(Die, false);
-                    previousAnim = Die;
-                }
-            }
-        }
-
-        public bool PlayerNextenemy()
-        {
-            if (Endurance > 0.0f && eStateEnemy != StateEnemy.DamageState)
-            {
-                eStateEnemy = StateEnemy.BiteState;
-                if (nextShoot <= 0.0f)
-                {
-                    animationEnemy.StartClip(Bite, false);
-                    previousAnim = Bite;
-                    nextShoot = 2.0f;
-                    return true;
-                }
-                else if (previousAnim != Iddle && animationEnemy.EStateOfAnimation == AnimationPlayer.StateOfAnimation.EndAnimation)
-                {
-                    animationEnemy.StartClip(Iddle,false);
-                    previousAnim = Iddle;
-                }
-                
-            }
-            return false;
-        }
-
-        public Matrix MatrixEnemy
-        {
-            get { return WorldEnemy; }
-        }
-
-        public Model ModelEnemy
-        {
-            get { return modelEnemy; }
-        }
-
-        public AnimationPlayer AnimationEnemy
-        {
-            get { return animationEnemy; }
-        }
-
-    }
-
-    public class FPSPlayer
-    {
-
-        private const float WEAPON_SCALE = 0.01f;
-        private const float WEAPON_X_OFFSET = 0.25f;
-        private const float WEAPON_Y_OFFSET = -0.3f;
-        private const float WEAPON_Z_OFFSET = -0.50f;
-        private const float FIRSTPERSONNYDECAL = 2.0f;
-
-        public MovingSphere ColliderSphere;
-
-        public Model ModelDebugColliderSphere;
-
-        public Model modelPerso;
-        public Vector3 VectPersoPosition;
-        public Vector3 PreviousVectPersoPosition;
-        public Quaternion QuaternionPersoOrientation;
-        private Matrix WorldPerso;
-
-        AnimationPlayer animationPlayer;
-        AnimationClip Iddle, Run;
-        AnimationClip previousAnim;
-        SkinningData skinningData;
-        Matrix[] boneTransforms;
-
-        public Matrix MatrixWeapon;
-        public Model ModelWeapon;
-
-        public float YRotation;
-        public float XRotation;
-
-        public float XDelta;
-        public float YDelta;
-
-        public float Friction;
-        
-
-        public float MyAngle;
-
-
-        public int health = 1000;
-        public int maxhealth = 1000;
-
-        public int Ammo = 50;
-        public int MaxAmo = 50;
-
-        public float Endurance = 5.0f;
-        public float MaxEndurance = 5.0f;
-
-        public FPSPlayer()
-        {
-            YRotation = 0;
-            XRotation = 0;
-            XDelta = 0.0f;
-            YDelta = 0.0f;
-            Friction  = 0.3f;
-
-        }
-
-
-        public void Update(GameTime gameTime)
-        {
-            PreviousVectPersoPosition = VectPersoPosition;
-
-            switch (Utility.Camera.CurrentBehavior)
-            {
-                case Camera.Behavior.FirstPerson:
-
-                    MatrixWeapon = Utility.Camera.WeaponWorldMatrix(WEAPON_X_OFFSET,
-                                                    WEAPON_Y_OFFSET, WEAPON_Z_OFFSET, WEAPON_SCALE);
-
-                    VectPersoPosition = Utility.Camera.Position + Vector3.Down * ColliderSphere.Bounds.Radius * 0.85f;
-
-                    break;
-
-                case Camera.Behavior.FreeOrbit:
-                case Camera.Behavior.ThirdPerson:
-                    VectPersoPosition = Utility.Camera.OrbitTarget + Vector3.Down * ColliderSphere.Bounds.Radius * 0.85f;
-
-                    break;
-            }
-
-            Vector3 vec1, vec2;
-            vec1 = new Vector3(Utility.Camera.Position.X, 0.0f, Utility.Camera.Position.Z);
-            vec2 = new Vector3(Utility.Camera.OrbitTarget.X, 0.0f, Utility.Camera.OrbitTarget.Y);
-            vec1.Normalize();
-            vec2.Normalize();
-
-            Vector3 dir = new Vector3(Utility.Camera.ZAxis.X, 0.0f, Utility.Camera.ZAxis.Z);
-            dir.Normalize();
-            double scalar = Vector3.Dot(dir, new Vector3(0.0f, 0.0f, 1.0f));
-            //double scalar = dir.Z;
-
-            Vector3 vectoriel = Vector3.Cross(dir, new Vector3(0.0f, 0.0f, 1.0f));
-
-            if (dir.X < 0.0f)
-                MyAngle = (float)-Math.Acos(scalar);
-            else
-                MyAngle = (float)Math.Acos(scalar);
-
-            QuaternionPersoOrientation = Quaternion.CreateFromAxisAngle(new Vector3(0.0f, 1.0f, 0.0f), MyAngle);
-
-
-            WorldPerso = Matrix.CreateRotationY(MathHelper.ToRadians(180.0f)) * Matrix.CreateFromQuaternion(QuaternionPersoOrientation) * Matrix.CreateTranslation(new Vector3(VectPersoPosition.X, VectPersoPosition.Y - ColliderSphere.Bounds.Radius, VectPersoPosition.Z));
-
-            if (VectPersoPosition == PreviousVectPersoPosition && previousAnim != Iddle)
-            {
-                animationPlayer.StartClip(Iddle);
-                previousAnim = Iddle;
-            }
-            else if (VectPersoPosition != PreviousVectPersoPosition && previousAnim != Run)
-            {
-                animationPlayer.StartClip(Run);
-                
-                previousAnim = Run;
-            }
-            
-            animationPlayer.Update(gameTime.ElapsedGameTime, true, WorldPerso);
-
-            // Copy the transforms into our own array, so we can safely modify the values.
-            animationPlayer.GetBoneTransforms().CopyTo(boneTransforms, 0);
-        }
-
-
-
-        public void LoadContent()
-        {
-            ColliderSphere = new MovingSphere();
-            modelPerso = Utility.Game.Content.Load<Model>(@"Models\PlayerMarine");
-
-            ModelWeapon = Utility.Game.Content.Load<Model>(@"Models\weapon");
-            ModelDebugColliderSphere = Utility.Game.Content.Load<Model>(@"Models\unitSphere");
-
-            ColliderSphere.Velocity = Vector3.Zero;
-            ColliderSphere.Bounds = ModelExtensions.GetBoundingSphere(modelPerso);
-            ColliderSphere.Bounds.Radius *= 0.9f;
-            QuaternionPersoOrientation = Quaternion.Identity;
-
-            // Look up our custom skinning information.
-            skinningData = modelPerso.Tag as SkinningData;
-
-            if (skinningData == null)
-                throw new InvalidOperationException
-                    ("This model does not contain a SkinningData tag.");
-
-            boneTransforms = new Matrix[skinningData.BindPose.Count];
-
-            // Create an animation player, and start decoding an animation clip.
-            animationPlayer = new AnimationPlayer(skinningData);
-
-            Iddle = skinningData.AnimationClips["Idle"];
-            Run = skinningData.AnimationClips["Run"];
-
-            animationPlayer.SpeedAnimation = 1.5f;
-            animationPlayer.StartClip(Iddle);
-        }
-
-        public void Draw(GameTime gameTime)
-        {
-
-            switch (Utility.Camera.CurrentBehavior)
-            {
-                case Camera.Behavior.FirstPerson:
-
-                    ModelWeapon.Draw(MatrixWeapon);
-                    break;
-
-                case Camera.Behavior.FreeOrbit:
-                case Camera.Behavior.ThirdPerson:
-
-                    Matrix[] bones = animationPlayer.GetSkinTransforms();
-
-                    // Render the skinned mesh.
-                    foreach (ModelMesh mesh in modelPerso.Meshes)
-                    {
-                        foreach (Effect effect in mesh.Effects)
-                        {
-                            effect.Parameters["Bones"].SetValue(bones);
-                            effect.Parameters["ViewProjection"].SetValue(Utility.Camera.ViewProjectionMatrix);
-                        }
-
-                        mesh.Draw();
-                    }
-
-                    // Modify the transform matrices for the head and upper left arm bones.
-                    int HandIndex = skinningData.BoneIndices["R_Hand"];
-
-                    Matrix[] worldTransforms = animationPlayer.GetWorldTransforms();
-
-                    Matrix WeaponWorldTransform = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(-1.0f,2.0f,-4.0f)*Matrix.CreateRotationY(1.75f) * Matrix.CreateRotationX(-1.57f) *
-                                               worldTransforms[HandIndex];
-
-                    ModelWeapon.Draw(WeaponWorldTransform);
-
-                    if(Utility.InputState.IsKeyDown(Keys.C))
-                        ModelDebugColliderSphere.Draw(Matrix.CreateScale(ColliderSphere.Bounds.Radius / 2.0f) * Matrix.CreateTranslation(VectPersoPosition));
-                    break;
-
-
-
-            }
-        }
-
-        public Matrix MatrixPerso
-        {
-            get { return WorldPerso; }
-        }
-
-        public Model ModelPerso
-        {
-            get { return modelPerso; }
-        }
-
-        public AnimationPlayer AnimationPlayer
-        {
-            get { return animationPlayer; }
-        }
-    }
-
 
     public class GameFPS : Microsoft.Xna.Framework.Game
     {
@@ -748,9 +26,9 @@ namespace OCTreeTest
         SpriteBatch spriteBatch;
         SpriteFont debugFont;
 
-        private const int NB_Enemy = 5;
+        private const int NB_Enemy = 0;
         private const int NB_Caisse = 13;
-        private const int NB_Palmier = 1;
+        private const int NB_Palmier = 100;
         private const int NB_Bridge = 2;
         private const int NB_Teleport = 2;
 
@@ -796,8 +74,6 @@ namespace OCTreeTest
         float TerrainScale = 20.0f;
         float TerrainBumppiness = 512.0f;
         float HauteurOriginTerrain = -400.0f;
-
-        //private Effect TerrainEffect;
 
         private Texture2D TextureTerre;
         private Texture2D Herbe;
@@ -856,9 +132,10 @@ namespace OCTreeTest
         private bool displayShadowMap;
         private bool displayShadows;
         private float aspectRatio;
-        private float FocaleCamera = 450.0f;
-
+        private float FocaleCameraNear = 350.0f;
+        private float FocaleCameraFar =  1200.0f;
         private Dictionary<int, Texture2D> modelTextures;
+        private Dictionary<int, Vector3> modelMaterials;
 
         private ShadowTechnique shadowTechnique;
         private Effect effectLambert;
@@ -904,7 +181,9 @@ namespace OCTreeTest
 
         //##########################################################
         // Données pour la création d'un environnement texturé
-        private Environnement MyParralaxEnv;
+        Environnement myEnvironnement;
+
+        
 
         /*##########################################################*/
 
@@ -919,6 +198,7 @@ namespace OCTreeTest
 
             shadowTechnique = ShadowTechnique.ShadowMappingWith3x3PercentageCloserFiltering;
             modelTextures = new Dictionary<int, Texture2D>();
+            modelMaterials = new Dictionary<int, Vector3>();
 
             Utility.Game = this;
         }
@@ -952,7 +232,8 @@ namespace OCTreeTest
             lightAngle = 1.5f * MathHelper.Pi;
 
             // Initialize light settings.
-            light.Type = Light.LightType.PointLight;
+            //light.Type = Light.LightType.PointLight;
+            light.Type = Light.LightType.DirectionalLight;
             light.Direction = new Vector3((float)Math.Cos(lightAngle), -1.0f, (float)Math.Sin(lightAngle));
             light.Direction.Normalize();
             light.Radius = 1200.0f;
@@ -992,8 +273,6 @@ namespace OCTreeTest
 
             MatrixReservoir = Matrix.CreateScale(0.8f) * Matrix.CreateTranslation(-400.0f, -330.0f, -500.0f);
 
-            MatrixPalmier[0] = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(100.0f, -300.0f, 0.0f);
-
             MatrixScannerRoom = Matrix.CreateScale(20.0f) * Matrix.CreateTranslation(-400.0f, -450.0f, 0.0f);
 
             PositionTeleport[0] = new Vector3(-400.0f, -295.0f, 0.0f);
@@ -1003,17 +282,20 @@ namespace OCTreeTest
             MatrixRotateBlade = Matrix.CreateRotationY(RotationBlade) * MatrixGunship;
 
             MatrixTerrain = Matrix.CreateScale(TerrainScale, TerrainBumppiness, TerrainScale) * Matrix.CreateTranslation(0.0f, HauteurOriginTerrain, -275.0f);
-            MyParralaxEnv = new Environnement(ref light, ref material);
-            MyParralaxEnv.Initialize();
+
+            
 
             MySkyBox = new XNAWalkyrie.Utility.SkyBox(Utility.Game);
             MySkyBox.Initialize();
 
-            shadowMapNear = new ShadowMap(GraphicsDevice, Content,1024);
+            shadowMapNear = new ShadowMap(GraphicsDevice, Content,2048);
             shadowMapNear.DepthBias = 0.001f;
 
-            shadowMapFar = new ShadowMap(GraphicsDevice, Content,1024);
-            shadowMapFar.DepthBias = 0.001f;
+            shadowMapFar = new ShadowMap(GraphicsDevice, Content, 1024);
+            shadowMapFar.DepthBias = 0.003f;
+
+            myEnvironnement = new Environnement(ref light, ref material);
+            myEnvironnement.Initialize();
 
             player = new FPSPlayer();
 
@@ -1047,7 +329,8 @@ namespace OCTreeTest
             RotateBlade = Content.Load<Model>(@"Models\rotablade");
 
             // Setup effects.
-            effectLambert = Content.Load<Effect>(@"Effects\Lambert");
+            //effectLambert = Content.Load<Effect>(@"Effects\Lambert");
+            effectLambert = Content.Load<Effect>(@"Effects\LambertDoubleMap");
             effectTerrainLambert = Content.Load<Effect>(@"Effects\TerrainLambertEffect");
 
             TextureCaisse = Content.Load<Texture2D>(@"Textures\crate");
@@ -1068,11 +351,6 @@ namespace OCTreeTest
             //############################### Terrain ################################
 
             Terrain = Content.Load<Model>(@"Textures\Terrain\MapTerrain");
-            //Terrain = Content.Load<Model>(@"Textures\Terrain\terrain"); 
-            //TerrainEffect = Content.Load<Effect>(@"Effects\TerrainEffect");
-
-            //TerrainEffect.Parameters["TerreTexture"].SetValue(TextureTerre);
-            //TerrainEffect.Parameters["DensiteTerreTexture"].SetValue(DensiteTerre);
 
             Terrain.SetTexture(Herbe);
 
@@ -1085,8 +363,6 @@ namespace OCTreeTest
                     if (basicEffect != null)
                         modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
 
-                    //part.Effect = TerrainEffect;
-                    //part.Effect = effectTerrainLambert;
                     part.Effect = effectLambert;
                 }
             }
@@ -1107,7 +383,7 @@ namespace OCTreeTest
                 }
             }
 
-
+            
             foreach (ModelMesh mesh in Palmier.Meshes)
             {
                 foreach (ModelMeshPart part in mesh.MeshParts)
@@ -1115,12 +391,22 @@ namespace OCTreeTest
                     BasicEffect basicEffect = part.Effect as BasicEffect;
 
                     if (basicEffect != null)
+                    {
                         modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
+                        if (modelTextures[mesh.GetHashCode()] == null)
+                        {
+                            modelMaterials[part.GetHashCode()] = basicEffect.DiffuseColor;
+                            part.Effect = effectLambert.Clone(GraphicsDevice);
+                        }
+                        else
+                          part.Effect = effectLambert;
+                    }
+                    else
+                        part.Effect = effectLambert;
+                    
                 }
             }
-
+            
             foreach (ModelMesh mesh in Escalier.Meshes)
             {
                 foreach (ModelMeshPart part in mesh.MeshParts)
@@ -1229,12 +515,43 @@ namespace OCTreeTest
 
                 ListMeshScene.Add(ObjetModelMatrix);
             }
-
-            
             
             
             sceneOct = builder.Build(ListMeshScene);
 
+            bool bPalmier = false;
+            for (int i = 0; i < NB_Palmier; i++)
+            {
+
+                bPalmier = false;
+                while (!bPalmier)
+                {
+
+                    Vector3 NewPositionPalmier = new Vector3(
+                                                    ((float)rand.NextDouble()) * 20000.0f - 10000.0f,
+                                                    0.0f,
+                                                    ((float)rand.NextDouble()) * 20000.0f - 10000.0f
+                                                    );
+
+                    Ray direction = new Ray(NewPositionPalmier, Vector3.Down);
+
+                    OCTreeIntersection ResultatIntersection;
+
+                    sceneOct.GetIntersectingPolygon(ref direction, out ResultatIntersection);
+
+
+                    if (ResultatIntersection.IntersectType == OCTreeIntersectionType.Inside && ResultatIntersection.IntersectType != OCTreeIntersectionType.None)
+                    {
+                        MatrixPalmier[i] = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(ResultatIntersection.IntersectionPoint);
+                        bPalmier = true;
+                    }
+
+                }
+            }
+            
+            //MatrixPalmier[0] = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(100.0f, -300.0f, 0.0f);
+
+            myEnvironnement.LoadContent(ref shadowMapNear,ref shadowMapFar, FocaleCameraNear);
 
             player.LoadContent();
 
@@ -1243,8 +560,6 @@ namespace OCTreeTest
                 enemy[i] = new FPSEnemy( new Vector3(0.0f , -270.0f, i * -100.0f));
                 enemy[i].LoadContent();
             }
-
-            MyParralaxEnv.LoadContent();
 
             /*
             texturesSky[0] = Utility.Game.Content.Load<Texture2D>(@"Textures\SkyBox\Sky\skybox_back");
@@ -1298,7 +613,6 @@ namespace OCTreeTest
 
         protected override void UnloadContent()
         {
-            MyParralaxEnv.UnloadContent();
 
             base.UnloadContent();
         }
@@ -1675,7 +989,8 @@ namespace OCTreeTest
                 enemy[i].Update(gameTime, sceneOct);
             }
 
-            MyParralaxEnv.Update(gameTime);
+
+
             MySkyBox.Update(gameTime);
 
 
@@ -1697,11 +1012,7 @@ namespace OCTreeTest
 
             UpdateShadowMap();
 
-            //UpdateTerrain();
-        }
-
-        private void UpdateTerrain()
-        {
+            myEnvironnement.Update(gameTime);
 
         }
 
@@ -1744,13 +1055,13 @@ namespace OCTreeTest
 
             
             if (Utility.InputState.IsKeyPress(Keys.PageUp))
-                FocaleCamera += 20.0f;
+                FocaleCameraNear += 20.0f;
 
             if (Utility.InputState.IsKeyPress(Keys.PageDown))
             {
-                FocaleCamera -= 20.0f;
-                if(FocaleCamera <= 100.0f)
-                    FocaleCamera = 100.0f;
+                FocaleCameraNear -= 20.0f;
+                if(FocaleCameraNear <= 100.0f)
+                    FocaleCameraNear = 100.0f;
             }
             if (Utility.InputState.IsKeyPress(Keys.Add))
                 shadowMapNear.DepthBias = shadowMapNear.DepthBias + 0.001f;
@@ -1972,6 +1283,13 @@ namespace OCTreeTest
                 myScene.Add(ModelCaisse);
             }
 
+            ShadowMap.ModelAndMatrix SNormalMappedModel;
+            SNormalMappedModel.model = Caisse;
+            SNormalMappedModel.matrix = Matrix.CreateTranslation(-300.0f, -295.0f, -200.0f);
+            SNormalMappedModel.type = ShadowMap.TypeModel.Fixe;
+            SNormalMappedModel.animationPlayer = null;
+            myScene.Add(SNormalMappedModel);
+
             for (int i = 0; i < NB_Palmier; i++)
             {
                 ShadowMap.ModelAndMatrix ModelPalmier;
@@ -2035,11 +1353,11 @@ namespace OCTreeTest
             shadowMapNear.Draw(myScene);
             shadowMapNear.End();
 
-            /*
+            
             shadowMapFar.Begin(GraphicsDevice);
             shadowMapFar.Draw(myScene);
             shadowMapFar.End();
-            */
+            
 
         }
 
@@ -2077,7 +1395,7 @@ namespace OCTreeTest
                 if (displayShadows)
                 {
                     WalkyrieFog.FogColor = Color.TransparentBlack;//Color.DarkGray;
-                    WalkyrieFog.FogEnd = FocaleCamera + 1000.0f;
+                    WalkyrieFog.FogEnd = FocaleCameraFar;
                 }
                 else
                 {
@@ -2088,13 +1406,7 @@ namespace OCTreeTest
                 WalkyrieFog.FogTableMode = FogMode.Linear;
 
                 WalkyrieFog.Draw(graphics.GraphicsDevice, gameTime);
-                
-                /*
-                if (!displayShadows)
-                {
-                    MyParralaxEnv.Draw(gameTime);
-                }
-                */
+
 
                 if (ePlayerSituation == EPlayerSituation.InsideLabo)
                 {
@@ -2103,40 +1415,31 @@ namespace OCTreeTest
                 }
                 else
                 {
-                    /*
-                    Matrix[] bones = Terrain.GetAboluteBoneTransforms();
-                    foreach (ModelMesh mesh in Terrain.Meshes)
-                    {
-                        foreach (Effect eff in mesh.Effects)
-                        {
-                            eff.Parameters["WorldViewProjection"].SetValue(bones[mesh.ParentBone.Index] * MatrixTerrain * Utility.Camera.ViewProjectionMatrix);
-                        }
-                        mesh.Draw();
-                    }
-                    */
+
+                    myEnvironnement.Draw(gameTime);
+                    
+                    //DrawShadowModel(scene, Matrix.Identity);
+                    
+                    //DrawShadowModel(Reservoir, MatrixReservoir);
 
                     
-
-                    DrawModelShadow(scene, Matrix.Identity);
-                    
-                    DrawModelShadow(Reservoir, MatrixReservoir);
-
                     for (int i = 0; i < NB_Caisse; i++)
-                        DrawModelShadow(Caisse, MatrixCaisse[i]);
-
+                        DrawShadowModel(Caisse, MatrixCaisse[i]);
+                    /*
                     //DrawTerrainShadow();
-                    DrawModelShadow(Terrain, MatrixTerrain);
+                    DrawShadowModel(Terrain, MatrixTerrain);
 
                     for (int i = 0; i < NB_Enemy; i++)
                         enemy[i].Draw(gameTime);
 
                     for (int i = 0; i < NB_Bridge; i++)
-                        DrawModelShadow(Bridge, MatrixBridge[i]);
+                        DrawShadowModel(Bridge, MatrixBridge[i]);
 
-                    DrawModelShadow(Escalier, MatrixEscalier);
+                    DrawShadowModel(Escalier, MatrixEscalier);
 
                     for (int i = 0; i < NB_Palmier; i++)
-                        DrawModelShadow(Palmier, MatrixPalmier[i]);
+                        DrawShadowModel(Palmier, MatrixPalmier[i]);
+                    */
 
                     //ModelExtensions.Draw(Gunship, MatrixGunship);
                     //ModelExtensions.Draw(RotateBlade, MatrixRotateBlade);
@@ -2147,8 +1450,6 @@ namespace OCTreeTest
 
                 player.Draw(gameTime);
 
-
-
             }
 
             if (Utility.InputState.IsButtonDown(Buttons.B) || Utility.InputState.IsKeyDown(Keys.B))
@@ -2156,8 +1457,8 @@ namespace OCTreeTest
                 sceneOct.DrawDebugBounds();
             }
 
-            if (displayShadowMap)
-                DrawShadowMap();
+            //if (displayShadowMap)
+                //DrawShadowMap();
 
             this.spriteBatch.DrawStringImmediate(
                 debugFont, Utility.Camera.OnGround ? "On Ground" : "Falling",
@@ -2237,86 +1538,173 @@ namespace OCTreeTest
             spriteBatch.Draw(shadowMapNear.ShadowMapTexture, rect, Color.White);
             spriteBatch.End();
 
-            /*
+            
             rect.X = 0;
             rect.Y = GraphicsDevice.Viewport.Height - 700;
 
             spriteBatch.Begin(SpriteBlendMode.None, SpriteSortMode.Deferred, SaveStateMode.SaveState);
             spriteBatch.Draw(shadowMapFar.ShadowMapTexture, rect, Color.White);
             spriteBatch.End();
-             */
+             
         }
 
         private void UpdateShadowMap()
         {
-            Utility.Camera.Perspective(CAMERA_FOV, aspectRatio, CAMERA_ZNEAR, FocaleCamera);
+            Utility.Camera.Perspective(CAMERA_FOV, aspectRatio, CAMERA_ZNEAR, FocaleCameraNear);
             shadowMapNear.Update(light.Direction, Utility.Camera.ViewProjectionMatrix);
+            Utility.Camera.Perspective(CAMERA_FOV, aspectRatio, CAMERA_ZNEAR, FocaleCameraFar);
+            shadowMapFar.Update(light.Direction, Utility.Camera.ViewProjectionMatrix);
             Utility.Camera.Perspective(CAMERA_FOV, aspectRatio, CAMERA_ZNEAR, CAMERA_ZFAR);
-
-            //shadowMapFar.Update(light.Direction, Utility.Camera.ViewProjectionMatrix);
         }
 
 
-        private void DrawModelShadow(Model model, Matrix world)
+        private void DrawShadowModel(Model model, Matrix world)
         {
-
             Matrix[] bones = model.GetAboluteBoneTransforms();
             foreach (ModelMesh m in model.Meshes)
             {
-                foreach (Effect e in m.Effects)
+
+                if (modelTextures[m.GetHashCode()] != null)
+                    DrawModelShadowTexture(m, world, bones[m.ParentBone.Index]);
+                else
+                    DrawModelShadowMaterial(m, world, bones[m.ParentBone.Index]);
+               m.Draw();
+            }
+
+        }
+        
+        private void DrawModelShadowTexture(ModelMesh m, Matrix world, Matrix bones)
+        {
+            foreach (ModelMeshPart mp in m.MeshParts)
+            {
+                Effect e = mp.Effect;
+
+                if (!displayShadows)
                 {
-                    if (!displayShadows)
+                    e.CurrentTechnique = e.Techniques["Lambert"];
+                }
+                else
+                {
+                    switch (shadowTechnique)
                     {
-                        e.CurrentTechnique = e.Techniques["Lambert"];
-                    }
-                    else
-                    {
-                        switch (shadowTechnique)
-                        {
-                            case ShadowTechnique.ShadowMapping:
-                                e.CurrentTechnique = e.Techniques["LambertWithShadows"];
-                                break;
+                        case ShadowTechnique.ShadowMapping:
+                            e.CurrentTechnique = e.Techniques["LambertWithShadows"];
+                            break;
 
-                            case ShadowTechnique.ShadowMappingWith2x2PercentageCloserFiltering:
-                                e.CurrentTechnique = e.Techniques["LambertWithShadows2x2PCF"];
-                                e.Parameters["texelSize"].SetValue(shadowMapNear.TexelSize);
-                                break;
+                        case ShadowTechnique.ShadowMappingWith2x2PercentageCloserFiltering:
+                            e.CurrentTechnique = e.Techniques["LambertWithShadows2x2PCF"];
+                            e.Parameters["texelSizeNear"].SetValue(shadowMapNear.TexelSize);
+                            e.Parameters["texelSizeFar"].SetValue(shadowMapFar.TexelSize);
+                            break;
 
-                            case ShadowTechnique.ShadowMappingWith3x3PercentageCloserFiltering:
-                                e.CurrentTechnique = e.Techniques["LambertWithShadows3x3PCF"];
-                                e.Parameters["texelSize"].SetValue(shadowMapNear.TexelSize);
-                                break;
-                        }
-
-                        e.Parameters["lightViewProjection"].SetValue(shadowMapNear.LightViewProjectionMatrix);
-                        e.Parameters["textureScaleBias"].SetValue(shadowMapNear.TextureScaleBiasMatrix);
-                        e.Parameters["depthBias"].SetValue(shadowMapNear.DepthBias);
-                        e.Parameters["shadowMap"].SetValue(shadowMapNear.ShadowMapTexture);
+                        case ShadowTechnique.ShadowMappingWith3x3PercentageCloserFiltering:
+                            e.CurrentTechnique = e.Techniques["LambertWithShadows3x3PCF"];
+                            e.Parameters["texelSizeNear"].SetValue(shadowMapNear.TexelSize);
+                            e.Parameters["texelSizeFar"].SetValue(shadowMapFar.TexelSize);
+                            break;
                     }
 
-                    e.Parameters["world"].SetValue(bones[m.ParentBone.Index] * world);
+                    e.Parameters["lightViewProjectionNear"].SetValue(shadowMapNear.LightViewProjectionMatrix);
+                    e.Parameters["textureScaleBiasNear"].SetValue(shadowMapNear.TextureScaleBiasMatrix);
+                    e.Parameters["depthBiasNear"].SetValue(shadowMapNear.DepthBias);
+                    e.Parameters["shadowMapNear"].SetValue(shadowMapNear.ShadowMapTexture);
 
-                    e.Parameters["view"].SetValue(Utility.Camera.ViewMatrix);
-                    e.Parameters["projection"].SetValue(Utility.Camera.ProjectionMatrix);
+                    e.Parameters["lightViewProjectionFar"].SetValue(shadowMapFar.LightViewProjectionMatrix);
+                    e.Parameters["textureScaleBiasFar"].SetValue(shadowMapFar.TextureScaleBiasMatrix);
+                    e.Parameters["depthBiasFar"].SetValue(shadowMapFar.DepthBias);
+                    e.Parameters["shadowMapFar"].SetValue(shadowMapFar.ShadowMapTexture);
 
-
-                    e.Parameters["lightDir"].SetValue(light.Direction);
-                    e.Parameters["lightColor"].SetValue(light.Diffuse.ToVector4());
-                    e.Parameters["materialAmbient"].SetValue(material.Ambient.ToVector4());
-                    e.Parameters["materialDiffuse"].SetValue(material.Diffuse.ToVector4());
-                    e.Parameters["colorMap"].SetValue(modelTextures[m.GetHashCode()]);
-
-                    e.CommitChanges();
+                    e.Parameters["depthNear"].SetValue(FocaleCameraNear);
                 }
 
-                m.Draw();
+                e.Parameters["CamPosition"].SetValue(Utility.Camera.Position);
+
+                e.Parameters["world"].SetValue(bones * world);
+
+                e.Parameters["worldViewProjection"].SetValue(bones * world * Utility.Camera.ViewProjectionMatrix);
+
+                e.Parameters["lightDir"].SetValue(light.Direction);
+                e.Parameters["lightColor"].SetValue(light.Diffuse.ToVector4());
+
+                e.Parameters["materialDiffuse"].SetValue(material.Diffuse.ToVector4());
+                e.Parameters["materialAmbient"].SetValue(material.Ambient.ToVector4());
+                e.Parameters["colorMap"].SetValue(modelTextures[m.GetHashCode()]);
+                e.Parameters["TextureDisable"].SetValue(true);
+
+                e.CommitChanges();
             }
+
         }
 
+
+        private void DrawModelShadowMaterial(ModelMesh m, Matrix world, Matrix bones)
+        {
+            foreach (ModelMeshPart mp in m.MeshParts)
+            {
+                Effect e = mp.Effect;
+
+                if (!displayShadows)
+                {
+                    e.CurrentTechnique = e.Techniques["Lambert"];
+                }
+                else
+                {
+                    switch (shadowTechnique)
+                    {
+                        case ShadowTechnique.ShadowMapping:
+                            e.CurrentTechnique = e.Techniques["LambertWithShadows"];
+                            break;
+
+                        case ShadowTechnique.ShadowMappingWith2x2PercentageCloserFiltering:
+                            e.CurrentTechnique = e.Techniques["LambertWithShadows2x2PCF"];
+                            e.Parameters["texelSizeNear"].SetValue(shadowMapNear.TexelSize);
+                            e.Parameters["texelSizeFar"].SetValue(shadowMapFar.TexelSize);
+                            break;
+
+                        case ShadowTechnique.ShadowMappingWith3x3PercentageCloserFiltering:
+                            e.CurrentTechnique = e.Techniques["LambertWithShadows3x3PCF"];
+                            e.Parameters["texelSizeNear"].SetValue(shadowMapNear.TexelSize);
+                            e.Parameters["texelSizeFar"].SetValue(shadowMapFar.TexelSize);
+                            break;
+                    }
+
+                    e.Parameters["lightViewProjectionNear"].SetValue(shadowMapNear.LightViewProjectionMatrix);
+                    e.Parameters["textureScaleBiasNear"].SetValue(shadowMapNear.TextureScaleBiasMatrix);
+                    e.Parameters["depthBiasNear"].SetValue(shadowMapNear.DepthBias);
+                    e.Parameters["shadowMapNear"].SetValue(shadowMapNear.ShadowMapTexture);
+
+                    e.Parameters["lightViewProjectionFar"].SetValue(shadowMapFar.LightViewProjectionMatrix);
+                    e.Parameters["textureScaleBiasFar"].SetValue(shadowMapFar.TextureScaleBiasMatrix);
+                    e.Parameters["depthBiasFar"].SetValue(shadowMapFar.DepthBias);
+                    e.Parameters["shadowMapFar"].SetValue(shadowMapFar.ShadowMapTexture);
+
+                    e.Parameters["depthNear"].SetValue(FocaleCameraNear);
+                }
+
+
+                e.Parameters["world"].SetValue(bones * world);
+
+                e.Parameters["CamPosition"].SetValue(Utility.Camera.Position);
+
+                e.Parameters["worldViewProjection"].SetValue(bones * world * Utility.Camera.ViewProjectionMatrix);
+
+                e.Parameters["lightDir"].SetValue(light.Direction);
+                e.Parameters["lightColor"].SetValue(light.Diffuse.ToVector4());
+
+                Vector4 Diff = new Vector4(modelMaterials[mp.GetHashCode()], 1.0f);
+                e.Parameters["materialAmbient"].SetValue(Diff);
+                e.Parameters["materialDiffuse"].SetValue(Diff);
+                e.Parameters["TextureDisable"].SetValue(false);
+
+                e.CommitChanges();
+            }
+        }
+        
         private void DrawTerrainShadow()
         {
 
             Matrix[] bones = Terrain.GetAboluteBoneTransforms();
+           
             foreach (ModelMesh m in Terrain.Meshes)
             {
                 foreach (Effect e in m.Effects)
