@@ -38,6 +38,8 @@ float4 materialDiffuse;
 float depthBias;
 float texelSize;
 
+bool TextureDisable;
+
 //-----------------------------------------------------------------------------
 // Textures.
 //-----------------------------------------------------------------------------
@@ -51,6 +53,7 @@ sampler colorMapSampler = sampler_state
     MipFilter = Linear;
     MaxAnisotropy = 16;
 };
+
 
 texture shadowMap;
 sampler shadowMapSampler = sampler_state
@@ -107,6 +110,7 @@ void VS_LambertWithShadows(in  float4 inPosition        : POSITION,
 	outLightDir = -lightDir;
 }
 
+
 //-----------------------------------------------------------------------------
 // Pixel shaders.
 //-----------------------------------------------------------------------------
@@ -130,11 +134,11 @@ void PS_Lambert(in  float2 inTexCoord : TEXCOORD0,
 	float3 n = normalize(inNormal);
 	float nDotL = saturate(dot(n, l));
 	
-	outColor = (materialAmbient * lightColor) +
-	           (materialDiffuse * lightColor * nDotL);
-			   
-	outColor *= tex2D(colorMapSampler, inTexCoord);
-
+	outColor = materialDiffuse;//(materialAmbient * lightColor) + (materialDiffuse * lightColor * nDotL);
+	
+	if(TextureDisable)
+			   outColor *= tex2D(colorMapSampler, inTexCoord);
+	
 }
 
 void PS_LambertWithShadows(in  float4 inLightSpacePos  : TEXCOORD0,
@@ -154,7 +158,8 @@ void PS_LambertWithShadows(in  float4 inLightSpacePos  : TEXCOORD0,
     outColor = (materialAmbient * lightColor) +
 	           (materialDiffuse * lightColor * nDotL) * shadowOcclusion;
 			   
-	outColor *= tex2D(colorMapSampler, inTexCoord);
+	if(TextureDisable)
+		   outColor *= tex2D(colorMapSampler, inTexCoord);
 }
 
 void PS_LambertWithShadowsPCF2x2(in  float4 inLightSpacePos  : TEXCOORD0,
@@ -182,7 +187,8 @@ void PS_LambertWithShadowsPCF2x2(in  float4 inLightSpacePos  : TEXCOORD0,
     outColor = (materialAmbient * lightColor) +
 	           (materialDiffuse * lightColor * nDotL) * shadowOcclusion;
 			   
-	outColor *= tex2D(colorMapSampler, inTexCoord);
+	if(TextureDisable)
+		   outColor *= tex2D(colorMapSampler, inTexCoord);
 }
 
 void PS_LambertWithShadowsPCF3x3(in  float4 inLightSpacePos  : TEXCOORD0,
@@ -216,7 +222,8 @@ void PS_LambertWithShadowsPCF3x3(in  float4 inLightSpacePos  : TEXCOORD0,
     outColor = (materialAmbient * lightColor) +
 	           (materialDiffuse * lightColor * nDotL) * shadowOcclusion;
 			   
-	outColor *= tex2D(colorMapSampler, inTexCoord);
+	if(TextureDisable)
+		   outColor *= tex2D(colorMapSampler, inTexCoord);
 }
 
 //-----------------------------------------------------------------------------

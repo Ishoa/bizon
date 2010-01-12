@@ -175,3 +175,13 @@ D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\Microsoft.
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\XnaWalkyrieSample.exe
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\obj\x86\Release\XnaWalkyrieSample.pdb
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Particules\flare.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\TerrainLambertEffect.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\LambertDoubleMap.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Interfaces\Teleport.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\monitors.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\scannermonitors.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\GunshipWhole.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\rotablade.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Monitors_0.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap_0.xnb
