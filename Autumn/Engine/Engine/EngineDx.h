@@ -22,6 +22,9 @@ class Engine
 {
 protected:
 
+	// Debug Display
+	bool					  m_bDisplayText;
+
 	// Fullscreen resolution, windowed resolution	
 	bool					  m_bFullscreen;
 	unsigned int			  m_uFullscreenWidth;
@@ -58,6 +61,7 @@ public:
 	unsigned int GetHeight();
 
 	// render
+	virtual void RenderText();
 	virtual void BeginRender();
 	virtual void Render() = 0;
 	virtual void EndRender();
