@@ -15,7 +15,7 @@
 
 class Camera
 {
-private:
+protected:
 	bool		m_bUsePerspective;
 	float		m_fAspect;
 	float		m_fZNear;

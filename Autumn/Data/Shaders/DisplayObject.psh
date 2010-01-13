@@ -1,11 +1,69 @@
+Texture2D tNormalMap : register(t0);
+Texture2D tTexture	 : register(t1);
+SamplerState sTexSampler : register(s0);
+
+cbuffer cb : register(b0)
+{
+	row_major float4x4 mWorldViewProj;
+	float4 vLightDir;
+	float4 vLightColor;
+	float4 vCamera;
+}
 
 struct PSin
 {
-	float4	Pos : SV_POSITION;
+	float4	ScreenPos	: SV_POSITION;
+	float3	Pos			: POSITION0;
+	float3	Norm		: NORMAL0;
+	float3	Tan			: TANGENT0;
+	float2	Tex			: TEXCOORD0;
 };
 
 
 float4 PSMain( PSin Pin ) : SV_Target
 {
-	return float4(1.0f, 1.0f, 0.0f, 1.0f);
+	float3 N,L;
+	float4 MatColor;
+	float Ld, Ls;
+	float Ld2;
+	
+	// Calcul de la matrice de transformation repere texture <-> repere objet
+	row_major float3x3 mTBN;
+	float3 Binorm = normalize( cross(normalize(Pin.Norm), normalize(Pin.Tan)) );
+	mTBN = float3x3( Pin.Tan, Binorm, Pin.Norm );
+	
+	float3 fNorm = 2.0f * ( tNormalMap.Sample( sTexSampler, Pin.Tex ).rgb - float3(0.5f, 0.5f, 0.5f) );
+	fNorm = mul(fNorm, mTBN);
+	N = normalize( fNorm );
+	L = normalize( vLightDir.xyz );
+	
+	// couleur et texture du materiaux
+	MatColor = tTexture.Sample(sTexSampler, Pin.Tex );
+	
+	// calcul de la sortie
+	Ld = dot(N,L); // diffus
+	Ld2 = dot( normalize(Pin.Norm), L );
+	
+
+	if (Ld > 0)
+	{
+		float3 V,H;
+		V = normalize( vCamera.xyz - Pin.Pos );
+		H = normalize( V+L );
+		Ls = pow(max(dot(N,H),0),40); // speculaire
+		if(Ld2 < 0)
+		{
+			Ld = 0;
+			Ls = 0;
+			//return float4(1.0, 0.0, 0.0, 1.0);
+		}
+		//Ls = 0;
+	}
+	else
+	{
+		Ls = 0;
+		Ld = 0;
+	}
+	
+	return vLightColor *( (MatColor * Ld) + (Ls * vLightColor) );	
 }

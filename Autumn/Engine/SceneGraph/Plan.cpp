@@ -29,6 +29,18 @@ HRESULT Plan::Create()
 	// Geometry
 	D_RETURN( BuildGeometry() );
 
+	// Texture
+	char strFile[64];
+	strcpy_s(strFile, m_strTextureName);
+	strcat_s(strFile, "NormalMap.png");
+	m_pNormalMap = new Texture2D(strFile);
+	D_RETURN( m_pNormalMap->Create() );
+
+	strcpy_s(strFile, m_strTextureName);
+	strcat_s(strFile, "Tex.png");
+	m_pTexture = new Texture2D(strFile);
+	D_RETURN( m_pTexture->Create() );
+
 	return S_OK;
 
 }
@@ -40,16 +52,20 @@ HRESULT Plan::Destroy()
 	return S_OK;
 }
 
-void Plan::Render( EngineCamera * _pCamera )
+void Plan::Render( EngineCamera * _pCamera, Light * _pLight )
 {
 	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-	_pCamera->SetWorld( m_mGlobalMatrix );
+	_pCamera->Set( m_mGlobalMatrix, _pLight );
 	m_pIndexBuffer->Bind();
 	m_pVertexBuffer->Bind();
 	m_pVertexLayout->Bind();
 	m_pVertexShader->Bind();
 	m_pVertexShader->SetConstantBuffer( 0, _pCamera->GetCameraShaderParamBuffer() );
 	m_pPixelShader->Bind();
+	m_pPixelShader->SetConstantBuffer( 0, _pCamera->GetCameraShaderParamBuffer() );
+	m_pPixelShader->SetTexture(0, m_pNormalMap);
+	m_pPixelShader->SetTexture(1, m_pTexture);
+	m_pPixelShader->SetSampler(0, m_pSampler);
 	g_pDevice->UnbindGeometryShader();
 	g_pDxDeviceContext->DrawIndexed( m_nIndex, 0, 0 );
 }
@@ -74,16 +90,20 @@ HRESULT Plan::CompileShaders()
 
 HRESULT Plan::BuildGeometry()
 {
+	if( m_fSize == 0.0f )
+		return E_FAIL;
+
 	// Vertex Layout
 	m_pVertexLayout = new VertexLayout< DisplayObjectTypeVertex >;
 	D_RETURN( m_pVertexLayout->Create( m_pVertexShader ) );
 
 	m_nVertex = 4;
-	m_nIndex = 12;
+	m_nIndex = 6;
 
 	// VertexBuffer
 	{
-		float * VertexData = new float[ m_nVertex * 3 ];
+		unsigned int iSize = 11;
+		float * VertexData = new float[ m_nVertex * iSize ];
 
 		float TabCoeff[4][3];
 		TabCoeff[0][0] = -m_fSize;	TabCoeff[0][1] = -m_fSize;	TabCoeff[0][2] = 0.0f;
@@ -98,10 +118,21 @@ HRESULT Plan::BuildGeometry()
 			// Position
 			for(unsigned int j = 0; j < 3; j++)
 				VertexData[uIndex++] = TabCoeff[i][j];
+			// Normal
+			VertexData[uIndex++] = 0.0f;
+			VertexData[uIndex++] = 0.0f;
+			VertexData[uIndex++] = 1.0f;
+			// Tangent
+			VertexData[uIndex++] = 1.0f;
+			VertexData[uIndex++] = 0.0f;
+			VertexData[uIndex++] = 0.0f;
+			// TexCoord
+			for(unsigned int j = 0; j < 2; j++)
+				VertexData[uIndex++] = ( TabCoeff[i][j] / m_fSize + 1.0f ) * 0.5f;
 		}
 
 		m_pVertexBuffer = new VertexBuffer;
-		D_RETURN( m_pVertexBuffer->Create( sizeof(float) * 3, m_nVertex, VertexData ) );
+		D_RETURN( m_pVertexBuffer->Create( sizeof(float) * iSize, m_nVertex, VertexData ) );
 		SAFE_DELETE_ARRAY( VertexData );
 	}
 
@@ -110,17 +141,11 @@ HRESULT Plan::BuildGeometry()
 		unsigned int * IndexData = new unsigned int[m_nIndex];
 
 		IndexData[0] = 0;
-		IndexData[1] = 2;
-		IndexData[2] = 1;
+		IndexData[1] = 1;
+		IndexData[2] = 2;
 		IndexData[3] = 0;
-		IndexData[4] = 3;
-		IndexData[5] = 2;
-		IndexData[6] = 0;
-		IndexData[7] = 1;
-		IndexData[8] = 2;
-		IndexData[9] = 0;
-		IndexData[10] = 2;
-		IndexData[11] = 3;
+		IndexData[4] = 2;
+		IndexData[5] = 3;
 
 		m_pIndexBuffer = new IndexBuffer;
 		D_RETURN( m_pIndexBuffer->Create( sizeof(unsigned int), m_nIndex, IndexData ) );

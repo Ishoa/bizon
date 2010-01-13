@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#ifndef _CONSTANT_BUFFER_UPDATE_
-#include "WrapperDX/Buffer/ConstantBufferUpdate.h"
+#ifndef _LIGHT_
+#include "Engine/Light/Light.h"
 #endif
 
 #ifndef _ENGINE_CAMERA_
@@ -39,9 +39,13 @@ HRESULT EngineCamera::Destroy()
 	return S_OK;
 }
 
-void EngineCamera::SetWorld( const Matrix4x4 & _mWorld )
+void EngineCamera::Set(const Matrix4x4 & _mWorld, Light * _pLight)
 {
+	Vector4 CameraDir( m_vAt - m_vPos );
 	sCameraShaderParam * pShaderParam = (sCameraShaderParam *)m_pCameraShaderParamBuffer->Map();
-	pShaderParam->m_mWorldViewProj = _mWorld * GetViewProj();
+	pShaderParam->m_mWorldViewProj	= _mWorld * GetViewProj();
+	pShaderParam->m_LightDir		= _pLight->GetDirection() * _mWorld.GetInverse();
+	pShaderParam->m_LightColor		= _pLight->GetColor();
+	pShaderParam->m_CameraDir		= CameraDir * _mWorld.GetInverse();
 	m_pCameraShaderParamBuffer->Unmap();
 }

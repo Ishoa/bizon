@@ -70,7 +70,7 @@ void Node::Scale(float x, float y, float z)
 	m_mLocalMatrix.Scale(x, y, z);
 }
 
-void Node::Render( EngineCamera * _pCamera )
+void Node::Render( EngineCamera * _pCamera, Light * _pLight )
 {
 
 }
