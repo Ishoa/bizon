@@ -230,6 +230,26 @@
 				RelativePath=".\SceneGraph\Plan.h"
 				>
 			</File>
+			<File
+				RelativePath=".\SceneGraph\PLYObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SceneGraph\PLYObject.h"
+				>
+			</File>
+			<Filter
+				Name="ReadPLY"
+				>
+				<File
+					RelativePath=".\SceneGraph\ReadPLY\readPLY.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SceneGraph\ReadPLY\readPLY.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Atlas"
@@ -240,6 +260,18 @@
 			</File>
 			<File
 				RelativePath=".\Atlas\Atlas.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Light"
+			>
+			<File
+				RelativePath=".\Light\Light.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Light\Light.h"
 				>
 			</File>
 		</Filter>

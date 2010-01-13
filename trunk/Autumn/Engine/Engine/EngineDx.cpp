@@ -12,6 +12,10 @@
 #include "Engine/Engine/EngineCamera.h"
 #endif
 
+#ifndef _LIGHT_
+#include "Engine/Light/Light.h"
+#endif
+
 #ifndef _ENGINE_DX_
 #include "Engine/Engine/EngineDx.h"
 #endif
@@ -22,6 +26,8 @@ Engine::Engine()
 , m_pDefaultDepthStencil(NULL)
 , m_pTimeManager(NULL)
 , m_pCamera(NULL)
+, m_pScreenText(NULL)
+, m_pLight(NULL)
 , m_bDisplayText(false)
 {
 
@@ -91,6 +97,10 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	m_pScreenText = new ScreenText;
 	E_RETURN( m_pScreenText->Create(), "Create ScreenText : " );
 
+	// Light
+	m_pLight = new Light( Color(1,1,1,1), Vector4(0,1,1,0) );
+	E_RETURN( m_pLight->Create(), "Create Light : " );
+
 	
 	return S_OK;
 }
@@ -103,6 +113,7 @@ HRESULT Engine::Destroy()
 	SAFE_DESTROY( m_pTimeManager );
 	SAFE_DESTROY( m_pCamera );
 	SAFE_DESTROY( m_pScreenText );
+	SAFE_DESTROY( m_pLight );
 	
 	return S_OK;
 }
@@ -199,7 +210,7 @@ void Engine::RenderText()
 void Engine::BeginRender()
 {
 	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
-	ClearRenderTarget(m_pDefaultRenderTarget);
+	ClearRenderTarget(m_pDefaultRenderTarget, Color(0,0,0,1));
 	ClearDepthStencil(m_pDefaultDepthStencil);
 
 	if( m_bDisplayText )

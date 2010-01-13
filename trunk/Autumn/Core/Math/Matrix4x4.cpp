@@ -1,5 +1,8 @@
 #include "stdafx.h"
-#include "Matrix4x4.h"
+
+#ifndef _MATRIX4X4_
+#include "Core/Math/Matrix4x4.h"
+#endif
 
 Matrix4x4::Matrix4x4()
 {
@@ -46,6 +49,15 @@ Vector3 operator*( const Vector3 & _v, const Matrix4x4 & _m )
 	vRes /= vRes.w;
 	return Vector3(vRes.x, vRes.y, vRes.z);
 }
+
+Vector4 operator*( const Vector4 & _v, const Matrix4x4 & _m )
+{
+	D3DXVECTOR4 vRes;
+	D3DXVec4Transform(&vRes, &_v.GetVector(), &_m.m_mMatrix);
+	vRes /= vRes.w;
+	return Vector4(vRes.x, vRes.y, vRes.z, vRes.w);
+}
+
 void Matrix4x4::BuildProjectionMatrix(float _fFov, float _fAspect, float _fZNear, float _fZFar)
 {
 	D3DXMatrixPerspectiveFovLH(&m_mMatrix, _fFov, _fAspect, _fZNear, _fZFar);

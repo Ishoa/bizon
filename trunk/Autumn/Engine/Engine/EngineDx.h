@@ -16,6 +16,7 @@ class DepthStencil;
 class TimeManager;
 class EngineCamera;
 class ScreenText;
+class Light;
 
 
 class Engine
@@ -46,6 +47,9 @@ protected:
 
 	// Screen Text
 	ScreenText				* m_pScreenText;
+
+	// Light
+	Light					* m_pLight;
 
 public:
 	Engine();

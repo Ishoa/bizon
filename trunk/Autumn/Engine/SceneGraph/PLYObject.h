@@ -1,5 +1,5 @@
-#ifndef _PLAN_
-#define _PLAN_
+#ifndef _PLY_OBJECT_
+#define _PLY_OBJECT_
 
 #ifndef _DISPLAY_OBJECT_
 #include "Engine/SceneGraph/DisplayObject.h"
@@ -7,20 +7,18 @@
 
 class EngineCamera;
 
-class Plan : public DisplayObject
+class PLYObject : public DisplayObject
 {
 protected:
 
-	float	m_fSize;
+	char m_strFilename[32];
 
 	virtual HRESULT	CompileShaders();
 	virtual HRESULT	BuildGeometry();
 
 public:
-	Plan();
-	virtual ~Plan();
-
-	void Set(const float & _fSize);
+	PLYObject(const char * _strName = "no file");
+	virtual ~PLYObject();
 
 	virtual HRESULT Create();
 	virtual HRESULT Destroy();
@@ -29,6 +27,8 @@ public:
 	//virtual void RenderShadow();
 	virtual bool Culling();
 
+	void SetName(const char * _name);
+
 };
 
-#endif // _PLAN_
+#endif // _PLY_OBJECT_

@@ -1,6 +1,12 @@
 #ifndef _VECTOR4_
 #define _VECTOR4_
 
+#include <D3DX10.h>
+
+#ifndef _VECTOR3_
+#include "Core/Math/Vector3.h"
+#endif
+
 class Vector4
 {
 private:

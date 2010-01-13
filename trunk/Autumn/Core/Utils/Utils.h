@@ -33,6 +33,8 @@
 //////////////////////////////////////////////////////////////////////////
 // Shaders
 #define TEXTURE_PATH			"..\\Data\\Textures\\"
+#define OBJECT_PATH				"..\\Data\\Objects\\"
+#define OBJECT_PLY_PATH			"..\\Data\\Objects\\PLY\\"
 #define SHADER_PATH				"..\\Data\\Shaders\\"
 #define EFFECT_PATH				"..\\Data\\Effects\\"
 #define EFFECT_POOL_PATH		"..\\Data\\Effects\\Pool\\"

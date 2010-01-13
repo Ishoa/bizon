@@ -1,7 +1,14 @@
 #ifndef _MATRIX4X4_
 #define _MATRIX4X4_
 
+#ifndef _VECTOR4_
+#include "Core/Math/Vector4.h"
+#endif
+
+#ifndef _VECTOR3_
 #include "Core/Math/Vector3.h"
+#endif
+
 #include <D3DX10.h>
 
 class Matrix4x4
@@ -22,6 +29,7 @@ public:
 
 	friend Matrix4x4	operator * (const Matrix4x4 & _m1, const Matrix4x4 & _m2);
 	friend Vector3		operator * (const Vector3 & _v, const Matrix4x4 & _m);
+	friend Vector4		operator * (const Vector4 & _v, const Matrix4x4 & _m);
 
 	void BuildProjectionMatrix(float _fFov, float _fAspect, float _fZNear, float _fZFar);
 	void BuildProjectionMatrix(float _fLeft, float _fRight, float _fBottom, float _fTop, float _fZNear, float _fZFar);

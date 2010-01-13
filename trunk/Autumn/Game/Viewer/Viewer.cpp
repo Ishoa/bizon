@@ -18,6 +18,7 @@ HRESULT Viewer::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 
 	m_pPlan = new Plan;
 	m_pPlan->Set( 10.0f );
+	m_pPlan->SetTexture( "Four" );
 	D_RETURN( m_pPlan->Create() );
 
 	return S_OK;
@@ -40,5 +41,5 @@ void Viewer::Update()
 
 void Viewer::Render()
 {
-	m_pPlan->Render( m_pCamera );
+	m_pPlan->Render( m_pCamera, m_pLight );
 }

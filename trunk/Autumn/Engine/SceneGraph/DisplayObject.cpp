@@ -16,6 +16,9 @@ DisplayObject::DisplayObject()
 , m_pVertexLayout(NULL)
 , m_pVertexShader(NULL)
 , m_pPixelShader(NULL)
+, m_pNormalMap(NULL)
+, m_pTexture(NULL)
+, m_pSampler(NULL)
 {
 
 }
@@ -29,6 +32,9 @@ HRESULT DisplayObject::Create()
 {
 	D_RETURN( Node::Create() );
 
+	m_pSampler = new Sampler< SamplerLinear >;
+	D_RETURN( m_pSampler->Create() );
+
 	return S_OK;
 }
 
@@ -40,11 +46,14 @@ HRESULT DisplayObject::Destroy()
 	SAFE_DESTROY( m_pVertexLayout );
 	SAFE_DESTROY( m_pVertexShader );
 	SAFE_DESTROY( m_pPixelShader );
+	SAFE_DESTROY( m_pTexture );
+	SAFE_DESTROY( m_pNormalMap );
+	SAFE_DESTROY( m_pSampler );
 
 	return S_OK;
 }
 
-void DisplayObject::Render( EngineCamera * _pCamera )
+void DisplayObject::Render( EngineCamera * _pCamera, Light * _pLight )
 {
 	
 }
@@ -52,4 +61,9 @@ void DisplayObject::Render( EngineCamera * _pCamera )
 bool DisplayObject::Culling()
 {
 	return true;
+}
+
+void DisplayObject::SetTexture( const char * _strTextureName )
+{
+	strcpy_s(m_strTextureName, _strTextureName);
 }
