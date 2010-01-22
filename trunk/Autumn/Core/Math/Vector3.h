@@ -8,6 +8,7 @@ class Vector3
 {
 private:
 	D3DXVECTOR3 m_vVector;
+
 public:
 	Vector3();
 	Vector3(const Vector3 & v);

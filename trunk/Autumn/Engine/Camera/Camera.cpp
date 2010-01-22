@@ -69,6 +69,11 @@ Matrix4x4 Camera::GetViewProj() const
 	return m_mView * m_mProjection;
 }
 
+void Camera::Translate( const Vector3 & _v )
+{
+	m_vPos += _v;
+}
+
 void Camera::Update( const TimeInfo & _sTimeInfo )
 {
 

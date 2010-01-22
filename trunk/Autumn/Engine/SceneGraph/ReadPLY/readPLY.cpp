@@ -90,10 +90,10 @@ v2.0a : P.Mignot (octobre 2003)
 #define READf(x) { fscanf (ptf, "%s", line); *(x) = atof (line); }
 #else
 #ifdef _WIN32
-#define READld(x) fscanf_s (ptf, "%ld", x)
-#define READd(x) fscanf_s (ptf, "%d", x)
-#define READu(x) { fscanf_s (ptf, "%u", &v); *x=v; } /* declarer [int v] */
-#define READf(x) fscanf_s (ptf, "%f", x)
+#define READld(x) fscanf (ptf, "%ld", x)
+#define READd(x) fscanf (ptf, "%d", x)
+#define READu(x) { fscanf (ptf, "%u", &v); *x=v; } /* declarer [int v] */
+#define READf(x) fscanf (ptf, "%f", x)
 #else
 #define READld(x) fscanf (ptf, "%ld", x)
 #define READd(x) fscanf (ptf, "%d", x)
@@ -484,20 +484,20 @@ unsigned char PLY_ScanPlyHeader(FILE *ptf,
   int  i;
   char line[512],fmt;
   
-  fscanf_s (ptf, "%s", line);
+  fscanf (ptf, "%s", line);
   if (strcmp (line, "ply")) {
     LOG0("ScanPlyHeader ERROR : Invalid input file\n");
     return PLY_FAILED;
   }
   
-  fscanf_s (ptf, "%s", line);
+  fscanf (ptf, "%s", line);
   if (strcmp (line, "format")) {
     LOG0("ScanPlyHeader ERROR : Invalid input file (line 2 must contains format)\n");
     return PLY_FAILED;
   }
 
   /* format du fichier */
-  fscanf_s (ptf, "%s", line);
+  fscanf (ptf, "%s", line);
   if (strcmp (line, "binary_big_endian") == 0) {
     *fileFMT = PLY_BIG;
     *plyFMT  = PLY_BINARY;
@@ -521,19 +521,19 @@ unsigned char PLY_ScanPlyHeader(FILE *ptf,
 
   /* nombre de points */
   do
-    fscanf_s (ptf, "%s", line);
+    fscanf (ptf, "%s", line);
   while (strcmp (line, "vertex"));
   READd(npoints);
   LOG1("Vertex count   : %d\n", *npoints);
 
   /* nombre de champs */
   do
-    fscanf_s (ptf, "%s", line);
+    fscanf (ptf, "%s", line);
   while (strcmp (line, "property"));
   LOG0("Reading fields :\n");
   (*nfields) = 0;
   do {
-    fscanf_s (ptf, "%s", line);	/* skipping type : on ne devrait pas */
+    fscanf (ptf, "%s", line);	/* skipping type : on ne devrait pas */
     if      (! strcmp(line,"uchar"  )) fmt = PLYFMT_UCHAR;
     else if (! strcmp(line,"uint8"  )) fmt = PLYFMT_UCHAR;
     else if (! strcmp(line,"uint16" )) fmt = PLYFMT_USHORT;
@@ -543,35 +543,35 @@ unsigned char PLY_ScanPlyHeader(FILE *ptf,
     else if (! strcmp(line,"float64")) fmt = PLYFMT_DOUBLE;
     else fmt = PLYFMT_OFF;
 
-    fscanf_s (ptf, "%s", line);
+    fscanf (ptf, "%s", line);
     if (!strcmp (line, "x")) {
       field[PLYFLD_COORD] = fmt;
       pfield[PLYFLD_COORD] = (*nfields)++;
       for (i = 0; i < 7; i++)
-	fscanf_s (ptf, "%s", line);
+	fscanf (ptf, "%s", line);
       LOG0("\t(x,y,z) coordinates\n");
     } else if (!strcmp (line, "confidence")) {
       field[PLYFLD_CONF] = fmt;
       pfield[PLYFLD_CONF] = (*nfields)++;
-      fscanf_s (ptf, "%s", line);
+      fscanf (ptf, "%s", line);
       LOG0("\tconfidence\n");
     } else if (!strcmp (line, "red") || !strcmp (line, "r")) {
       field[PLYFLD_COLOR] = fmt;
       pfield[PLYFLD_COLOR] = (*nfields)++;
       for (i = 0; i < 7; i++)
-	fscanf_s (ptf, "%s", line);
+	fscanf (ptf, "%s", line);
       LOG0("\tcolor\n");
     } else if (!strcmp (line, "u")) {
       field[PLYFLD_UV] = fmt;
       pfield[PLYFLD_UV] = (*nfields)++;
       for (i = 0; i < 4; i++)
-	fscanf_s (ptf, "%s", line);
+	fscanf (ptf, "%s", line);
       LOG0("\t(u,v)\n");
     } else if (!strcmp (line, "nx")) {
       field[PLYFLD_NORM] = fmt;
       pfield[PLYFLD_NORM] = (*nfields)++;
       for (i = 0; i < 7; i++)
-	fscanf_s (ptf, "%s", line);
+	fscanf (ptf, "%s", line);
       LOG0("\t(nx,ny,nz) normals\n");
     } else {
       LOG1("ScanPlyHeader ERROR : Unknown field (%s)\n",line);
@@ -581,8 +581,8 @@ unsigned char PLY_ScanPlyHeader(FILE *ptf,
     
   /* skipping ... */
   while (strcmp (line, "element"))
-    fscanf_s (ptf, "%s", line);
-  fscanf_s (ptf, "%s", line);
+    fscanf (ptf, "%s", line);
+  fscanf (ptf, "%s", line);
 
   /* nombre de facettes */
   READd(nfaces);
@@ -590,7 +590,7 @@ unsigned char PLY_ScanPlyHeader(FILE *ptf,
  
   /* skipping to the end ... */
   do
-    fscanf_s (ptf, "%s", line);
+    fscanf (ptf, "%s", line);
   while (strcmp (line, "end_header"));
 
   return PLY_SUCCESS;

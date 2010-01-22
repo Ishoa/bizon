@@ -72,7 +72,11 @@ void Node::Scale(float x, float y, float z)
 
 void Node::Render( EngineCamera * _pCamera, Light * _pLight )
 {
-
+	for(std::vector<Node *>::iterator it = m_vChild.begin(); it != m_vChild.end(); it++)
+	{
+		(*it)->Culling();
+		(*it)->Render(_pCamera, _pLight);
+	}
 }
 
 bool Node::Culling()
@@ -87,4 +91,9 @@ bool Node::Culling()
 	}
 
 	return true;
+}
+
+void Node::SetLocalMatrix( const Matrix4x4 & _Matrix )
+{
+	m_mLocalMatrix = _Matrix;
 }

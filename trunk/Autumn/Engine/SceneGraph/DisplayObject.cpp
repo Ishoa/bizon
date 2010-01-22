@@ -55,12 +55,12 @@ HRESULT DisplayObject::Destroy()
 
 void DisplayObject::Render( EngineCamera * _pCamera, Light * _pLight )
 {
-	
+	Node::Render(_pCamera, _pLight);
 }
 
 bool DisplayObject::Culling()
 {
-	return true;
+	return Node::Culling();
 }
 
 void DisplayObject::SetTexture( const char * _strTextureName )

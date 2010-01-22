@@ -54,6 +54,8 @@ HRESULT Plan::Destroy()
 
 void Plan::Render( EngineCamera * _pCamera, Light * _pLight )
 {
+	DisplayObject::Render(_pCamera, _pLight);
+
 	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 	_pCamera->Set( m_mGlobalMatrix, _pLight );
 	m_pIndexBuffer->Bind();
@@ -72,7 +74,7 @@ void Plan::Render( EngineCamera * _pCamera, Light * _pLight )
 
 bool Plan::Culling()
 {
-	return true;
+	return DisplayObject::Culling();
 }
 
 HRESULT Plan::CompileShaders()
@@ -123,8 +125,8 @@ HRESULT Plan::BuildGeometry()
 			VertexData[uIndex++] = 0.0f;
 			VertexData[uIndex++] = 1.0f;
 			// Tangent
-			VertexData[uIndex++] = 1.0f;
 			VertexData[uIndex++] = 0.0f;
+			VertexData[uIndex++] = -1.0f;
 			VertexData[uIndex++] = 0.0f;
 			// TexCoord
 			for(unsigned int j = 0; j < 2; j++)
