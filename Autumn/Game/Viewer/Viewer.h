@@ -5,12 +5,16 @@
 #include "Engine/Engine/EngineDx.h"
 #endif
 
+class Node;
 class Plan;
+class PLYObject;
 
 class Viewer : public Engine
 {
 protected:
-	Plan	* m_pPlan;
+	Node		* m_pRoot;
+	Plan		* m_pPlan;
+	PLYObject	* m_pTeapot;
 
 public:
 	Viewer();

@@ -98,7 +98,7 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	E_RETURN( m_pScreenText->Create(), "Create ScreenText : " );
 
 	// Light
-	m_pLight = new Light( Color(1,1,1,1), Vector4(0,1,1,0) );
+	m_pLight = new Light( Color(1,1,1,1), Vector4(-1,1,1,0) );
 	E_RETURN( m_pLight->Create(), "Create Light : " );
 
 	
@@ -204,7 +204,7 @@ void Engine::RenderText()
 	}
 	char buf[32];
 	sprintf_s(buf, "FPS : %.2f", fCurrentFrames );
-	m_pScreenText->DrawText(buf, 0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
+	m_pScreenText->DrawText(buf, 0, 0, Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void Engine::BeginRender()
@@ -238,7 +238,7 @@ void Engine::OnKeyPressed(int _key)
 // 	case VK_DOWN	: m_pCamera->Move(DIRECTION_DOWN); break;
 // 	case VK_UP		: m_pCamera->Move(DIRECTION_UP); break;
 	case VK_ESCAPE	: if( m_bFullscreen ) ToggleFullScreen(); PostQuitMessage(0); break;
-	default : break;
+	default : LOG_INFOLN("Key down : " << _key); break;
 	}
 }
 

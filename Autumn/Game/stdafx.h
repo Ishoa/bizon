@@ -12,6 +12,8 @@
 #define WIN32_LEAN_AND_MEAN		// Exclure les en-têtes Windows rarement utilisés
 
 
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 // TODO : faites référence ici aux en-têtes supplémentaires nécessaires au programme
 
@@ -43,8 +45,20 @@
 #include "Engine/SceneGraph/DisplayObject.h"
 #endif
 
+#ifndef _NODE_
+#include "Engine/SceneGraph/Node.h"
+#endif
+
 #ifndef _PLAN_
 #include "Engine/SceneGraph/Plan.h"
+#endif
+
+#ifndef _PLY_OBJECT_
+#include "Engine/SceneGraph/PLYObject.h"
+#endif
+
+#ifndef _TIME_MANAGER_
+#include "Engine/Manager/TimeManager.h"
 #endif
 
 #ifndef _VECTOR1_

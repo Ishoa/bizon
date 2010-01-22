@@ -11,6 +11,14 @@ class PLYObject : public DisplayObject
 {
 protected:
 
+	struct sVertex
+	{
+		float x, y, z;
+		float nx, ny, nz;
+		float tx, ty, tz;
+		float u, v;
+	};
+
 	char m_strFilename[32];
 
 	virtual HRESULT	CompileShaders();

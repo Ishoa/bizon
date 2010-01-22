@@ -24,7 +24,6 @@ float4 PSMain( PSin Pin ) : SV_Target
 {
 	float3 N,L;
 	float4 MatColor;
-	float Ld, Ls;
 	float Ld2;
 	
 	// Calcul de la matrice de transformation repere texture <-> repere objet
@@ -41,28 +40,21 @@ float4 PSMain( PSin Pin ) : SV_Target
 	MatColor = tTexture.Sample(sTexSampler, Pin.Tex );
 	
 	// calcul de la sortie
-	Ld = dot(N,L); // diffus
+	float Ls = 0;
+	float Ld = max(0, dot(N,L)); // diffus
 	Ld2 = dot( normalize(Pin.Norm), L );
-	
 
 	if (Ld > 0)
 	{
 		float3 V,H;
 		V = normalize( vCamera.xyz - Pin.Pos );
 		H = normalize( V+L );
-		Ls = pow(max(dot(N,H),0),40); // speculaire
+		Ls = pow(max(dot(N,H),0),40); // specular
 		if(Ld2 < 0)
 		{
 			Ld = 0;
 			Ls = 0;
-			//return float4(1.0, 0.0, 0.0, 1.0);
 		}
-		//Ls = 0;
-	}
-	else
-	{
-		Ls = 0;
-		Ld = 0;
 	}
 	
 	return vLightColor *( (MatColor * Ld) + (Ls * vLightColor) );	
