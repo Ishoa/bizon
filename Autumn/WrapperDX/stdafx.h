@@ -25,6 +25,12 @@
 #include "Core/TinyXML/tinystr.h"
 #include "Core/TinyXML/tinyxml.h"
 
+// DirectInput
+#include <dinput.h>
+#pragma comment(lib, "dinput8.lib")
+#pragma comment(lib, "dxguid.lib")
+
+// DXGI
 #include <DXGI.h>
 #pragma comment(lib, "DXGI.lib")
 

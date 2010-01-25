@@ -54,7 +54,7 @@ HRESULT WindowApp::Create(HINSTANCE hInstance, int nCmdShow)
 		return E_FAIL;
 
 	m_pEngine = new Viewer;
-	D_RETURN( m_pEngine->Create(m_hWnd, m_uWidth, m_uHeight, m_bFullscreen) );
+	D_RETURN( m_pEngine->Create(m_hWnd, hInstance, m_uWidth, m_uHeight, m_bFullscreen) );
 
 	ShowWindow( m_hWnd, nCmdShow );
 	UpdateWindow( m_hWnd );
@@ -105,57 +105,6 @@ LRESULT CALLBACK WindowApp::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 			uSizeY = GET_Y_LPARAM(lParam);
 			LOG_INFOLN("Resize : " << uSizeX << " x " << uSizeY);
 			WindowApp::GetInstance()->GetEngine()->Resize((unsigned int)uSizeX, (unsigned int)uSizeY);
-			break;
-
-//////////////////////////////////////////////////////////////////////////
-// MOUSE
-		case WM_MOUSEMOVE:
-			xPos = GET_X_LPARAM(lParam); 
-			yPos = GET_Y_LPARAM(lParam);
-			WindowApp::GetInstance()->GetEngine()->UpdateMouse(xPos,yPos);
-			break;
-
-		// Left Button
-		case WM_LBUTTONDOWN:
-			WindowApp::GetInstance()->GetEngine()->OnLButtonDown();
-			break;
-
-		case WM_LBUTTONUP:
-			WindowApp::GetInstance()->GetEngine()->OnLButtonUp();
-			break;
-
-		// Right Button
-		case WM_RBUTTONDOWN:
-			WindowApp::GetInstance()->GetEngine()->OnRButtonDown();
-			break;
-
-		case WM_RBUTTONUP:
-			WindowApp::GetInstance()->GetEngine()->OnRButtonUp();
-			break;
-
-		// Middle Button
-		case WM_MBUTTONDOWN:
-			WindowApp::GetInstance()->GetEngine()->OnMButtonDown();
-			break;
-
-		case WM_MBUTTONUP:
-			WindowApp::GetInstance()->GetEngine()->OnMButtonUp();
-			break;
- 
-		case WM_MOUSEWHEEL:
-			break;
-
-
-//////////////////////////////////////////////////////////////////////////
-// KEYBOARD
-		case WM_KEYDOWN:
-			key = (int)wParam;
-			WindowApp::GetInstance()->GetEngine()->OnKeyPressed(key);
-			break;
-
-		case WM_KEYUP:
-			key = (int)wParam;
-			WindowApp::GetInstance()->GetEngine()->OnKeyReleased(key);
 			break;
 
 		default:

@@ -56,6 +56,8 @@ public:
 	void SetView(Vector3 _Pos, Vector3 _At, Vector3 _Up);
 	void BuildViewMatrix();
 	void Translate(const Vector3 & _v);
+	Vector3 GetLooktAtDirection() const;
+	Vector3 GetLateralDirection() const;
 
 	void Update( const TimeInfo & _sTimeInfo );
 

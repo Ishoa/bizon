@@ -15,15 +15,8 @@ public:
 
 	static T *	CreateInstance()
 	{
-		if( ms_pInstance )
-		{
-			LOG_INFOLN("Instance already created");
-		}
-		else
-		{
-			LOG_INFOLN("Creating Instance ...");
+		if( ! ms_pInstance )
 			ms_pInstance = new T;
-		}
 
 		return ( static_cast< T * >(ms_pInstance) );
 	}

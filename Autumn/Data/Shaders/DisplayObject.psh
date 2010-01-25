@@ -49,7 +49,7 @@ float4 PSMain( PSin Pin ) : SV_Target
 		float3 V,H;
 		V = normalize( vCamera.xyz - Pin.Pos );
 		H = normalize( V+L );
-		Ls = pow(max(dot(N,H),0),40); // specular
+		Ls = 0.0f;//pow(max(dot(N,H),0),40); // specular
 		if(Ld2 < 0)
 		{
 			Ld = 0;

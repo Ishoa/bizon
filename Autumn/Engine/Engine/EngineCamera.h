@@ -30,6 +30,13 @@ public:
 
 	void Set(const Matrix4x4 & _mWorld, Light * _pLight);
 	ConstantBufferUpdate * GetCameraShaderParamBuffer() const { return m_pCameraShaderParamBuffer; }
+
+	// Cam moves
+	void MoveForward( const float & _fDeltaMove );
+	void MoveBackward( const float & _fDeltaMove );
+	void StrafeLeft( const float & _fDeltaMove );
+	void StrafeRight( const float & _fDeltaMove );
+	void MoveLookAt( const Vector2 & _f2DeltaMove );
 	
 };
 

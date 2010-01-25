@@ -4,6 +4,10 @@
 #include "Engine/Manager/TimeManager.h"
 #endif
 
+#ifndef _INPUT_MANAGER_
+#include "Engine/Manager/InputManager.h"
+#endif
+
 #ifndef _SCREEN_TEXT_
 #include "Engine/Engine/ScreenText.h"
 #endif
@@ -24,11 +28,11 @@ Engine::Engine()
 : m_pDevice(NULL)
 , m_pDefaultRenderTarget(NULL)
 , m_pDefaultDepthStencil(NULL)
-, m_pTimeManager(NULL)
 , m_pCamera(NULL)
 , m_pScreenText(NULL)
 , m_pLight(NULL)
 , m_bDisplayText(false)
+, m_fSpeedCam( 0.05f )
 {
 
 }
@@ -37,9 +41,11 @@ Engine::~Engine()
 {
 }
 
-HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen)
+HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen)
 {
 	// TODO recup taille fullscreen
+	m_hWnd = _hWnd;
+	m_hInstance = _hInstance;
 	unsigned int uWidth, uHeight;
 	m_bFullscreen = _bFullscreen;
 	m_uFullscreenWidth = 1280;
@@ -81,14 +87,16 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 	SetViewPorts(&m_oDefaultViewPort);
 
 
-	// Time Manager
-	m_pTimeManager = new TimeManager;
-	E_RETURN( m_pTimeManager->Create(), "Create TimeManager : " );
+	// Manager
+	m_pManager[Manager::eManager_TIME] = new TimeManager;
+	E_RETURN( m_pManager[Manager::eManager_TIME]->Create(), "Create TimeManager : " );
+	m_pManager[Manager::eManager_INPUT] = new InputManager(_hWnd, _hInstance);
+	E_RETURN( m_pManager[Manager::eManager_INPUT]->Create(), "Create InputManager : " );
 
 	// Camera
 	m_pCamera = new EngineCamera;
 	D_RETURN( m_pCamera->Create() );
-	m_pCamera->SetView(Vector3(-25.0f, 0.0f, 10.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
+	m_pCamera->SetView(Vector3(-25.0f, 10.0f, 10.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 	m_pCamera->BuildViewMatrix();
 	float fAspect = (float)uWidth / (float)uHeight;
 	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 100.0f);
@@ -107,31 +115,18 @@ HRESULT Engine::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, 
 
 HRESULT Engine::Destroy()
 {
+	for(unsigned int i = 0; i < Manager::eManager_COUNT; ++i)
+		SAFE_DESTROY( m_pManager[i] );
+
 	SAFE_DESTROY( m_pDevice );
 	SAFE_DESTROY( m_pDefaultRenderTarget );
 	SAFE_DESTROY( m_pDefaultDepthStencil );
-	SAFE_DESTROY( m_pTimeManager );
 	SAFE_DESTROY( m_pCamera );
 	SAFE_DESTROY( m_pScreenText );
 	SAFE_DESTROY( m_pLight );
 	
 	return S_OK;
 }
-
-void Engine::Update()
-{
-	m_pTimeManager->Update();
-	
-	BeginRender();
-	
-	if( m_bDisplayText )
-		RenderText();
-
-	Render();
-
-	EndRender();
-}
-
 
 HRESULT Engine::ToggleFullScreen()
 {
@@ -195,7 +190,7 @@ void Engine::RenderText()
 	static float fCurrentFrames = 0.0f;
 	static unsigned int nFrames = 0;
 	nFrames++;
-	fDeltaTime += m_pTimeManager->GetDeltaTime();
+	fDeltaTime += GetTimeManager()->GetDeltaTime();
 	if( fDeltaTime > 1000.0f )
 	{
 		fCurrentFrames = (float)nFrames / fDeltaTime * 1000.0f;
@@ -227,54 +222,80 @@ void Engine::EndRender()
 
 //////////////////////////////////////////////////////////////////////////
 // input
-void Engine::OnKeyPressed(int _key)
+void Engine::UpdateKeyboard()
 {
-	switch( _key )
+	// Escape : Quit
+	if( GetInputManager()->KeyPressed( DIK_ESCAPE ) )
 	{
-	case VK_F1		: m_bDisplayText = ! m_bDisplayText; break;
-	case VK_F2		: ToggleFullScreen(); break;
-// 	case VK_LEFT	: m_pCamera->Move(DIRECTION_LEFT); break;
-// 	case VK_RIGHT	: m_pCamera->Move(DIRECTION_RIGHT); break;
-// 	case VK_DOWN	: m_pCamera->Move(DIRECTION_DOWN); break;
-// 	case VK_UP		: m_pCamera->Move(DIRECTION_UP); break;
-	case VK_ESCAPE	: if( m_bFullscreen ) ToggleFullScreen(); PostQuitMessage(0); break;
-	default : LOG_INFOLN("Key down : " << _key); break;
+		if( m_bFullscreen ) 
+			ToggleFullScreen();
+		PostQuitMessage(0);
+	}
+	// F1 / Shift + F1 : Show / Hide text
+	if( GetInputManager()->KeyPressed( DIK_F1 ) )
+	{
+		if( GetInputManager()->KeyPressed( DIK_LSHIFT ) )
+			m_bDisplayText = false;
+		else
+			m_bDisplayText = true;
+	}
+	if( GetInputManager()->KeyPressed( DIK_RCONTROL ) )
+	{
+		// UP : Rotate Camera
+		if( GetInputManager()->KeyPressed( DIK_UPARROW ) )
+			m_pCamera->MoveLookAt( Vector2( 0, m_fSpeedCam * GetTimeManager()->GetDeltaTime() ) );
+		// DOWN : Rotate Camera
+		if( GetInputManager()->KeyPressed( DIK_DOWNARROW ) )
+			m_pCamera->MoveLookAt( Vector2( 0, - m_fSpeedCam * GetTimeManager()->GetDeltaTime() ) );
+		// LEFT : Rotate Camera
+		if( GetInputManager()->KeyPressed( DIK_LEFTARROW ) )
+			m_pCamera->MoveLookAt( Vector2( m_fSpeedCam * GetTimeManager()->GetDeltaTime(), 0 ) );
+		// RIGHT : Rotate Camera
+		if( GetInputManager()->KeyPressed( DIK_RIGHTARROW ) )
+			m_pCamera->MoveLookAt( Vector2( - m_fSpeedCam * GetTimeManager()->GetDeltaTime(), 0 ) );
+	}
+	else
+	{
+		// UP : Move Camera
+		if( GetInputManager()->KeyPressed( DIK_UPARROW ) )
+			m_pCamera->MoveForward( m_fSpeedCam * GetTimeManager()->GetDeltaTime() );
+		// DOWN : Move Camera
+		if( GetInputManager()->KeyPressed( DIK_DOWNARROW ) )
+			m_pCamera->MoveBackward( m_fSpeedCam * GetTimeManager()->GetDeltaTime() );
+		// LEFT : Move Camera
+		if( GetInputManager()->KeyPressed( DIK_LEFTARROW ) )
+			m_pCamera->StrafeLeft( m_fSpeedCam * GetTimeManager()->GetDeltaTime() );
+		// RIGHT : Move Camera
+		if( GetInputManager()->KeyPressed( DIK_RIGHTARROW ) )
+			m_pCamera->StrafeRight( m_fSpeedCam * GetTimeManager()->GetDeltaTime() );
 	}
 }
 
-void Engine::OnKeyReleased(int _key)
+void Engine::UpdateMouse()
 {
-	switch( _key )
-	{
-	default : break;
-	}
+	// Left Click
+// 	if( GetInputManager()->LeftButtonPressed() )
+// 		m_pCamera->MoveLookAt( GetInputManager()->GetMouseDeltaPosition() );
 }
 
-void Engine::UpdateMouse(int x, int y)
-{
+//////////////////////////////////////////////////////////////////////////
+// Manager Getters
 
+void Engine::UpdateManager()
+{
+	for(unsigned int i = 0; i < Manager::eManager_COUNT; ++i)
+		m_pManager[i]->Update();
+
+	UpdateKeyboard();
+	UpdateMouse();
 }
 
-void Engine::OnLButtonDown()
+TimeManager * Engine::GetTimeManager() const
 {
+	return (TimeManager *)m_pManager[Manager::eManager_TIME];
 }
 
-void Engine::OnRButtonDown()
+InputManager * Engine::GetInputManager() const
 {
-}
-
-void Engine::OnMButtonDown()
-{
-}
-
-void Engine::OnLButtonUp()
-{
-}
-
-void Engine::OnRButtonUp()
-{
-}
-
-void Engine::OnMButtonUp()
-{
+	return (InputManager *)m_pManager[Manager::eManager_INPUT];
 }

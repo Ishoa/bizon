@@ -45,24 +45,6 @@
 #define SHADER_FLAG		NULL
 #endif
 
-//////////////////////////////////////////////////////////////////////////
-// Direction
-enum eDirection
-{
-	eLeft	= 1,
-	eRight	= 1 << 1,
-	eUp		= 1 << 2,
-	eDown	= 1 << 3
-};
-
-// #ifdef _DEBUG
-// 	#define LOG_INFO( _arg )
-// 	#define LOG_INFOLN( _arg )
-// 	#define LOG_PAUSE()
-// #else
-// 	#define LOG_INFO( _arg )
-// 	#define LOG_INFOLN( _arg )
-// 	#define LOG_PAUSE()
-// #endif // _DEBUG
+#define INPUT_COOPLEVEL		DISCL_FOREGROUND | DISCL_NONEXCLUSIVE
 
 #endif

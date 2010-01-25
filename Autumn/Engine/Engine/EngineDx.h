@@ -1,6 +1,9 @@
 #ifndef _ENGINE_DX_ 
 #define _ENGINE_DX_
 
+#ifndef _MANAGER_
+#include "Engine/Manager/Manager.h"
+#endif
 
 #ifndef _VIEW_PORT_
 #include "WrapperDX/Device/ViewPort.h"
@@ -13,7 +16,9 @@
 class Device3D;
 class RenderTarget;
 class DepthStencil;
+class Manager;
 class TimeManager;
+class InputManager;
 class EngineCamera;
 class ScreenText;
 class Light;
@@ -26,7 +31,9 @@ protected:
 	// Debug Display
 	bool					  m_bDisplayText;
 
-	// Fullscreen resolution, windowed resolution	
+	// Fullscreen resolution, windowed resolution
+	HWND					  m_hWnd;
+	HINSTANCE				  m_hInstance;
 	bool					  m_bFullscreen;
 	unsigned int			  m_uFullscreenWidth;
 	unsigned int			  m_uFullscreenHeight;
@@ -39,11 +46,12 @@ protected:
 	DepthStencil			* m_pDefaultDepthStencil;
 	ViewPort				  m_oDefaultViewPort;
 
-	// Time Manager
-	TimeManager				* m_pTimeManager;
+	// Manager
+	Manager					* m_pManager[Manager::eManager_COUNT];
 
 	// Camera
 	EngineCamera			* m_pCamera;
+	float					m_fSpeedCam;
 
 	// Screen Text
 	ScreenText				* m_pScreenText;
@@ -55,9 +63,9 @@ public:
 	Engine();
 	virtual ~Engine();
 
-	virtual HRESULT Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen = false);
+	virtual HRESULT Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen = false);
 	virtual HRESULT Destroy();
-	virtual void	Update();
+	virtual void	Update() = 0;
 
 	HRESULT ToggleFullScreen();
 	HRESULT Resize(unsigned int _uWidth, unsigned int _uHeight);
@@ -71,15 +79,13 @@ public:
 	virtual void EndRender();
 
 	// input
-	virtual void	OnKeyPressed(int _key);
-	virtual void	OnKeyReleased(int _key);
-	virtual void	UpdateMouse(int x, int y);
-	virtual void	OnLButtonDown();
-	virtual void	OnRButtonDown();
-	virtual void	OnMButtonDown();
-	virtual void	OnLButtonUp();
-	virtual void	OnRButtonUp();
-	virtual void	OnMButtonUp();
+	virtual void	UpdateKeyboard();
+	virtual void	UpdateMouse();
+
+	// Manager
+	void			UpdateManager();
+	TimeManager *	GetTimeManager() const;
+	InputManager *	GetInputManager() const;
 
 };
 #endif // _ENGINE_DX_

@@ -175,6 +175,14 @@
 			Name="Manager"
 			>
 			<File
+				RelativePath=".\Manager\InputManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Manager\InputManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Manager\Manager.cpp"
 				>
 			</File>
