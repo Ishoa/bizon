@@ -6,6 +6,15 @@ class Manager
 protected:
 
 public:
+
+	enum eManager
+	{
+		eManager_TIME = 0,
+		eManager_INPUT,
+		eManager_COUNT,
+	};
+
+
 	Manager();
 	virtual ~Manager();
 

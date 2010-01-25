@@ -2,25 +2,27 @@
 #include "Vector2.h"
 
 Vector2::Vector2()
+: m_vVector(0,0)
 {
-	m_fCoord[0] = 0.0f;
-	m_fCoord[1] = 0.0f;
 }
 
 Vector2::Vector2(const Vector2 & v)
+: m_vVector(v.m_vVector)
 {
-	m_fCoord[0] = v.m_fCoord[0];
-	m_fCoord[1] = v.m_fCoord[1];
 }
 
 Vector2::Vector2(float _x, float _y)
+: m_vVector(_x, _y)
 {
-
-	m_fCoord[0] = _x;
-	m_fCoord[1] = _y;
-
 }
 
 Vector2::~Vector2()
 {
+}
+
+Vector2 operator-( const Vector2 & _v1, const Vector2 & _v2 )
+{
+	Vector2 vRes;
+	vRes.m_vVector = _v1.m_vVector - _v2.m_vVector;
+	return vRes;
 }

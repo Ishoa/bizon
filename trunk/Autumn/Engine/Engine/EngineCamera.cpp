@@ -49,3 +49,30 @@ void EngineCamera::Set(const Matrix4x4 & _mWorld, Light * _pLight)
 	pShaderParam->m_CameraDir		= CameraDir * _mWorld.GetInverse();
 	m_pCameraShaderParamBuffer->Unmap();
 }
+
+void EngineCamera::MoveForward( const float & _fDeltaMove )
+{
+	Translate(  GetLooktAtDirection() * _fDeltaMove );
+}
+
+void EngineCamera::MoveBackward( const float & _fDeltaMove )
+{
+	Translate(  - GetLooktAtDirection() * _fDeltaMove );
+}
+
+void EngineCamera::StrafeLeft( const float & _fDeltaMove )
+{
+	Translate(  GetLateralDirection() * _fDeltaMove );
+}
+
+void EngineCamera::StrafeRight( const float & _fDeltaMove )
+{
+	Translate(  - GetLateralDirection() * _fDeltaMove );
+}
+
+void EngineCamera::MoveLookAt( const Vector2 & _f2DeltaMove )
+{
+	m_vAt += GetLateralDirection() * _f2DeltaMove.X();
+	m_vAt += m_vUp * _f2DeltaMove.Y();
+	BuildViewMatrix();
+}

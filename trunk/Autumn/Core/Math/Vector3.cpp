@@ -44,6 +44,10 @@ Vector3	& Vector3::operator -= (const Vector3 & _v)
 	return (*this);
 }
 
+Vector3 Vector3::operator-()
+{
+	return Vector3( - m_vVector.x, - m_vVector.y, - m_vVector.z );
+}
 
 Vector3 operator + (const Vector3 & _v1, const Vector3 & _v2)
 {

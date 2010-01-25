@@ -20,7 +20,7 @@ public:
 	Viewer();
 	virtual ~Viewer();
 
-	virtual HRESULT Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen = false);
+	virtual HRESULT Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen = false);
 	virtual HRESULT Destroy();
 	virtual void	Update();
 	virtual void	Render();

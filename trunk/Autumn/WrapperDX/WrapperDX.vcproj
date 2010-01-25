@@ -363,6 +363,42 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="InputDevice"
+			>
+			<File
+				RelativePath=".\InputDevice\InputController.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\InputController.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\InputDevice.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\InputDevice.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\Keyboard.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\Keyboard.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\Mouse.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InputDevice\Mouse.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\stdafx.cpp"
 			>

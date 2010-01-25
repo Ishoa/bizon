@@ -14,10 +14,10 @@ Viewer::~Viewer()
 {
 }
 
-HRESULT Viewer::Create(HWND _hWnd, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen)
+HRESULT Viewer::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen)
 {
 	LOG_INFOLN("* Viewer");
-	D_RETURN(Engine::Create(_hWnd, _uWidth, _uHeight, _bFullscreen));
+	D_RETURN(Engine::Create(_hWnd, _hInstance, _uWidth, _uHeight, _bFullscreen));
 
 	m_pRoot = new Node;
 	D_RETURN( m_pRoot->Create() );
@@ -47,17 +47,26 @@ HRESULT Viewer::Destroy()
 
 void Viewer::Update()
 {
-	Engine::Update();
+	UpdateManager();
 
 	Matrix4x4 mMatrix;
 	mMatrix.SetTranslation(0,0,2);
-	float fAngle = m_pTimeManager->GetCurrentTime() * (float)M_PI / 1000.0f;
+	float fAngle =GetTimeManager()->GetCurrentTime() * (float)M_PI / 1000.0f;
 	mMatrix.Rotate(0,0, fAngle );
 	m_pTeapot->SetLocalMatrix(mMatrix);
+
+	Render();
 }
 
 
 void Viewer::Render()
 {
+	BeginRender();
+
+	if( m_bDisplayText )
+		RenderText();
+
 	m_pRoot->Render( m_pCamera, m_pLight );
+
+	EndRender();
 }

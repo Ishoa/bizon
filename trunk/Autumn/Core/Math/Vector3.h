@@ -33,6 +33,7 @@ public:
 	// operators
 	Vector3	& operator += (const Vector3 & _v);
 	Vector3	& operator -= (const Vector3 & _v);
+	Vector3	  operator - ();
 	friend Vector3	operator + (const Vector3 & _v1, const Vector3 & _v2);
 	friend Vector3	operator - (const Vector3 & _v1, const Vector3 & _v2);
 	friend Vector3	operator * (const Vector3 & _v, const float & _f);

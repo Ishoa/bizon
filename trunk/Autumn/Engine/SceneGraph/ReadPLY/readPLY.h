@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_DEPRECATE
+#define _CRT_SECURE_NO_WARNINGS
 
 #ifndef __READPLY__
 #define __READPLY__

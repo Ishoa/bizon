@@ -72,9 +72,23 @@ Matrix4x4 Camera::GetViewProj() const
 void Camera::Translate( const Vector3 & _v )
 {
 	m_vPos += _v;
+	m_vAt += _v;
+
+	BuildViewMatrix();
 }
 
 void Camera::Update( const TimeInfo & _sTimeInfo )
 {
+}
 
+Vector3 Camera::GetLooktAtDirection() const
+{
+	Vector3 vLookat = m_vAt - m_vPos;
+	return vLookat.Normalize();
+}
+
+Vector3 Camera::GetLateralDirection() const
+{
+	Vector3 vLat = ( m_vAt - m_vPos ) ^ m_vUp;
+	return vLat.Normalize();
 }

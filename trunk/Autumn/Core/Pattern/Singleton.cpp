@@ -1,2 +1,5 @@
 #include "stdafx.h"
-#include "Singleton.h"
+
+#ifndef _SINGLETON_
+#include "Core/Pattern/Singleton.h"
+#endif

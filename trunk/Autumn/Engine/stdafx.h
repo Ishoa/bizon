@@ -11,6 +11,7 @@
 
 #define WIN32_LEAN_AND_MEAN		// Exclure les en-têtes Windows rarement utilisés
 
+// 3D
 #include <D3D11.h>
 #include <D3DX11.h>
 #include <D3DX11core.h>
@@ -28,6 +29,9 @@
 #ifndef _CONSOLE_H_
 #include "Core/Console/Console.h"
 #endif
+
+//////////////////////////////////////////////////////////////////////////
+// 3D
 #ifndef _VIEW_PORT_
 #include "WrapperDX/Device/ViewPort.h"
 #endif
@@ -111,6 +115,28 @@
 #ifndef _SAMPLER_
 #include "WrapperDX/Texture/Sampler/Sampler.h"
 #endif
+
+//////////////////////////////////////////////////////////////////////////
+// INPUT
+
+#ifndef _INPUT_DEVICE_
+#include "WrapperDX/InputDevice/InputDevice.h"
+#endif
+
+#ifndef _INPUT_CONTROLLER_
+#include "WrapperDX/InputDevice/InputController.h"
+#endif
+
+#ifndef _KEYBOARD_
+#include "WrapperDX/InputDevice/Keyboard.h"
+#endif
+
+#ifndef _MOUSE_
+#include "WrapperDX/InputDevice/Mouse.h"
+#endif
+
+//////////////////////////////////////////////////////////////////////////
+// MATH
 
 #ifndef _VECTOR1_
 #include "Core/Math/Vector1.h"

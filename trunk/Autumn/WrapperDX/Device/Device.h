@@ -4,7 +4,9 @@
 #include <windows.h>
 #include <stdio.h>
 
+#ifndef _SINGLETON_
 #include "Core/Pattern/Singleton.h"
+#endif
 
 struct ID3D11Device;
 struct ID3D11DeviceContext;
