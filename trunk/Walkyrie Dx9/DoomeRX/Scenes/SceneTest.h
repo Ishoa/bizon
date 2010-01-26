@@ -1,14 +1,14 @@
 #pragma once
-#include "..\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
 
-#include "VariableGlobale.h"
-#include "VariableGlobalDX.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobale.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobalDX.h"
 
-#include "Interface.h"
-#include "Bilboarding.h"
-#include "Sprites3D.h"
-#include "CameraVolLibre.h"
-#include "Mesh.h"
+#include "..\..\Valkyrie\Moteur\Interface.h"
+#include "..\..\Valkyrie\Moteur\Bilboarding.h"
+#include "..\..\Valkyrie\Moteur\Sprites3D.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\Mesh.h"
 
 class CSceneTest : public CScene
 {

@@ -1,5 +1,5 @@
 #include "SceneBumpMapping.h"
-#include "CameraTrackBall.h"
+#include "..\..\Valkyrie\Moteur\CameraTrackBall.h"
 
 #define NB_STAGE 2
 

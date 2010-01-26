@@ -1,7 +1,7 @@
 // Classe pour la gestion d'une scène 3D
 
 #pragma once
-#include "..\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
 
 class CSceneBattleFly : public CScene
 {

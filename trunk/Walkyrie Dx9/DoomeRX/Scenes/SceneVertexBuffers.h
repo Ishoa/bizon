@@ -1,6 +1,6 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "Texture.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Texture.h"
 
 class CSceneVertexBuffer : public CScene
 {

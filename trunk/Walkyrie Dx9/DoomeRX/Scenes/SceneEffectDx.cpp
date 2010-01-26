@@ -1,5 +1,5 @@
 #include "SceneEffectDX.h"
-#include "CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
 
 #define NB_STAGE 2
 

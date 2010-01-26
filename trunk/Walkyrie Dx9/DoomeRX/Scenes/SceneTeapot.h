@@ -1,10 +1,10 @@
 #pragma once
-#include "Scene.h"
-#include "Boundingsphere.h"
-#include "Boundingbox.h"
-#include "Sprites3D.h"
-#include "MeshCollision.h"
-#include "Interface.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Boundingsphere.h"
+#include "..\..\Valkyrie\Moteur\Boundingbox.h"
+#include "..\..\Valkyrie\Moteur\Sprites3D.h"
+#include "..\..\Valkyrie\Moteur\MeshCollision.h"
+#include "..\..\Valkyrie\Moteur\Interface.h"
 
 
 class CSceneTeapot : public CScene

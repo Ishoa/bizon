@@ -1,6 +1,6 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "CameraTrackBall.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\CameraTrackBall.h"
 
 class CSceneShader : public CScene
 {

@@ -1,7 +1,7 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "Interface.h"
-#include "Sprites3D.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Interface.h"
+#include "..\..\Valkyrie\Moteur\Sprites3D.h"
 
 #define MAX_LIGHTS 4
 

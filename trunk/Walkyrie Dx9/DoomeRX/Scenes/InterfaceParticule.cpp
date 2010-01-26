@@ -1,8 +1,8 @@
 #include "InterfaceParticule.h"
-#include "Particlesystem.h"
+#include "..\..\Valkyrie\Moteur\Particlesystem.h"
 
 #include <atlbase.h>
-#include "Utils.h"
+#include "..\..\Valkyrie\Moteur\Utils.h"
 
 #define KEY_DOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
 #define KEY_UP(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 0 : 1)

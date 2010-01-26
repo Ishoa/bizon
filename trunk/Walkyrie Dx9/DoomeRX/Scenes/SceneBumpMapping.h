@@ -1,5 +1,5 @@
 #pragma once
-#include "..\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
 #include "..\Objects\BumpMappingObjet.h"
 
 class CSceneBumpMapping : public CScene

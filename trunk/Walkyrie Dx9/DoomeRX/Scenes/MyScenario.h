@@ -1,4 +1,4 @@
-#include "Scenario.h"
+#include "..\..\Valkyrie\Moteur\Scenario.h"
 
 
 class CMyScenario : public CScenario

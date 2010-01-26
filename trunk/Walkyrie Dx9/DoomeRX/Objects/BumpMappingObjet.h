@@ -1,10 +1,10 @@
 #pragma once
 
-#include "VariableGlobale.h"
-#include "VariableGlobalDX.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobale.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobalDX.h"
 
-#include "Scene.h"
-#include "Lumiere.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Lumiere.h"
 
 class CBumpMappingObjet
 {

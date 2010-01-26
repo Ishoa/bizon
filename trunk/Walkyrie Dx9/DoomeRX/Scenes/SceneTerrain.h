@@ -2,19 +2,18 @@
 // Classe pour la gestion d'une scène 3D
 
 #pragma once
-#include "Scene.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
 #include "..\MiniGames\InterfacesBattlefly.h"
 
-#include "CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
 #include "..\Objects\CameraPremierePersonneTerrain.h"
-#include "CameraVolLibre.h"
 
-#include "MeshCollision.h"
-#include "Panorama.h"
+#include "..\..\Valkyrie\Moteur\MeshCollision.h"
+#include "..\..\Valkyrie\Moteur\Panorama.h"
 
-#include "Terrain.h"
-#include "ModelEau.h"
-#include "Vegetation.h"
+#include "..\..\Valkyrie\Moteur\Terrain.h"
+#include "..\..\Valkyrie\Moteur\ModelEau.h"
+#include "..\..\Valkyrie\Moteur\Vegetation.h"
 
 class CSceneTerrain : public CScene
 {

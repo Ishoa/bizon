@@ -1,12 +1,12 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "CameraVolLibre.h"
-#include "CameraTrackBall.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\CameraTrackBall.h"
 #include "..\Objects\CameraPremierePersonneLaby.h"
 #include "InterfacesLaby.h"
-#include "MapDeMur.h"
-#include "Panorama.h"
-#include "MeshCollision.h"
+#include "..\..\Valkyrie\Moteur\MapDeMur.h"
+#include "..\..\Valkyrie\Moteur\Panorama.h"
+#include "..\..\Valkyrie\Moteur\MeshCollision.h"
 
 class CSceneLaby : public CScene
 {

@@ -1,8 +1,8 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "Interface.h"
-#include "..\Moteur\ShadowVolumeManager.h"
-#include "..\Moteur\Sprites3D.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Interface.h"
+#include "..\..\Valkyrie\Moteur\ShadowVolumeManager.h"
+#include "..\..\Valkyrie\Moteur\Sprites3D.h"
 
 
 class CSceneShadowVolume : public CScene

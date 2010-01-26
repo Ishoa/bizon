@@ -1,6 +1,6 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "Interface.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\Interface.h"
 
 class CSceneTemplate : public CScene
 {

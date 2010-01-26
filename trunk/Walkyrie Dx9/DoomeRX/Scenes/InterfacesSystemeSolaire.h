@@ -1,6 +1,6 @@
-#include "..\Moteur\Interface.h"
+#include "..\..\Valkyrie\Moteur\Interface.h"
 #include "..\Objects\Planete.h"
-#include "Texture.h"
+#include "..\..\Valkyrie\Moteur\Texture.h"
 #pragma once
 
 class CInterfaceSystemSolaire : public CInterface
