@@ -1,15 +1,15 @@
 #pragma once
-#include "..\Moteur\Scene.h"
-#include "CameraVolLibre.h"
-#include "Sprites3D.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\Sprites3D.h"
 #include "InterfaceParticule.h"
-#include "FuseeArtifice.h"
-#include "FuseeMissileExplode.h"
-#include "JetDeau.h"
-#include "Geyzer.h"
-#include "Fire.h"
+#include "..\..\Valkyrie\Moteur\FuseeArtifice.h"
+#include "..\..\Valkyrie\Moteur\FuseeMissileExplode.h"
+#include "..\..\Valkyrie\Moteur\JetDeau.h"
+#include "..\..\Valkyrie\Moteur\Geyzer.h"
+#include "..\..\Valkyrie\Moteur\Fire.h"
 
-#include "Panorama.h"
+#include "..\..\Valkyrie\Moteur\Panorama.h"
 
 #define NBFEUXARTIFICE 3
 #define NBJETDEAU 5

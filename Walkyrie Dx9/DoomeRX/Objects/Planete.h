@@ -1,9 +1,9 @@
 
 #pragma once
 
-#include "VariableGlobale.h"
-#include "VariableGlobalDX.h"
-#include "Scene.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobale.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobalDX.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
 
 
 #define D3DFVF_VERTEX_PLANETE ( D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1 )

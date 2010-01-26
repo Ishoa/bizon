@@ -1,5 +1,5 @@
 #include "SceneLaby.h"
-#include "Utils.h"
+#include "..\..\Valkyrie\Moteur\Utils.h"
 
 #define NB_STAGE 2
 #define LARGEURMUR 8.0

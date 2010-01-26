@@ -1,5 +1,5 @@
 #include "SceneDemoMipMapping.h"
-#include "CameraTrackBall.h"
+#include "..\..\Valkyrie\Moteur\CameraTrackBall.h"
 
 
 CSceneDemoMipMapping::Vertex g_quadVertices[] =

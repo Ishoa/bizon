@@ -1,5 +1,5 @@
 #include "ScenePaticuleSystem.h"
-#include "Particlesystem.h"
+#include "..\..\Valkyrie\Moteur\Particlesystem.h"
 
 #define NB_STAGE 2
  

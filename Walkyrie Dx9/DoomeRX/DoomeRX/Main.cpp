@@ -4,11 +4,11 @@
 #include <crtdbg.h>
 
 
-#include "VariableGlobale.h"
-#include "VariableGlobalDX.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobale.h"
+#include "..\..\Valkyrie\Moteur\VariableGlobalDX.h"
 
 
-#include "Moteur.h"
+#include "..\..\Valkyrie\Moteur\Moteur.h"
 #include "..\Scenes\MyScenario.h"
 
 #include "resource.h"

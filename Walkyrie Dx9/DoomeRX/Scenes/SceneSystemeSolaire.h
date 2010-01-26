@@ -1,7 +1,7 @@
 #pragma once
-#include "Scene.h"
+#include "..\..\Valkyrie\Moteur\Scene.h"
 #include "..\Objects\Planete.h"
-#include "Panorama.h"
+#include "..\..\Valkyrie\Moteur\Panorama.h"
 #include "InterfacesSystemeSolaire.h"
 
 #define D3DFVF_VERTEX_ANNEAU ( D3DFVF_XYZ | D3DFVF_DIFFUSE )

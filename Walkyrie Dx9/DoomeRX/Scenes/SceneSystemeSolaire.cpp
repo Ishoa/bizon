@@ -1,5 +1,5 @@
 #include "SceneSystemeSolaire.h"
-#include "CameraTrackBall.h"
+#include "..\..\Valkyrie\Moteur\CameraTrackBall.h"
 
 #define NB_STAGE 7
 #define DIV_ANNEAU 100

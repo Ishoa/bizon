@@ -1,5 +1,5 @@
 #include "SceneShadowVolume.h"
-#include "../Moteur/CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
 
 #define NB_STAGE 2
 

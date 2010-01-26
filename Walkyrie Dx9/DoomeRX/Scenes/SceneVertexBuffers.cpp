@@ -1,6 +1,6 @@
 #include "SceneVertexBuffers.h"
-#include "CameraTrackBall.h"
-#include "CameraVolLibre.h"
+#include "..\..\Valkyrie\Moteur\CameraTrackBall.h"
+#include "..\..\Valkyrie\Moteur\CameraVolLibre.h"
 
 #define NB_STAGE 2
 

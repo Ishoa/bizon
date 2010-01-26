@@ -1,7 +1,7 @@
 // Classe pour la gestion d'une caméra
 #pragma once
-#include "CameraPremierePersonne.h"
-#include "EnvCollision.h"
+#include "..\..\Valkyrie\Moteur\CameraPremierePersonne.h"
+#include "..\..\Valkyrie\Moteur\EnvCollision.h"
 
 class CScene;
 
