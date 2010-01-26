@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="DoomeRX">
+</Property><Property Name="Fichier solution" Value="D:\Bizon Project\trunk\Walkyrie Dx9\DoomeRX\DoomeRX.sln">
+</Property><Property Name="Date" Value="jeudi 21 janvier 2010">
+</Property><Property Name="Time" Value="00:09">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="DoomeRX.sln" Description="Solution correctement convertie">
+</Event><Event ErrorLevel="3" Project="" Source="DoomeRX.sln" Description="Converted">
+</Event></UpgradeLog>

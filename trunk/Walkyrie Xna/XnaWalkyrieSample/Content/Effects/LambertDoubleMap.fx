@@ -48,6 +48,12 @@ float texelSizeFar;
 float depthNear;
 
 bool TextureDisable;
+bool TextureDensite;
+
+bool FogEnable;
+float4 ColorFor;
+float RangeMaxFog;
+float DistanceMinFog;
 
 //-----------------------------------------------------------------------------
 // Textures.
@@ -63,6 +69,25 @@ sampler colorMapSampler = sampler_state
     MaxAnisotropy = 16;
 };
 
+texture densiteMap;
+sampler densiteMapSampler = sampler_state
+{
+	Texture = <densiteMap>;
+    MinFilter = Anisotropic;
+	MagFilter = Linear;
+    MipFilter = Linear;
+    MaxAnisotropy = 16;
+};
+
+texture colorDensiteMap;
+sampler colorDensiteMapSampler = sampler_state
+{
+	Texture = <colorDensiteMap>;
+    MinFilter = Anisotropic;
+	MagFilter = Linear;
+    MipFilter = Linear;
+    MaxAnisotropy = 16;
+};
 
 texture shadowMapNear;
 sampler shadowMapNearSampler = sampler_state
@@ -94,30 +119,35 @@ sampler shadowMapFarSampler = sampler_state
 //-----------------------------------------------------------------------------
 
 void VS_Lambert(in  float4 inPosition  : POSITION,
-	            in  float2 inTexCoord  : TEXCOORD,
+	            in  float2 inTexCoord0  : TEXCOORD0,
+	            in  float2 inTexCoord1  : TEXCOORD1,
 	            in  float3 inNormal    : NORMAL,
 			    out float4 outPosition : POSITION,
-			    out float2 outTexCoord : TEXCOORD0,
-				out float3 outNormal   : TEXCOORD1,
-				out float3 outLightDir : TEXCOORD2)
+			    out float2 outTexCoord0 : TEXCOORD0,
+			    out float2 outTexCoord1 : TEXCOORD1,
+				out float3 outNormal   : TEXCOORD2,
+				out float3 outLightDir : TEXCOORD3)
 {
 	float4 Position = mul(inPosition,world);
 	outPosition = mul(inPosition, worldViewProjection);
-	outTexCoord = inTexCoord;
+	outTexCoord0 = inTexCoord0;
+	outTexCoord1 = inTexCoord1;
 	outNormal = mul(inNormal, (float3x3)world);
 	outLightDir = -lightDir;
 }
 
 void VS_LambertWithShadows(in  float4 inPosition			: POSITION,
-	                       in  float2 inTexCoord			: TEXCOORD,
+						   in  float2 inTexCoord0			: TEXCOORD0,
+						   in  float2 inTexCoord1			: TEXCOORD1,
 	                       in  float3 inNormal				: NORMAL,
 			               out float4 outPosition			: POSITION,
 			               out float4 outLightSpacePosNear	: TEXCOORD0,
 			               out float4 outLightSpacePosFar	: TEXCOORD1,
-			               out float2 outTexCoord			: TEXCOORD2,
-				           out float3 outNormal				: TEXCOORD3,
-				           out float3 outLightDir			: TEXCOORD4,
-				           out float3 outPositionObject		: TEXCOORD5)
+			               out float2 outTexCoord0			: TEXCOORD2,
+			               out float2 outTexCoord1			: TEXCOORD3,
+				           out float3 outNormal				: TEXCOORD4,
+				           out float3 outLightDir			: TEXCOORD5,
+				           out float3 outPositionObject		: TEXCOORD6)
 {
 
 	outPosition = mul(inPosition, worldViewProjection);
@@ -126,7 +156,8 @@ void VS_LambertWithShadows(in  float4 inPosition			: POSITION,
 	
 	outLightSpacePosFar = mul(PositionWorld, lightViewProjectionFar);
 
-	outTexCoord = inTexCoord;
+	outTexCoord0 = inTexCoord0;
+	outTexCoord1 = inTexCoord1;
 	outNormal = mul(inNormal, (float3x3)world);
 	outLightDir = -lightDir;
 	outPositionObject = PositionWorld;
@@ -148,9 +179,10 @@ float PS_ShadowMapLookup(sampler shadowMap, float2 texCoord, float2 offset, floa
 	return (tex2D(shadowMap, texCoord + offset * valtexelSize).r + valdepthBias < depth) ? 0.0f : 1.0f;
 }
 
-void PS_Lambert(in  float2 inTexCoord : TEXCOORD0,
-                in  float3 inNormal   : TEXCOORD1,
-                in  float3 inLightDir : TEXCOORD2,
+void PS_Lambert(in  float2 inTexCoord0 : TEXCOORD0,
+				in  float2 inTexCoord1 : TEXCOORD1,
+                in  float3 inNormal   : TEXCOORD2,
+                in  float3 inLightDir : TEXCOORD3,
 				out float4 outColor   : COLOR)
 {
 	float3 l = normalize(inLightDir);
@@ -159,17 +191,34 @@ void PS_Lambert(in  float2 inTexCoord : TEXCOORD0,
 	
 	outColor = (materialAmbient * lightColor) + (materialDiffuse * lightColor * nDotL);
 	
+	float4 FinalText;
+			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,inTexCoord0) * tex2D(densiteMapSampler,inTexCoord1).a;   
+		float4 colorHerbe = tex2D(colorMapSampler,inTexCoord0) * (1.0f - tex2D(densiteMapSampler,inTexCoord1).a);
+    
+		FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+	}
+	else
+	{
+		FinalText = tex2D(colorMapSampler, inTexCoord0);
+	}		   
+			 
 	if(TextureDisable)
-			   outColor *= tex2D(colorMapSampler, inTexCoord);
-	
+		   outColor *= FinalText;
+		   
+
 }
 
 void PS_LambertWithShadows(in  float4 inLightSpacePosNear  : TEXCOORD0,
 			               in  float4 inLightSpacePosFar   : TEXCOORD1,
-			               in  float2 inTexCoord       : TEXCOORD2,
-                           in  float3 inNormal         : TEXCOORD3,
-                           in  float3 inLightDir       : TEXCOORD4,
-                           in  float3 inPositionObject : TEXCOORD5,
+			               in  float2 inTexCoord0       : TEXCOORD2,
+			               in  float2 inTexCoord1       : TEXCOORD3,
+                           in  float3 inNormal         : TEXCOORD4,
+                           in  float3 inLightDir       : TEXCOORD5,
+                           in  float3 inPositionObject : TEXCOORD6,
 				           out float4 outColor         : COLOR)
 {
 
@@ -211,17 +260,39 @@ void PS_LambertWithShadows(in  float4 inLightSpacePosNear  : TEXCOORD0,
     outColor = (materialAmbient * lightColor) +
 	           (materialDiffuse * lightColor * nDotL) * shadowOcclusion;
 			   
+	float4 FinalText;
+			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,inTexCoord0) * tex2D(densiteMapSampler,inTexCoord1).a;   
+		float4 colorHerbe = tex2D(colorMapSampler,inTexCoord0) * (1.0f - tex2D(densiteMapSampler,inTexCoord1).a);
+    
+		FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+	}
+	else
+	{
+		FinalText = tex2D(colorMapSampler, inTexCoord0);
+	}		   
+			 
 	if(TextureDisable)
-		   outColor *= tex2D(colorMapSampler, inTexCoord);
+		   outColor *= FinalText;
+		   
+	if(FogEnable)
+	{
+		float coeff = saturate((DistanceObject - DistanceMinFog)/RangeMaxFog);
+		outColor = lerp(outColor,ColorFor,coeff);
+	}
 }
 
 
 void PS_LambertWithShadowsPCF2x2(  in  float4 inLightSpacePosNear  : TEXCOORD0,
 								   in  float4 inLightSpacePosFar   : TEXCOORD1,
-								   in  float2 inTexCoord       : TEXCOORD2,
-								   in  float3 inNormal         : TEXCOORD3,
-								   in  float3 inLightDir       : TEXCOORD4,
-								   in  float3 inPositionObject : TEXCOORD5,
+								   in  float2 inTexCoord0       : TEXCOORD2,
+								   in  float2 inTexCoord1       : TEXCOORD3,
+								   in  float3 inNormal         : TEXCOORD4,
+								   in  float3 inLightDir       : TEXCOORD5,
+								   in  float3 inPositionObject : TEXCOORD6,
 								   out float4 outColor         : COLOR)
 {
 
@@ -276,16 +347,38 @@ void PS_LambertWithShadowsPCF2x2(  in  float4 inLightSpacePosNear  : TEXCOORD0,
     outColor = (materialAmbient * lightColor) +
 	           (materialDiffuse * lightColor * nDotL) * shadowOcclusion;
 			   
+	float4 FinalText;
+			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,inTexCoord0) * tex2D(densiteMapSampler,inTexCoord1).a;   
+		float4 colorHerbe = tex2D(colorMapSampler,inTexCoord0) * (1.0f - tex2D(densiteMapSampler,inTexCoord1).a);
+    
+    	FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+	}
+	else
+	{
+		FinalText = tex2D(colorMapSampler, inTexCoord0);
+	}		   
+			 
 	if(TextureDisable)
-		   outColor *= tex2D(colorMapSampler, inTexCoord);
+		   outColor *= FinalText;
+		   
+	if(FogEnable)
+	{
+		float coeff = saturate((DistanceObject - DistanceMinFog)/RangeMaxFog);
+		outColor = lerp(outColor,ColorFor,coeff);
+	}
 }
 
 void PS_LambertWithShadowsPCF3x3(  in  float4 inLightSpacePosNear  : TEXCOORD0,
 								   in  float4 inLightSpacePosFar   : TEXCOORD1,
-								   in  float2 inTexCoord       : TEXCOORD2,
-								   in  float3 inNormal         : TEXCOORD3,
-								   in  float3 inLightDir       : TEXCOORD4,
-								   in  float3 inPositionObject : TEXCOORD5,
+								   in  float2 inTexCoord0       : TEXCOORD2,
+								   in  float2 inTexCoord1       : TEXCOORD3,
+								   in  float3 inNormal         : TEXCOORD4,
+								   in  float3 inLightDir       : TEXCOORD5,
+								   in  float3 inPositionObject : TEXCOORD6,
 								   out float4 outColor         : COLOR)
 {
 
@@ -352,9 +445,32 @@ void PS_LambertWithShadowsPCF3x3(  in  float4 inLightSpacePosNear  : TEXCOORD0,
 	                
     outColor = (materialAmbient * lightColor) +
 	           (materialDiffuse * lightColor * nDotL) * shadowOcclusion;
+	
+	float4 FinalText;
 			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,inTexCoord0) * tex2D(densiteMapSampler,inTexCoord1).a;   
+		float4 colorHerbe = tex2D(colorMapSampler,inTexCoord0) * (1.0f - tex2D(densiteMapSampler,inTexCoord1).a);
+    
+    	FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+	}
+	else
+	{
+		FinalText = tex2D(colorMapSampler, inTexCoord0);
+	}		   
+			 
 	if(TextureDisable)
-		   outColor *= tex2D(colorMapSampler, inTexCoord);
+		   outColor *= FinalText;
+	
+
+	if(FogEnable)
+	{
+		float coeff = saturate((DistanceObject - DistanceMinFog)/RangeMaxFog);
+		outColor = lerp(outColor,ColorFor,coeff);
+	}
+
 }
 
 //-----------------------------------------------------------------------------
@@ -365,8 +481,8 @@ technique Lambert
 {
 	pass
 	{
-		VertexShader = compile vs_2_0 VS_Lambert();
-		PixelShader = compile ps_2_0 PS_Lambert();
+		VertexShader = compile vs_3_0 VS_Lambert();
+		PixelShader = compile ps_3_0 PS_Lambert();
 	}
 }
 
@@ -374,7 +490,7 @@ technique LambertWithShadows
 {
     pass
     {
-        VertexShader = compile vs_2_0 VS_LambertWithShadows();
+        VertexShader = compile vs_3_0 VS_LambertWithShadows();
         PixelShader = compile ps_3_0 PS_LambertWithShadows();
     }
 }
@@ -383,7 +499,7 @@ technique LambertWithShadows2x2PCF
 {
     pass
     {
-        VertexShader = compile vs_2_0 VS_LambertWithShadows();
+        VertexShader = compile vs_3_0 VS_LambertWithShadows();
         PixelShader = compile ps_3_0 PS_LambertWithShadowsPCF2x2();
     }
 }
@@ -392,7 +508,7 @@ technique LambertWithShadows3x3PCF
 {
     pass
     {
-        VertexShader = compile vs_2_0 VS_LambertWithShadows();
+        VertexShader = compile vs_3_0 VS_LambertWithShadows();
         PixelShader = compile ps_3_0 PS_LambertWithShadowsPCF3x3();
     }
 }

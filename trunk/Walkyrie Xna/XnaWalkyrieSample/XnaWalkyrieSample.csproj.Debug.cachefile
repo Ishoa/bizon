@@ -20,6 +20,7 @@ Content\Models\weapon.xnb
 Content\Models\Water_Reservoir.xnb
 Content\Models\bridge.xnb
 Content\Models\Palm.xnb
+Content\Models\Steel Truss.xnb
 Content\Textures\crate.xnb
 Content\Textures\WHTCON.xnb
 Content\Textures\Terrain\DensiteEau.xnb
@@ -78,6 +79,13 @@ Content\Textures\Particules\flare.xnb
 Content\Textures\Interfaces\Teleport.xnb
 Content\Models\monitors.xnb
 Content\Models\gunmap.xnb
+Content\Textures\Terrain\5376-bump.xnb
+Content\Textures\Terrain\5376-diffuse.xnb
+Content\Textures\Terrain\5376-normal.xnb
+Content\Textures\Terrain\5376-v5.xnb
+Content\Textures\Terrain\Grass.xnb
+Content\Textures\Terrain\baseColor.xnb
+Content\Textures\Terrain\pass1Color.xnb
 Content\Models\Japanese Stair Case.xnb
 Content\Models\scannerroom.xnb
 Content\Models\scannermonitors.xnb

@@ -185,3 +185,11 @@ D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Mo
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\rotablade.xnb
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\Monitors_0.xnb
 D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Models\gunmap_0.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Effects\parallax_normal_mapping_DoubleMap.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\5376-bump.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\5376-diffuse.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\5376-normal.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\5376-v5.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\Grass.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\baseColor.xnb
+D:\Bizon Project\trunk\Walkyrie Xna\XnaWalkyrieSample\bin\x86\Release\Content\Textures\Terrain\pass1Color.xnb

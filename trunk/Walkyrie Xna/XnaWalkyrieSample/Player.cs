@@ -26,7 +26,7 @@ namespace XnaWalkyrieSample
         private const float WEAPON_Y_OFFSET = -0.3f;
         private const float WEAPON_Z_OFFSET = -0.50f;
         private const float FIRSTPERSONNYDECAL = 2.0f;
-
+        private const float CONST_WALK_EPSILON = 0.2f;
         public MovingSphere ColliderSphere;
 
         public Model ModelDebugColliderSphere;
@@ -123,12 +123,12 @@ namespace XnaWalkyrieSample
 
             WorldPerso = Matrix.CreateRotationY(MathHelper.ToRadians(180.0f)) * Matrix.CreateFromQuaternion(QuaternionPersoOrientation) * Matrix.CreateTranslation(new Vector3(VectPersoPosition.X, VectPersoPosition.Y - ColliderSphere.Bounds.Radius, VectPersoPosition.Z));
 
-            if (VectPersoPosition == PreviousVectPersoPosition && previousAnim != Iddle)
+            if (Vector3.Distance(VectPersoPosition,PreviousVectPersoPosition) <= CONST_WALK_EPSILON && previousAnim != Iddle)
             {
                 animationPlayer.StartClip(Iddle);
                 previousAnim = Iddle;
             }
-            else if (VectPersoPosition != PreviousVectPersoPosition && previousAnim != Run)
+            else if (Vector3.Distance(VectPersoPosition, PreviousVectPersoPosition) > CONST_WALK_EPSILON && previousAnim != Run)
             {
                 animationPlayer.StartClip(Run);
 
