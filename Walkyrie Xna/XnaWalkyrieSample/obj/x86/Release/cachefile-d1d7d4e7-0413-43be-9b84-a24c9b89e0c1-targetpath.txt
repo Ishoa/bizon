@@ -9,6 +9,7 @@ Content\Effects\skybox.xnb
 Content\Effects\TerrainEffect.xnb
 Content\Effects\TerrainLambertEffect.xnb
 Content\Effects\LambertDoubleMap.xnb
+Content\Effects\parallax_normal_mapping_DoubleMap.xnb
 Content\Fonts\DebugFont.xnb
 Content\Models\EnemyBeast.xnb
 Content\Models\PlayerMarine.xnb
@@ -77,6 +78,13 @@ Content\Textures\Particules\flare.xnb
 Content\Textures\Interfaces\Teleport.xnb
 Content\Models\monitors.xnb
 Content\Models\gunmap.xnb
+Content\Textures\Terrain\5376-bump.xnb
+Content\Textures\Terrain\5376-diffuse.xnb
+Content\Textures\Terrain\5376-normal.xnb
+Content\Textures\Terrain\5376-v5.xnb
+Content\Textures\Terrain\Grass.xnb
+Content\Textures\Terrain\baseColor.xnb
+Content\Textures\Terrain\pass1Color.xnb
 Content\Models\Japanese Stair Case.xnb
 Content\Models\scannerroom.xnb
 Content\Models\scannermonitors.xnb

@@ -170,10 +170,10 @@ bool CSceneShader::CreationObjet()
 	///////////////////////////////////////////////////////////////////////////
 	// compilation du vertex shader
 	s = D3DXCompileShaderFromFile("..\\Shader\\BasicTransformAndLightningSpecular.fx",NULL,NULL,"VSmain","vs_2_0",0,&pShadObj,&pErrMsg,&m_pConstantTableVertexShader);
-	if FAILED(s) {
-		//char *ErrMsg = (char *)(pErrMsg ? pErrMsg->GetBufferPointer() : DXGetErrorDescription9(s));
-		Console<<" HLSL compilation Vertex Shader error : "<<endl;
-		//SAFE_RELEASE(pErrMsg);	
+	if FAILED(s) {/*
+		char *ErrMsg = (char *)(pErrMsg ? pErrMsg->GetBufferPointer() : DXGetErrorDescription9(s));
+		Console<<" HLSL compilation Vertex Shader error : "<<ErrMsg<<endl;
+		SAFE_RELEASE(pErrMsg);*/	
 		return false;
 	}
 	SAFE_RELEASE(pErrMsg);	
@@ -183,10 +183,10 @@ bool CSceneShader::CreationObjet()
 	///////////////////////////////////////////////////////////////////////////
 	// compilation du pixel shader
 	s = D3DXCompileShaderFromFile("..\\Shader\\BasicTransformAndLightningSpecular.fx",NULL,NULL,"PSmain","ps_2_0",0,&pShadObj,&pErrMsg,&m_pConstantTablePixelShader);
-	if FAILED(s) {
-		//char *ErrMsg = (char *)(pErrMsg ? pErrMsg->GetBufferPointer() : DXGetErrorDescription9(s));
-		Console<<" HLSL compilation Pixel Shader error : "<<endl;
-		//SAFE_RELEASE(pErrMsg);	
+	if FAILED(s) {/*
+		char *ErrMsg = (char *)(pErrMsg ? pErrMsg->GetBufferPointer() : DXGetErrorDescription9(s));
+		Console<<" HLSL compilation Pixel Shader error : "<<ErrMsg<<endl;
+		SAFE_RELEASE(pErrMsg);	*/
 		return false;
 	}
 	SAFE_RELEASE(pErrMsg);	

@@ -3,7 +3,6 @@
 
 #include "VariableGlobale.h"
 #include "VariableGlobalDX.h"
-#include <dshow.h>
 
 class CInstanceVideo
 {

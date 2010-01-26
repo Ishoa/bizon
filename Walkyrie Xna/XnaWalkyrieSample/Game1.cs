@@ -113,7 +113,7 @@ namespace OCTreeTest
         // Constante Caméra
         private const float CAMERA_FOV = 90.0f;
         private const float CAMERA_ZNEAR = 0.01f;
-        private const float CAMERA_ZFAR = 3000.0f;
+        private const float CAMERA_ZFAR = 5000.0f;
         private const float CAMERA_OFFSET = 1.5f;
 
         //##########################################################
@@ -132,7 +132,7 @@ namespace OCTreeTest
         private bool displayShadowMap;
         private bool displayShadows;
         private float aspectRatio;
-        private float FocaleCameraNear = 350.0f;
+        private float FocaleCameraNear = 400.0f;
         private float FocaleCameraFar =  1200.0f;
         private Dictionary<int, Texture2D> modelTextures;
         private Dictionary<int, Vector3> modelMaterials;
@@ -182,7 +182,7 @@ namespace OCTreeTest
         //##########################################################
         // Données pour la création d'un environnement texturé
         Environnement myEnvironnement;
-
+        bool affichageEnv = true;
         
 
         /*##########################################################*/
@@ -192,8 +192,8 @@ namespace OCTreeTest
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            displayShadowMap = false;
-            displayShadows = false;
+            displayShadowMap = true;
+            displayShadows = true;
             LightRotation = false;
 
             shadowTechnique = ShadowTechnique.ShadowMappingWith3x3PercentageCloserFiltering;
@@ -246,11 +246,11 @@ namespace OCTreeTest
             
 
             // Initialize material settings for the floor.
-            material.Ambient = new Color(new Vector4(0.6f, 0.6f, 0.6f, 1.0f));
-            material.Diffuse = new Color(new Vector4(0.8f, 0.8f, 0.8f, 1.0f));
+            material.Ambient = new Color(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
+            material.Diffuse = new Color(new Vector4(0.9f, 0.9f, 0.9f, 1.0f));
             material.Emissive = Color.Black;
             material.Specular = Color.White;
-            material.Shininess = 90.0f;
+            material.Shininess = 30.0f;
 
             MatrixCaisse[0] = Matrix.CreateTranslation(50.0f, -295.0f, 50.0f);
             MatrixCaisse[1] = Matrix.CreateTranslation(100.0f, -295.0f, -50.0f);
@@ -278,12 +278,10 @@ namespace OCTreeTest
             PositionTeleport[0] = new Vector3(-400.0f, -295.0f, 0.0f);
             PositionTeleport[1] = new Vector3(-400.0f, -435.0f, 0.0f);
 
-            MatrixGunship = Matrix.CreateScale(34.0f) * Matrix.CreateRotationX(-1.57f) * Matrix.CreateTranslation(0.0f, -300.0f, -650.0f);
+            MatrixGunship = Matrix.CreateScale(34.0f) * Matrix.CreateRotationX(-1.57f) * Matrix.CreateTranslation(0.0f, -170.0f, 800.0f);
             MatrixRotateBlade = Matrix.CreateRotationY(RotationBlade) * MatrixGunship;
 
-            MatrixTerrain = Matrix.CreateScale(TerrainScale, TerrainBumppiness, TerrainScale) * Matrix.CreateTranslation(0.0f, HauteurOriginTerrain, -275.0f);
-
-            
+            MatrixTerrain = Matrix.CreateScale(TerrainScale, TerrainBumppiness, TerrainScale) * Matrix.CreateTranslation(0.0f, HauteurOriginTerrain, -275.0f);       
 
             MySkyBox = new XNAWalkyrie.Utility.SkyBox(Utility.Game);
             MySkyBox.Initialize();
@@ -323,6 +321,8 @@ namespace OCTreeTest
             Bridge = Content.Load<Model>(@"Models\bridge");
             Escalier = Content.Load<Model>(@"Models\Japanese Stair Case");
             Palmier = Content.Load<Model>(@"Models\Palm");
+            //Palmier = Content.Load<Model>(@"Models\Steel Truss");
+            
             ScannerRoom = Content.Load<Model>(@"Models\scannerroom");
             ScannerMonitor = Content.Load<Model>(@"Models\scannermonitors");
             Gunship = Content.Load<Model>(@"Models\GunshipWhole");
@@ -354,111 +354,18 @@ namespace OCTreeTest
 
             Terrain.SetTexture(Herbe);
 
-            foreach (ModelMesh mesh in Terrain.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
-                }
-            }
+            ConfigureModelShadow(Terrain);
 
 
             //############################ Shadow Map ##############################
 
-            foreach (ModelMesh mesh in scene.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
-                }
-            }
-
-            
-            foreach (ModelMesh mesh in Palmier.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                    {
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-                        if (modelTextures[mesh.GetHashCode()] == null)
-                        {
-                            modelMaterials[part.GetHashCode()] = basicEffect.DiffuseColor;
-                            part.Effect = effectLambert.Clone(GraphicsDevice);
-                        }
-                        else
-                          part.Effect = effectLambert;
-                    }
-                    else
-                        part.Effect = effectLambert;
-                    
-                }
-            }
-            
-            foreach (ModelMesh mesh in Escalier.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
-                }
-            }
-
-            foreach (ModelMesh mesh in Reservoir.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
-                }
-            }
-
-            foreach (ModelMesh mesh in Caisse.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
-                }
-            }
-
-            
-            foreach (ModelMesh mesh in Bridge.Meshes)
-            {
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    BasicEffect basicEffect = part.Effect as BasicEffect;
-
-                    if (basicEffect != null)
-                        modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
-
-                    part.Effect = effectLambert;
-                }
-            }
+            ConfigureModelShadow(scene);
+            ConfigureModelShadow(Gunship);
+            ConfigureModelShadow(Palmier);
+            ConfigureModelShadow(Escalier);
+            ConfigureModelShadow(Reservoir);
+            ConfigureModelShadow(Caisse);
+            ConfigureModelShadow(Bridge);
             
             //############################ Construction Octree ###########################
 
@@ -540,7 +447,7 @@ namespace OCTreeTest
                     sceneOct.GetIntersectingPolygon(ref direction, out ResultatIntersection);
 
 
-                    if (ResultatIntersection.IntersectType == OCTreeIntersectionType.Inside && ResultatIntersection.IntersectType != OCTreeIntersectionType.None)
+                    if (ResultatIntersection.IntersectType == OCTreeIntersectionType.Inside && ResultatIntersection.IntersectType != OCTreeIntersectionType.None && ResultatIntersection.IntersectionPoint.Y <= -260.0f)
                     {
                         MatrixPalmier[i] = Matrix.CreateScale(0.1f) * Matrix.CreateTranslation(ResultatIntersection.IntersectionPoint);
                         bPalmier = true;
@@ -611,13 +518,42 @@ namespace OCTreeTest
 
         }
 
+        //############################################################
+        void ConfigureModelShadow(Model model)
+        {
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                foreach (ModelMeshPart part in mesh.MeshParts)
+                {
+                    BasicEffect basicEffect = part.Effect as BasicEffect;
+
+                    if (basicEffect != null)
+                    {
+                        if (!modelTextures.ContainsKey(mesh.GetHashCode()))
+                            modelTextures[mesh.GetHashCode()] = basicEffect.Texture;
+                        if (modelTextures[mesh.GetHashCode()] == null)
+                        {
+                            modelMaterials[part.GetHashCode()] = basicEffect.DiffuseColor;
+                            part.Effect = effectLambert.Clone(GraphicsDevice);
+                        }
+                        else
+                            part.Effect = effectLambert;
+                    }
+                    else
+                        part.Effect = effectLambert;
+
+                }
+            }
+        }
+
+        //############################################################
         protected override void UnloadContent()
         {
 
             base.UnloadContent();
         }
 
-
+        //############################################################
         public void PerformCollisionCamera(Vector3 OldPosition, Vector3 Velocity, out Vector3 NewPosition)
         {
 
@@ -667,7 +603,7 @@ namespace OCTreeTest
             Utility.Camera.CurrentBehavior = behavior;
         }
 
-
+        //############################################################
         public void UpdateParticuleBilboard(Particule p,GameTime gameTime)
         {
             ParticuleBilboard pb = (ParticuleBilboard)p;
@@ -1042,6 +978,8 @@ namespace OCTreeTest
                  
                 
             }
+            if (Utility.InputState.IsKeyPress(Keys.F6))
+                affichageEnv = !affichageEnv;
 
             if (Utility.InputState.IsKeyPress(Keys.F1))
                 shadowTechnique = ShadowTechnique.ShadowMapping;
@@ -1349,6 +1287,20 @@ namespace OCTreeTest
                 myScene.Add(ModelEnemy);
             }
 
+            ShadowMap.ModelAndMatrix ModelGunship;
+            ModelGunship.model = Gunship;
+            ModelGunship.matrix = MatrixGunship;
+            ModelGunship.type = ShadowMap.TypeModel.Fixe;
+            ModelGunship.animationPlayer = null;
+            myScene.Add(ModelGunship);
+
+            ShadowMap.ModelAndMatrix ModelRotateBlade;
+            ModelRotateBlade.model = RotateBlade;
+            ModelRotateBlade.matrix = MatrixRotateBlade;
+            ModelRotateBlade.type = ShadowMap.TypeModel.Fixe;
+            ModelRotateBlade.animationPlayer = null;
+            myScene.Add(ModelRotateBlade);
+
             shadowMapNear.Begin(GraphicsDevice);
             shadowMapNear.Draw(myScene);
             shadowMapNear.End();
@@ -1394,8 +1346,8 @@ namespace OCTreeTest
 
                 if (displayShadows)
                 {
-                    WalkyrieFog.FogColor = Color.TransparentBlack;//Color.DarkGray;
-                    WalkyrieFog.FogEnd = FocaleCameraFar;
+                    WalkyrieFog.FogColor = Color.Black;//Color.DarkGray;
+                    WalkyrieFog.FogEnd = FocaleCameraFar - 100.0f;
                 }
                 else
                 {
@@ -1416,36 +1368,37 @@ namespace OCTreeTest
                 else
                 {
 
-                    myEnvironnement.Draw(gameTime);
-                    
-                    //DrawShadowModel(scene, Matrix.Identity);
-                    
-                    //DrawShadowModel(Reservoir, MatrixReservoir);
+                    if (affichageEnv)
+                        myEnvironnement.Draw(gameTime);
+
+                    DrawShadowModel(Terrain, MatrixTerrain, true);
+
+
+                    DrawShadowModel(scene, Matrix.Identity, false);
+
+                    DrawShadowModel(Reservoir, MatrixReservoir, false);
 
                     
                     for (int i = 0; i < NB_Caisse; i++)
-                        DrawShadowModel(Caisse, MatrixCaisse[i]);
-                    /*
-                    //DrawTerrainShadow();
-                    DrawShadowModel(Terrain, MatrixTerrain);
+                        DrawShadowModel(Caisse, MatrixCaisse[i], false);
+                    
 
                     for (int i = 0; i < NB_Enemy; i++)
                         enemy[i].Draw(gameTime);
 
                     for (int i = 0; i < NB_Bridge; i++)
-                        DrawShadowModel(Bridge, MatrixBridge[i]);
+                        DrawShadowModel(Bridge, MatrixBridge[i], false);
 
-                    DrawShadowModel(Escalier, MatrixEscalier);
+                    DrawShadowModel(Escalier, MatrixEscalier, false);
 
                     for (int i = 0; i < NB_Palmier; i++)
-                        DrawShadowModel(Palmier, MatrixPalmier[i]);
-                    */
+                        DrawShadowModel(Palmier, MatrixPalmier[i], false);
 
-                    //ModelExtensions.Draw(Gunship, MatrixGunship);
-                    //ModelExtensions.Draw(RotateBlade, MatrixRotateBlade);
+                    DrawShadowModel(Gunship, MatrixGunship,false);
+                    ModelExtensions.Draw(RotateBlade, MatrixRotateBlade);
+
                     //ModelExtensions.Draw(RotateBlade, Matrix.CreateRotationZ(0.75f) * MatrixRotateBlade);
-
-                    
+  
                 }
 
                 player.Draw(gameTime);
@@ -1460,6 +1413,17 @@ namespace OCTreeTest
             //if (displayShadowMap)
                 //DrawShadowMap();
 
+            DrawInfos();
+
+            base.Draw(gameTime);
+
+            DrawInterface();
+
+            UpdateFrameRate(gameTime);
+        }
+
+        private void DrawInfos()
+        {
             this.spriteBatch.DrawStringImmediate(
                 debugFont, Utility.Camera.OnGround ? "On Ground" : "Falling",
                 Vector2.One * 20,
@@ -1467,22 +1431,23 @@ namespace OCTreeTest
 
             this.spriteBatch.DrawStringImmediate(
                 debugFont, Utility.InputState.IsButtonJoYstickPCDown(PlayerIndex.One, 0) ? "Button Ok Down" : "Button Ok Not Down",
-                new Vector2(20,40),
+                new Vector2(20, 40),
                 Color.White);
-  
+
             System.Text.StringBuilder buffer = new System.Text.StringBuilder();
 
             buffer.AppendFormat("FPS: {0}\n", framesPerSecond);
-
+            /*
             buffer.AppendFormat("Nb Particules Bilboard: {0}\n", Utility.ParticuleManager.NbParticuleBilboard);
 
+            
             //buffer.AppendFormat("Nb Particules Point: {0}\n", Utility.ParticuleManager.NbParticulePoint);
             buffer.AppendFormat("Nb Particules System: {0}\n", Utility.ParticuleManager.NbParticuleSystem());
-            
+
             buffer.AppendFormat("  XRotation: {0} YRotation:{1}\n",
                                 player.XRotation.ToString("g4"),
                                 player.YRotation.ToString("g4"));
-            
+
             buffer.AppendFormat("  XDelta: {0} YDelta:{1}\n",
                     player.XDelta.ToString("g4"),
                     player.YDelta.ToString("g4"));
@@ -1503,11 +1468,11 @@ namespace OCTreeTest
             buffer.AppendFormat("  ShadowMap Bias :{0}\n",
                     shadowMapNear.DepthBias.ToString("g4"));
 
-            for(int i = 0; i<NB_Enemy;i++)
+            for (int i = 0; i < NB_Enemy; i++)
                 buffer.AppendFormat("  Enemy {0} // endurance :{1}\n",
                         i.ToString("g4"),
-                        enemy[i].Endurance.ToString("g4")); 
-            
+                        enemy[i].Endurance.ToString("g4"));
+            */
             string text = buffer.ToString();
 
 
@@ -1518,11 +1483,6 @@ namespace OCTreeTest
             GraphicsDevice.RenderState.DepthBufferEnable = true;
             GraphicsDevice.RenderState.AlphaBlendEnable = false;
 
-            base.Draw(gameTime);
-
-            DrawInterface();
-
-            UpdateFrameRate(gameTime);
         }
 
         private void DrawShadowMap()
@@ -1557,27 +1517,35 @@ namespace OCTreeTest
             Utility.Camera.Perspective(CAMERA_FOV, aspectRatio, CAMERA_ZNEAR, CAMERA_ZFAR);
         }
 
-
-        private void DrawShadowModel(Model model, Matrix world)
+        private void DrawShadowModel(Model model, Matrix world, bool terrain)
         {
             Matrix[] bones = model.GetAboluteBoneTransforms();
             foreach (ModelMesh m in model.Meshes)
             {
 
                 if (modelTextures[m.GetHashCode()] != null)
-                    DrawModelShadowTexture(m, world, bones[m.ParentBone.Index]);
+                    DrawModelShadowTexture(m, world, bones[m.ParentBone.Index], terrain);
                 else
                     DrawModelShadowMaterial(m, world, bones[m.ParentBone.Index]);
-               m.Draw();
+               m.Draw(SaveStateMode.SaveState);
             }
 
         }
         
-        private void DrawModelShadowTexture(ModelMesh m, Matrix world, Matrix bones)
+        private void DrawModelShadowTexture(ModelMesh m, Matrix world, Matrix bones, bool terrain)
         {
             foreach (ModelMeshPart mp in m.MeshParts)
             {
                 Effect e = mp.Effect;
+
+                if (terrain)
+                {
+                    e.Parameters["TextureDensite"].SetValue(true);
+                    e.Parameters["densiteMap"].SetValue(DensiteTerre);
+                    e.Parameters["colorDensiteMap"].SetValue(TextureTerre);
+                }
+                else
+                    e.Parameters["TextureDensite"].SetValue(false);
 
                 if (!displayShadows)
                 {
@@ -1631,11 +1599,17 @@ namespace OCTreeTest
                 e.Parameters["colorMap"].SetValue(modelTextures[m.GetHashCode()]);
                 e.Parameters["TextureDisable"].SetValue(true);
 
+                e.Parameters["FogEnable"].SetValue(false);
+                /*
+                e.Parameters["ColorFor"].SetValue(new Vector4(0.1f,0.1f,0.1f,1.0f));
+                e.Parameters["RangeMaxFog"].SetValue(500.0f);
+                e.Parameters["DistanceMinFog"].SetValue(50.0f);
+                */
+
                 e.CommitChanges();
             }
 
         }
-
 
         private void DrawModelShadowMaterial(ModelMesh m, Matrix world, Matrix bones)
         {

@@ -120,7 +120,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="libsndfile-1.lib d3d9.lib d3dx9.lib winmm.lib comctl32.lib shlwapi.lib OpenAL32.lib"
+				AdditionalDependencies="libsndfile-1.lib dxerr9.lib d3d9.lib d3dx9.lib winmm.lib comctl32.lib shlwapi.lib OpenAL32.lib"
 				OutputFile="$(InputDir)\$(ProjectName).lib"
 			/>
 			<Tool

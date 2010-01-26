@@ -47,9 +47,15 @@ float texelSizeFar;
 float depthNear;
 
 bool TextureDisable;
+bool TextureDensite;
 
 Light light;
 Material material;
+
+bool FogEnable;
+float4 ColorFor;
+float RangeMaxFog;
+float DistanceMinFog;
 
 //-----------------------------------------------------------------------------
 // Textures.
@@ -86,6 +92,26 @@ sampler2D heightMap = sampler_state
     MaxAnisotropy = 16;
 };
 
+texture densiteMap;
+sampler densiteMapSampler = sampler_state
+{
+	Texture = <densiteMap>;
+    MinFilter = Anisotropic;
+	MagFilter = Linear;
+    MipFilter = Linear;
+    MaxAnisotropy = 16;
+};
+
+texture colorDensiteMap;
+sampler colorDensiteMapSampler = sampler_state
+{
+	Texture = <colorDensiteMap>;
+    MinFilter = Anisotropic;
+	MagFilter = Linear;
+    MipFilter = Linear;
+    MaxAnisotropy = 16;
+};
+
 texture shadowMapNear;
 sampler shadowMapNearSampler = sampler_state
 {
@@ -112,6 +138,8 @@ sampler shadowMapFarSampler = sampler_state
 
 };
 
+
+
 //-----------------------------------------------------------------------------
 // Vertex Shaders.
 //-----------------------------------------------------------------------------
@@ -119,7 +147,8 @@ sampler shadowMapFarSampler = sampler_state
 struct VS_INPUT
 {
 	float3 position : POSITION;
-	float2 texCoord : TEXCOORD0;
+	float2 texCoord0 : TEXCOORD0;
+	float2 texCoord1 : TEXCOORD1;
 	float3 normal : NORMAL;
     float4 tangent : TANGENT;
 };
@@ -127,12 +156,13 @@ struct VS_INPUT
 struct VS_OUTPUT_DIR
 {
 	float4 position			: POSITION;
-	float2 texCoord			: TEXCOORD0;
-	float3 halfVector		: TEXCOORD1;
-	float3 lightDir			: TEXCOORD2;
-    float4 LightSpacePosNear	: TEXCOORD3;
-    float4 LightSpacePosFar		: TEXCOORD4;
-    float3 PositionObject		: TEXCOORD5;
+	float2 texCoord0			: TEXCOORD0;
+	float2 texCoord1			: TEXCOORD1;
+	float3 halfVector		: TEXCOORD2;
+	float3 lightDir			: TEXCOORD3;
+    float4 LightSpacePosNear	: TEXCOORD4;
+    float4 LightSpacePosFar		: TEXCOORD5;
+    float3 PositionObject		: TEXCOORD6;
 	float4 diffuse : COLOR0;
 	float4 specular : COLOR1;
 };
@@ -140,12 +170,13 @@ struct VS_OUTPUT_DIR
 struct VS_OUTPUT_POINT
 {
 	float4 position			: POSITION;
-	float2 texCoord			: TEXCOORD0;
-	float3 viewDir			: TEXCOORD1;
-	float3 lightDir			: TEXCOORD2;
-    float4 LightSpacePosNear	: TEXCOORD3;
-    float4 LightSpacePosFar		: TEXCOORD4;
-    float3 PositionObject		: TEXCOORD5;
+	float2 texCoord0			: TEXCOORD0;
+	float2 texCoord1			: TEXCOORD1;
+	float3 viewDir			: TEXCOORD2;
+	float3 lightDir			: TEXCOORD3;
+    float4 LightSpacePosNear	: TEXCOORD4;
+    float4 LightSpacePosFar		: TEXCOORD5;
+    float3 PositionObject		: TEXCOORD6;
 	float4 diffuse : COLOR0;
 	float4 specular : COLOR1;
 };
@@ -153,13 +184,14 @@ struct VS_OUTPUT_POINT
 struct VS_OUTPUT_SPOT
 {
 	float4 position : POSITION;
-	float2 texCoord : TEXCOORD0;
-	float3 viewDir : TEXCOORD1;
-	float3 lightDir : TEXCOORD2;
-	float3 spotDir : TEXCOORD3;
-    float4 LightSpacePosNear	: TEXCOORD4;
-    float4 LightSpacePosFar		: TEXCOORD5;
-    float3 PositionObject		: TEXCOORD6;
+	float2 texCoord0 : TEXCOORD0;
+	float2 texCoord1 : TEXCOORD1;
+	float3 viewDir : TEXCOORD2;
+	float3 lightDir : TEXCOORD3;
+	float3 spotDir : TEXCOORD4;
+    float4 LightSpacePosNear	: TEXCOORD5;
+    float4 LightSpacePosFar		: TEXCOORD6;
+    float3 PositionObject		: TEXCOORD7;
 	float4 diffuse : COLOR0;
 	float4 specular : COLOR1;
 };
@@ -184,7 +216,8 @@ VS_OUTPUT_DIR VS_DirLighting(VS_INPUT IN)
 
 	
 	OUT.position = mul(float4(IN.position, 1.0f), worldViewProjectionMatrix);
-	OUT.texCoord = IN.texCoord;
+	OUT.texCoord0 = IN.texCoord0;
+	OUT.texCoord1 = IN.texCoord1;
 	OUT.halfVector = mul(halfVector, tbnMatrix);
 	OUT.lightDir = mul(lightDir, tbnMatrix);
 	
@@ -215,7 +248,8 @@ VS_OUTPUT_POINT VS_PointLighting(VS_INPUT IN)
 	                              t.z, b.z, n.z);
 			
 	OUT.position = mul(float4(IN.position, 1.0f), worldViewProjectionMatrix);
-	OUT.texCoord = IN.texCoord;
+	OUT.texCoord0 = IN.texCoord0;
+	OUT.texCoord1 = IN.texCoord1;
 	OUT.viewDir = mul(viewDir, tbnMatrix);
 	OUT.lightDir = mul(lightDir, tbnMatrix);
 	
@@ -246,7 +280,8 @@ VS_OUTPUT_SPOT VS_SpotLighting(VS_INPUT IN)
 	                              t.z, b.z, n.z);
 		       
     OUT.position = mul(float4(IN.position, 1.0f), worldViewProjectionMatrix);
-	OUT.texCoord = IN.texCoord;
+	OUT.texCoord0 = IN.texCoord0;
+	OUT.texCoord1 = IN.texCoord1;
 	OUT.viewDir = mul(viewDir, tbnMatrix);
 	OUT.lightDir = mul(lightDir, tbnMatrix);
     OUT.spotDir = mul(light.dir, tbnMatrix);
@@ -278,23 +313,24 @@ float PS_ShadowMapLookup(sampler shadowMap, float2 texCoord, float2 offset, floa
 
 float4 PS_DirLighting(VS_OUTPUT_DIR IN, uniform bool bParallax) : COLOR
 {
-    float2 texCoord;
+    float2 texCoord0,texCoord1;
     float3 h = normalize(IN.halfVector);
 
     if (bParallax == true)
     {
-        float height = tex2D(heightMap, IN.texCoord).r;
-        
+        float height = tex2D(heightMap, IN.texCoord0).r;
         height = height * scaleBias.x + scaleBias.y;
-        texCoord = IN.texCoord + (height * h.xy);
+        texCoord0 = IN.texCoord0 + (height * h.xy);
     }
     else
     {
-        texCoord = IN.texCoord;
+        texCoord0 = IN.texCoord0;
+        
     }
-
+    
+	texCoord1 = IN.texCoord1;
     float3 l = normalize(IN.lightDir);
-    float3 n = normalize(tex2D(normalMap, texCoord).rgb * 2.0f - 1.0f);
+    float3 n = normalize(tex2D(normalMap, texCoord0).rgb * 2.0f - 1.0f);
     
     float nDotL = saturate(dot(n, l));
     float nDotH = saturate(dot(n, h));
@@ -361,8 +397,31 @@ float4 PS_DirLighting(VS_OUTPUT_DIR IN, uniform bool bParallax) : COLOR
 	float4 color = (material.ambient * (globalAmbient + light.ambient)) +
                    (IN.diffuse * nDotL * shadowOcclusion) + (IN.specular * power * shadowOcclusion);
 
-	color = color * tex2D(colorMap, texCoord);
+	float4 FinalText;
+			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,texCoord0) * tex2D(densiteMapSampler,texCoord1).a;   
+		float4 colorHerbe = tex2D(colorMap,texCoord0)* (1.0f - tex2D(densiteMapSampler,texCoord1).a);
+    
+		FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+
+	}
+	else
+	{
+		FinalText = tex2D(colorMap, texCoord0);
+	}
+	
+	color = color * FinalText;
 	color = float4(color.xyz,1.0f);
+	
+	if(FogEnable)
+	{
+		float coeff = saturate((DistanceObject - DistanceMinFog)/RangeMaxFog);
+		color = lerp(color,ColorFor,coeff);
+	}
+	
 	return color;
 }
 
@@ -373,14 +432,14 @@ float4 PS_PointLighting(VS_OUTPUT_POINT IN, uniform bool bParallax) : COLOR
     
     if (bParallax == true)
     {
-        float height = tex2D(heightMap, IN.texCoord).r;
+        float height = tex2D(heightMap, IN.texCoord0).r;
         
         height = height * scaleBias.x + scaleBias.y;
-        texCoord = IN.texCoord + (height * v.xy);
+        texCoord = IN.texCoord0 + (height * v.xy);
     }
     else
     {
-        texCoord = IN.texCoord;
+        texCoord = IN.texCoord0;
     }
 
     float atten = saturate(1.0f - dot(IN.lightDir, IN.lightDir));
@@ -393,11 +452,90 @@ float4 PS_PointLighting(VS_OUTPUT_POINT IN, uniform bool bParallax) : COLOR
     float nDotH = saturate(dot(n, h));
     float power = (nDotL == 0.0f) ? 0.0f : pow(nDotH, material.shininess);
     
+    float DistanceObject = distance(IN.PositionObject,cameraPos);
+	
+	float4 lightSpacePos;
+	float4 shadowCoord;	
+		
+	if(DistanceObject <= depthNear)
+	{
+		lightSpacePos = IN.LightSpacePosNear;
+		shadowCoord = mul(lightSpacePos, textureScaleBiasNear);
+	}
+	else
+	{
+		lightSpacePos = IN.LightSpacePosFar;
+		shadowCoord = mul(lightSpacePos, textureScaleBiasFar);
+	}
+	
+	float depth = lightSpacePos.z / lightSpacePos.w;
+	
+	float2 ShadowTexCoord = shadowCoord.xy / shadowCoord.w;
+	
+    float shadowOcclusion = 0.0f;
+
+   	if(DistanceObject <=depthNear)
+   	{
+   		
+   		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(0.0f, 0.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(1.0f, 0.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(2.0f, 0.0f), depth, depthBiasNear, texelSizeNear);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(0.0f, 1.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(1.0f, 1.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(2.0f, 1.0f), depth, depthBiasNear, texelSizeNear);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(0.0f, 2.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(1.0f, 2.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(2.0f, 2.0f), depth, depthBiasNear, texelSizeNear);
+		
+	}
+	else
+	{
+
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(0.0f, 0.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(1.0f, 0.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(2.0f, 0.0f), depth, depthBiasFar, texelSizeFar);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(0.0f, 1.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(1.0f, 1.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(2.0f, 1.0f), depth, depthBiasFar, texelSizeFar);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(0.0f, 2.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(1.0f, 2.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(2.0f, 2.0f), depth, depthBiasFar, texelSizeFar);
+
+	}
+		
+	shadowOcclusion /= 9.0f;
+	
 	float4 color = (material.ambient *(globalAmbient + (atten * light.ambient))) +
-                   (IN.diffuse * nDotL * atten) + (IN.specular * power * atten);
+                   (IN.diffuse * nDotL * atten * shadowOcclusion) + (IN.specular * power * atten* shadowOcclusion);
                    
-    color = color * tex2D(colorMap, texCoord);
-    color = float4(color.xyz,1.0f);               
+    	float4 FinalText;
+			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,texCoord) * tex2D(densiteMapSampler,IN.texCoord1).a;   
+		float4 colorHerbe = tex2D(colorMap,texCoord) * (1.0f - tex2D(densiteMapSampler,IN.texCoord1).a);
+    
+		FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+	}
+	else
+	{
+		FinalText = tex2D(colorMap, texCoord);
+	}
+	
+	color = color * FinalText;
+    color = float4(color.xyz,1.0f); 
+    
+    if(FogEnable)
+	{
+		float coeff = saturate((DistanceObject - DistanceMinFog)/RangeMaxFog);
+		color = lerp(color,ColorFor,coeff);
+	}
+	              
 	return color;
 }
 
@@ -408,14 +546,14 @@ float4 PS_SpotLighting(VS_OUTPUT_SPOT IN, uniform bool bParallax) : COLOR
         	
     if (bParallax == true)
     {
-        float height = tex2D(heightMap, IN.texCoord).r;
+        float height = tex2D(heightMap, IN.texCoord0).r;
         
         height = height * scaleBias.x + scaleBias.y;
-        texCoord = IN.texCoord + (height * v.xy);
+        texCoord = IN.texCoord0 + (height * v.xy);
     }
     else
     {
-        texCoord = IN.texCoord;
+        texCoord = IN.texCoord0;
     }
     	
     float atten = saturate(1.0f - dot(IN.lightDir, IN.lightDir));
@@ -434,12 +572,89 @@ float4 PS_SpotLighting(VS_OUTPUT_SPOT IN, uniform bool bParallax) : COLOR
     float nDotH = saturate(dot(n, h));
     float power = (nDotL == 0.0f) ? 0.0f : pow(nDotH, material.shininess);
     
+        float DistanceObject = distance(IN.PositionObject,cameraPos);
+	
+	float4 lightSpacePos;
+	float4 shadowCoord;	
+		
+	if(DistanceObject <= depthNear)
+	{
+		lightSpacePos = IN.LightSpacePosNear;
+		shadowCoord = mul(lightSpacePos, textureScaleBiasNear);
+	}
+	else
+	{
+		lightSpacePos = IN.LightSpacePosFar;
+		shadowCoord = mul(lightSpacePos, textureScaleBiasFar);
+	}
+	
+	float depth = lightSpacePos.z / lightSpacePos.w;
+	
+	float2 ShadowTexCoord = shadowCoord.xy / shadowCoord.w;
+	
+    float shadowOcclusion = 0.0f;
+
+   	if(DistanceObject <=depthNear)
+   	{
+   		
+   		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(0.0f, 0.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(1.0f, 0.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(2.0f, 0.0f), depth, depthBiasNear, texelSizeNear);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(0.0f, 1.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(1.0f, 1.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(2.0f, 1.0f), depth, depthBiasNear, texelSizeNear);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(0.0f, 2.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(1.0f, 2.0f), depth, depthBiasNear, texelSizeNear);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapNearSampler, ShadowTexCoord, float2(2.0f, 2.0f), depth, depthBiasNear, texelSizeNear);
+		
+	}
+	else
+	{
+
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(0.0f, 0.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(1.0f, 0.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(2.0f, 0.0f), depth, depthBiasFar, texelSizeFar);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(0.0f, 1.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(1.0f, 1.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(2.0f, 1.0f), depth, depthBiasFar, texelSizeFar);
+		
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(0.0f, 2.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(1.0f, 2.0f), depth, depthBiasFar, texelSizeFar);
+		shadowOcclusion += PS_ShadowMapLookup(shadowMapFarSampler, ShadowTexCoord, float2(2.0f, 2.0f), depth, depthBiasFar, texelSizeFar);
+
+	}
+		
+	shadowOcclusion /= 9.0f;
+	
     float4 color = (material.ambient * (globalAmbient + (atten * light.ambient))) +
-                   (IN.diffuse * nDotL * atten) + (IN.specular * power * atten);
+                   (IN.diffuse * nDotL * atten * shadowOcclusion) + (IN.specular * power * atten * shadowOcclusion);
     
-	color = color * tex2D(colorMap, texCoord);
+		float4 FinalText;
+			   
+	if(TextureDensite)
+	{
+	    float4 colorTerre = tex2D(colorDensiteMapSampler,texCoord) * tex2D(densiteMapSampler,IN.texCoord1).a;   
+		float4 colorHerbe = tex2D(colorMap,texCoord) * (1.0f - tex2D(densiteMapSampler,IN.texCoord1).a);
+    
+		FinalText = colorTerre + colorHerbe;
+		FinalText.a = 1.0f;
+	}
+	else
+	{
+		FinalText = tex2D(colorMap, texCoord);
+	}
+	
+	color = color * FinalText;
 	color = float4(color.xyz,1.0f); 
 	
+	if(FogEnable)
+	{
+		float coeff = saturate((DistanceObject - DistanceMinFog)/RangeMaxFog);
+		color = lerp(color,ColorFor,coeff);
+	}
 	return color;
 }
 

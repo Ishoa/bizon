@@ -23,37 +23,45 @@ namespace XNAWalkyrie
                                   VertexElementFormat.Vector2,
                                   VertexElementMethod.Default,
                                   VertexElementUsage.TextureCoordinate, 0),
-
+                                  
                 new VertexElement(0, sizeof(float) * 5,
+                                  VertexElementFormat.Vector2,
+                                  VertexElementMethod.Default,
+                                  VertexElementUsage.TextureCoordinate, 1),
+
+                new VertexElement(0, sizeof(float) * 7,
                                   VertexElementFormat.Vector3,
                                   VertexElementMethod.Default,
                                   VertexElementUsage.Normal, 0),
 
-                new VertexElement(0, sizeof(float) * 8,
+                new VertexElement(0, sizeof(float) * 10,
                                   VertexElementFormat.Vector4,
                                   VertexElementMethod.Default,
                                   VertexElementUsage.Tangent, 0)
             };
 
             public Vector3 Position;
-            public Vector2 TexCoord;
+            public Vector2 TexCoord0;
+            public Vector2 TexCoord1;
             public Vector3 Normal;
             public Vector4 Tangent;
 
             public NormalMappedVertex(Vector3 position,
-                                      Vector2 texCoord,
+                                      Vector2 texCoord0,
+                                      Vector2 texCoord1,
                                       Vector3 normal,
                                       Vector4 tangent)
             {
                 Position = position;
-                TexCoord = texCoord;
+                TexCoord0 = texCoord0;
+                TexCoord1 = texCoord1;
                 Normal = normal;
                 Tangent = tangent;
             }
 
             public static int SizeInBytes
             {
-                get { return sizeof(float) * 12; }
+                get { return sizeof(float) * 14; }
             }
 
             /// <summary>
@@ -179,19 +187,25 @@ namespace XNAWalkyrie
         public abstract class NormalMappedObject
         {
             protected Texture2D nullTexture;
+
             public Texture2D textureColorMap;
             public Texture2D textureNormalMap;
             public Texture2D textureHeightMap;
 
+            public Texture2D textureDensiteMap;
+            public Texture2D textureDensiteColorMap;
+
+            public bool TextureDensite;
+
+            public Vector2 scaleBias;
+
             public ShadowMap ShadowMapNear;
             public ShadowMap ShadowMapFar;
             public float FocaleCameraNear;
+            public bool disableColorMap;
+            public bool disableParallax;
 
             protected Effect effectParrallalaxMapping;
-
-            protected bool disableColorMap;
-            protected bool disableParallax;
-            protected Vector2 scaleBias;
 
             protected Light light;
             protected Material material;
@@ -236,6 +250,8 @@ namespace XNAWalkyrie
                 //effectParrallalaxMapping = Utility.Game.Content.Load<Effect>(@"Effects\parallax_normal_mapping");
                 effectParrallalaxMapping = Utility.Game.Content.Load<Effect>(@"Effects\parallax_normal_mapping_DoubleMap"); 
                 
+
+
                 nullTexture = new Texture2D(Utility.Game.GraphicsDevice, 1, 1, 0, TextureUsage.None, SurfaceFormat.Color);
 
                 Color[] pixels = { Color.White };
@@ -244,7 +260,10 @@ namespace XNAWalkyrie
                 textureColorMap = nullTexture;
                 textureNormalMap = nullTexture;
                 textureHeightMap = nullTexture;
-
+                
+                textureDensiteMap = nullTexture;
+                textureDensiteColorMap = nullTexture;
+                TextureDensite = false;
                 
             }
 
@@ -271,6 +290,13 @@ namespace XNAWalkyrie
                 effectParrallalaxMapping.Parameters["depthNear"].SetValue(FocaleCameraNear);
                 effectParrallalaxMapping.Parameters["texelSizeNear"].SetValue(ShadowMapNear.TexelSize);
                 effectParrallalaxMapping.Parameters["texelSizeFar"].SetValue(ShadowMapFar.TexelSize);
+
+                effectParrallalaxMapping.Parameters["FogEnable"].SetValue(false);
+/*
+                effectParrallalaxMapping.Parameters["ColorFor"].SetValue(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
+                effectParrallalaxMapping.Parameters["RangeMaxFog"].SetValue(500.0f);
+                effectParrallalaxMapping.Parameters["DistanceMinFog"].SetValue(50.0f);
+*/
             }
 
             public virtual void Draw(GameTime gameTime)
@@ -287,6 +313,17 @@ namespace XNAWalkyrie
                     effectParrallalaxMapping.Parameters["colorMapTexture"].SetValue((disableColorMap) ? nullTexture : textureColorMap);
                     effectParrallalaxMapping.Parameters["normalMapTexture"].SetValue(textureNormalMap);
                     effectParrallalaxMapping.Parameters["heightMapTexture"].SetValue(textureHeightMap);
+
+
+                    if (TextureDensite)
+                    {
+                        effectParrallalaxMapping.Parameters["TextureDensite"].SetValue(true);
+                        effectParrallalaxMapping.Parameters["densiteMap"].SetValue(textureDensiteMap);
+                        effectParrallalaxMapping.Parameters["colorDensiteMap"].SetValue(textureDensiteColorMap);
+                    }
+                    else
+                        effectParrallalaxMapping.Parameters["TextureDensite"].SetValue(false);
+ 
 
                     // Set the shader parallax scale and bias parameter.
                     effectParrallalaxMapping.Parameters["scaleBias"].SetValue(scaleBias);
@@ -426,18 +463,18 @@ namespace XNAWalkyrie
                     ref textureUpperLeft, ref textureUpperRight, ref textureLowerLeft,
                     ref normal, out tangent);
 
-                vertices[0] = new NormalMappedVertex(posUpperLeft, textureUpperLeft, normal, tangent);
-                vertices[1] = new NormalMappedVertex(posUpperRight, textureUpperRight, normal, tangent);
-                vertices[2] = new NormalMappedVertex(posLowerLeft, textureLowerLeft, normal, tangent);
+                vertices[0] = new NormalMappedVertex(posUpperLeft, textureUpperLeft,textureUpperLeft, normal, tangent);
+                vertices[1] = new NormalMappedVertex(posUpperRight, textureUpperRight, textureUpperRight, normal, tangent);
+                vertices[2] = new NormalMappedVertex(posLowerLeft, textureLowerLeft, textureLowerLeft, normal, tangent);
 
                 NormalMappedVertex.CalcTangent(
                     ref posLowerLeft, ref posUpperRight, ref posLowerRight,
                     ref textureLowerLeft, ref textureUpperRight, ref textureLowerRight,
                     ref normal, out tangent);
 
-                vertices[3] = new NormalMappedVertex(posLowerLeft, textureLowerLeft, normal, tangent);
-                vertices[4] = new NormalMappedVertex(posUpperRight, textureUpperRight, normal, tangent);
-                vertices[5] = new NormalMappedVertex(posLowerRight, textureLowerRight, normal, tangent);
+                vertices[3] = new NormalMappedVertex(posLowerLeft, textureLowerLeft, textureLowerLeft, normal, tangent);
+                vertices[4] = new NormalMappedVertex(posUpperRight, textureUpperRight, textureUpperRight, normal, tangent);
+                vertices[5] = new NormalMappedVertex(posLowerRight, textureLowerRight, textureLowerRight, normal, tangent);
             }
 
 
@@ -457,7 +494,8 @@ namespace XNAWalkyrie
             {
                 Vector3[] VerticesModel = model.GetFlattenedPositionArray();
                 int[] IndicesModel = model.GetFlattenedIndexArray();
-                Vector2[] TextCoordModel = model.GetTexCoordArray(0);
+                Vector2[] TextCoordModel0 = model.GetTexCoordArray(0);
+                Vector2[] TextCoordModel1 = model.GetTexCoordArray(1);
 
                 vertices = new NormalMappedVertex[IndicesModel.Length];
 
@@ -475,24 +513,28 @@ namespace XNAWalkyrie
                     Vector3 normal = Vector3.Cross(BC, AB);
                     normal.Normalize();
 
-                    Vector2 ATexCoord = TextCoordModel[IndicesModel[x * 3 + 0]];
-                    Vector2 BTexCoord = TextCoordModel[IndicesModel[x * 3 + 1]];
-                    Vector2 CTexCoord = TextCoordModel[IndicesModel[x * 3 + 2]];
+                    Vector2 ATexCoord0 = TextCoordModel0[IndicesModel[x * 3 + 0]];
+                    Vector2 BTexCoord0 = TextCoordModel0[IndicesModel[x * 3 + 1]];
+                    Vector2 CTexCoord0 = TextCoordModel0[IndicesModel[x * 3 + 2]];
+
+                    Vector2 ATexCoord1 = TextCoordModel1[IndicesModel[x * 3 + 0]];
+                    Vector2 BTexCoord1 = TextCoordModel1[IndicesModel[x * 3 + 1]];
+                    Vector2 CTexCoord1 = TextCoordModel1[IndicesModel[x * 3 + 2]];
 
                     Vector4 tangent;
                     NormalMappedVertex.CalcTangent(
                                                     ref A,
                                                     ref B,
                                                     ref C,
-                                                    ref ATexCoord,
-                                                    ref BTexCoord,
-                                                    ref CTexCoord,
+                                                    ref ATexCoord0,
+                                                    ref BTexCoord0,
+                                                    ref CTexCoord0,
                                                     ref normal,
                                                     out tangent);
 
-                    vertices[x * 3 + 0] = new NormalMappedVertex(A, ATexCoord, normal, tangent);
-                    vertices[x * 3 + 1] = new NormalMappedVertex(B, BTexCoord, normal, tangent);
-                    vertices[x * 3 + 2] = new NormalMappedVertex(C, CTexCoord, normal, tangent);
+                    vertices[x * 3 + 0] = new NormalMappedVertex(A, ATexCoord0, ATexCoord1, normal, tangent);
+                    vertices[x * 3 + 1] = new NormalMappedVertex(B, BTexCoord0, BTexCoord1, normal, tangent);
+                    vertices[x * 3 + 2] = new NormalMappedVertex(C, CTexCoord0, CTexCoord1, normal, tangent);
                 }
 
             }
