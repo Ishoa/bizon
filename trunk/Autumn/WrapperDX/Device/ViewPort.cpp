@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
 #ifndef _DEVICE3D_
-#include "Device.h"
+#include "WrapperDx/Device/Device.h"
 #endif
 
 #ifndef _VIEW_PORT_
-#include "ViewPort.h"
+#include "WrapperDx/Device/ViewPort.h"
 #endif
 
 ViewPort::ViewPort()

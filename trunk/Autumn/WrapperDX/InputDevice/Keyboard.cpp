@@ -22,7 +22,7 @@ HRESULT Keyboard::Create()
 {
 	D_RETURN( g_pDxInputDevice->CreateDevice(GUID_SysKeyboard, &m_pInputController, NULL) );
 	D_RETURN( m_pInputController->SetDataFormat(&c_dfDIKeyboard) );
-	D_RETURN( m_pInputController->SetCooperativeLevel( g_pInputDevice->GetHandle(), INPUT_COOPLEVEL) );
+	D_RETURN( m_pInputController->SetCooperativeLevel( g_pInputDevice->GetHandle(), KEYBOARD_COOPLEVEL) );
 
 	return S_OK;
 }

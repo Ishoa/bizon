@@ -72,7 +72,7 @@ void EngineCamera::StrafeRight( const float & _fDeltaMove )
 
 void EngineCamera::MoveLookAt( const Vector2 & _f2DeltaMove )
 {
-	m_vAt += GetLateralDirection() * _f2DeltaMove.X();
-	m_vAt += m_vUp * _f2DeltaMove.Y();
+	m_vAt -= GetLateralDirection() * _f2DeltaMove.X() * 40.0f;
+	m_vAt += m_vUp * _f2DeltaMove.Y() * 40.0f;
 	BuildViewMatrix();
 }

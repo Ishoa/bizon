@@ -15,6 +15,7 @@ protected:
 	DIMOUSESTATE m_Data;
 	Vector2 m_vScreenPosition;
 	Vector2 m_vDeltaScreenPosition;
+	bool m_bDirty;
 
 public:
 	Mouse();
@@ -25,6 +26,9 @@ public:
 	int		LeftClick() const;
 	int		RightClick() const;
 	long	GetWheel() const;
+	long	GetDeltaX() const;
+	long	GetDeltaY() const;
+	void	SetPosition(int _x, int _y);
 	const Vector2 & GetPosition() const;
 	const Vector2 & GetDeltaPosition() const;
 

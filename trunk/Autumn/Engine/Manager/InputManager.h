@@ -30,6 +30,8 @@ public:
 	int				KeyPressed(int _iTouche) const;
 	int				LeftButtonPressed() const;
 	int				RightButtonPressed() const;
+
+	void			SetMousePosition(int _x, int _y);
 	const Vector2 & GetMousePosition() const;
 	const Vector2 & GetMouseDeltaPosition() const;
 };

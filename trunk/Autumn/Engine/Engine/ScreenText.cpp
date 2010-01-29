@@ -101,11 +101,13 @@ HRESULT ScreenText::DrawText(const char * _str, unsigned int _x, unsigned int _y
 
 void ScreenText::AddCharacter( char _c, unsigned int _Index, unsigned int _x, unsigned int _y, const Color & _rgba )
 {
+	float fDeviceWidth = (float)g_pDevice->GetWidth();
+	float fDeviceHeight = (float)g_pDevice->GetHeight();
 	float x0, x1, y0, y1;
-	float px = (float)(_x + _Index * m_pAtlas->GetIconWidth()) / (float)g_pDevice->GetWidth();
-	float py = (float)( (float)g_pDevice->GetHeight() - (float)_y ) / (float)g_pDevice->GetHeight();
-	float fIconWidth = (float)m_pAtlas->GetIconWidth() / (float)g_pDevice->GetWidth() * 2.0f;
-	float fIconHeight = (float)m_pAtlas->GetIconHeight() / (float)g_pDevice->GetHeight() * 2.0f;
+	float px = (float)(_x + _Index * m_pAtlas->GetIconWidth()) / fDeviceWidth;
+	float py = (float)( (float)g_pDevice->GetHeight() - (float)_y ) / fDeviceHeight;
+	float fIconWidth = (float)m_pAtlas->GetIconWidth() / fDeviceWidth * 2.0f;
+	float fIconHeight = (float)m_pAtlas->GetIconHeight() / fDeviceHeight * 2.0f;
 	m_pAtlas->GetRectByIndex( (_c - 32), x0, y0, x1, y1 );
 
 	px = ( px - 0.5f ) * 2.0f;

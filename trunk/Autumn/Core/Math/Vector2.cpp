@@ -20,7 +20,12 @@ Vector2::~Vector2()
 {
 }
 
-Vector2 operator-( const Vector2 & _v1, const Vector2 & _v2 )
+Vector2 & Vector2::operator = ( const Vector2 & o )
+{
+	m_vVector = o.m_vVector;
+	return (*this);
+}
+Vector2 operator - ( const Vector2 & _v1, const Vector2 & _v2 )
 {
 	Vector2 vRes;
 	vRes.m_vVector = _v1.m_vVector - _v2.m_vVector;

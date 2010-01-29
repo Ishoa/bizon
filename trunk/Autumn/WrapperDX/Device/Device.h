@@ -21,6 +21,7 @@ private:
  	ID3D11Device			* m_pDevice;
  	ID3D11DeviceContext		* m_pDeviceContext;
 	IDXGISwapChain			* m_pSwapChain;
+	IDXGIOutput				* m_pOutput;
 	D3D_FEATURE_LEVEL		m_eMaxFeatureLevel;
 
 	unsigned int	m_iWidth;
@@ -42,6 +43,14 @@ public:
 
 	// Reset SwapChain
 	HRESULT Reset(unsigned int _iWidth, unsigned int _iHeight, bool _bFullscreen);
+	// Resize SwapChain
+	HRESULT Resize(unsigned int _iWidth, unsigned int _iHeight, bool _bFullscreen);
+
+	// retrieve max resolution -> fullscreen
+	HRESULT GetMaxResolution(unsigned int & _iWidth, unsigned int & _iHeight);
+
+	// check resolution compatible
+	HRESULT CheckResolution(unsigned int _iWidth, unsigned int _iHeight);
 
 	// Retrieve Directx 11 Device
 	inline ID3D11Device			* GetDevice()			const { return m_pDevice; }
