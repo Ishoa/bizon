@@ -43,30 +43,31 @@ Engine::~Engine()
 
 HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, unsigned int _uHeight, bool _bFullscreen)
 {
-	// TODO recup taille fullscreen
+	unsigned int uWidth, uHeight;
 	m_hWnd = _hWnd;
 	m_hInstance = _hInstance;
-	unsigned int uWidth, uHeight;
 	m_bFullscreen = _bFullscreen;
-	m_uFullscreenWidth = 1280;
-	m_uFullscreenHeight = 800;
-	m_uWindowedWidth = _uWidth;
-	m_uWindowedHeight = _uHeight;
 
-	if( m_bFullscreen )
-	{
-		uWidth = m_uFullscreenWidth;
-		uHeight = m_uFullscreenHeight;
-	}
-	else
-	{
-		uWidth = m_uWindowedWidth;
-		uHeight = m_uWindowedHeight;
-	}
 	
 	// device
 	m_pDevice = Device3D::CreateInstance();
 	E_RETURN( m_pDevice->Create(_hWnd), "Create Device : " );
+
+	D_RETURN( m_pDevice->GetMaxResolution(m_uFullscreenWidth, m_uFullscreenHeight) );
+
+	if( ! m_bFullscreen )
+	{
+		m_uWindowedWidth = _uWidth;
+		m_uWindowedHeight = _uHeight;
+		uWidth = m_uWindowedWidth;
+		uHeight = m_uWindowedHeight;
+	}
+	else
+	{
+		uWidth = m_uFullscreenWidth;
+		uHeight = m_uFullscreenHeight;
+	}
+
 
 	// rendertarget
 	m_pDefaultRenderTarget = new RenderTarget;
@@ -142,7 +143,7 @@ HRESULT Engine::ToggleFullScreen()
 		D_RETURN( g_pDevice->Reset(m_uWindowedWidth, m_uWindowedHeight, m_bFullscreen) );
 	}
 
-	SetRenderTargets(&m_pDefaultRenderTarget, 1);
+	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
 
 	return S_OK;
 }
@@ -165,6 +166,21 @@ HRESULT Engine::Resize(unsigned int _uWidth, unsigned int _uHeight)
 	}
 
 	SetRenderTargets(NULL, 0, NULL);
+
+	D_RETURN( m_pDefaultRenderTarget->Destroy() );
+	D_RETURN( m_pDefaultDepthStencil->Destroy() );
+	D_RETURN( g_pDevice->Resize(GetWidth(), GetHeight(), m_bFullscreen) );
+	D_RETURN( m_pDefaultRenderTarget->Resize() );
+	D_RETURN( m_pDefaultDepthStencil->Resize( GetWidth(), GetHeight() ) );
+
+
+	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
+
+	if( m_pCamera->IsPerspectiveProj() )
+		m_pCamera->SetAspect( (float)GetWidth() / (float)GetHeight() );
+
+	m_oDefaultViewPort.Resize(GetWidth(), GetHeight());
+	SetViewPorts(&m_oDefaultViewPort);
 
 	return S_OK;
 
@@ -197,9 +213,12 @@ void Engine::RenderText()
 		fDeltaTime = 0.0f;
 		nFrames = 0;
 	}
-	char buf[32];
-	sprintf_s(buf, "FPS : %.2f", fCurrentFrames );
+	char buf[64];
+	sprintf_s(buf, "%d x %d", GetWidth(), GetHeight() );
 	m_pScreenText->DrawText(buf, 0, 0, Color(1.0f, 1.0f, 1.0f, 1.0f));
+
+	sprintf_s(buf, "FPS : %.2f", fCurrentFrames );
+	m_pScreenText->DrawText(buf, 0, 20, Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void Engine::BeginRender()
@@ -239,6 +258,20 @@ void Engine::UpdateKeyboard()
 		else
 			m_bDisplayText = true;
 	}
+	// F2 / Shift + F2 : Fullscreen / windowed mode
+	if( GetInputManager()->KeyPressed( DIK_F2 ) )
+	{
+		if( GetInputManager()->KeyPressed( DIK_LSHIFT ) )
+		{
+			if( m_bFullscreen )
+				ToggleFullScreen();
+		}
+		else
+		{
+			if( ! m_bFullscreen )
+				ToggleFullScreen();
+		}
+	}
 	if( GetInputManager()->KeyPressed( DIK_RCONTROL ) )
 	{
 		// UP : Rotate Camera
@@ -274,8 +307,8 @@ void Engine::UpdateKeyboard()
 void Engine::UpdateMouse()
 {
 	// Left Click
-// 	if( GetInputManager()->LeftButtonPressed() )
-// 		m_pCamera->MoveLookAt( GetInputManager()->GetMouseDeltaPosition() );
+	if( GetInputManager()->LeftButtonPressed() )
+		m_pCamera->MoveLookAt( GetInputManager()->GetMouseDeltaPosition() );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -298,4 +331,9 @@ TimeManager * Engine::GetTimeManager() const
 InputManager * Engine::GetInputManager() const
 {
 	return (InputManager *)m_pManager[Manager::eManager_INPUT];
+}
+
+void Engine::SetMousePosition( int _x, int _y )
+{
+	GetInputManager()->SetMousePosition(_x, _y);
 }

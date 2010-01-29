@@ -7,6 +7,7 @@ class Vector2
 {
 private:
 	D3DXVECTOR2 m_vVector;
+
 public:
 	Vector2();
 	Vector2(const Vector2 & v);
@@ -20,6 +21,8 @@ public:
 	inline float & Y() { return  m_vVector.y; }
 
 	inline D3DXVECTOR2 GetVector() { return m_vVector; }
+
+	Vector2 & operator = (const Vector2 & o);
 
 	friend Vector2	operator - (const Vector2 & _v1, const Vector2 & _v2);
 };

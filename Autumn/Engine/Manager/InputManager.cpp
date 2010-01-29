@@ -84,3 +84,9 @@ const Vector2 & InputManager::GetMouseDeltaPosition() const
 {
 	return m_pMouse->GetDeltaPosition();
 }
+
+void InputManager::SetMousePosition( int _x, int _y )
+{
+	if( m_pMouse )
+		m_pMouse->SetPosition(_x, _y);
+}

@@ -100,6 +100,10 @@ LRESULT CALLBACK WindowApp::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 			PostQuitMessage(0);
 			break;
 
+		case WM_MOUSEMOVE:
+			WindowApp::GetInstance()->GetEngine()->SetMousePosition( GET_X_LPARAM( lParam ) , GET_Y_LPARAM( lParam ) );
+			break;
+
 		case WM_SIZE:
 			uSizeX = GET_X_LPARAM(lParam);
 			uSizeY = GET_Y_LPARAM(lParam);

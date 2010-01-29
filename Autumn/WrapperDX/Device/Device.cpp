@@ -5,6 +5,7 @@ Device3D::Device3D()
 : m_pDevice(NULL)
 , m_pDeviceContext(NULL)
 , m_pSwapChain(NULL)
+, m_pOutput(NULL)
 , m_hWnd(NULL)
 {
 }
@@ -46,6 +47,8 @@ HRESULT Device3D::Create(HWND _hWnd, unsigned int _iWidth, unsigned int _iHeight
 	D_RETURN( D3D11CreateDeviceAndSwapChain( NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, NULL, 0,D3D11_SDK_VERSION, &SwapChainDesc, &m_pSwapChain, &m_pDevice, &m_eMaxFeatureLevel, &m_pDeviceContext ) );
 #endif
 
+	m_pSwapChain->GetContainingOutput(&m_pOutput);
+
 	return S_OK;
 }
 
@@ -54,6 +57,7 @@ HRESULT Device3D::Destroy()
 	SAFE_RELEASE( m_pDevice );
 	SAFE_RELEASE( m_pSwapChain );
 	SAFE_RELEASE( m_pDeviceContext );
+	SAFE_RELEASE( m_pOutput );
 
 	return S_OK;
 }
@@ -96,4 +100,86 @@ void Device3D::UnbindGeometryShader() const
 void Device3D::UnbindPixelShader() const
 {
 	m_pDeviceContext->PSSetShader( NULL, NULL, 0 );
+}
+
+HRESULT Device3D::GetMaxResolution( unsigned int & _iWidth, unsigned int & _iHeight )
+{
+	_iWidth = 0;
+	_iHeight = 0;
+
+	if( ! m_pOutput )
+		return E_FAIL;
+		
+	unsigned int num   = 0;
+	unsigned int flags = DXGI_ENUM_MODES_SCALING;
+	DXGI_FORMAT format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	D_RETURN( m_pOutput->GetDisplayModeList( format, flags, &num, 0) );
+
+	if( num == 0 )
+		return E_FAIL;
+	
+	DXGI_MODE_DESC * pDescs = new DXGI_MODE_DESC[num];	
+	D_RETURN( m_pOutput->GetDisplayModeList( format, flags, &num, pDescs) );
+
+	unsigned int SizeMax = 0;
+
+	for(unsigned int i = 0; i < num; ++i)
+	{
+		if( pDescs[i].Width * pDescs[i].Height > SizeMax )
+		{
+			_iWidth = pDescs[i].Width;
+			_iHeight = pDescs[i].Height;
+		}
+	}
+
+	delete []pDescs;
+
+	return S_OK;
+}
+
+HRESULT Device3D::CheckResolution( unsigned int _iWidth, unsigned int _iHeight )
+{
+	if( ! m_pOutput )
+		return E_FAIL;
+
+	unsigned int num   = 0;
+	unsigned int flags = DXGI_ENUM_MODES_SCALING;
+	DXGI_FORMAT format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	D_RETURN( m_pOutput->GetDisplayModeList( format, flags, &num, 0) );
+
+	if( num == 0 )
+		return E_FAIL;
+
+	DXGI_MODE_DESC * pDescs = new DXGI_MODE_DESC[num];	
+	D_RETURN( m_pOutput->GetDisplayModeList( format, flags, &num, pDescs) );
+	
+	for(unsigned int i = 0; i < num; ++i)
+	{
+		if( pDescs[i].Width == _iWidth && pDescs[i].Height == _iHeight )
+		{
+			delete []pDescs;
+			return S_OK;
+		}
+	}
+
+	delete []pDescs;
+
+	return E_FAIL;
+}
+
+HRESULT Device3D::Resize( unsigned int _iWidth, unsigned int _iHeight, bool _bFullscreen )
+{
+	unsigned int flags = 0;
+#ifndef _DEBUG
+	if( _bFullscreen )
+		flags |= DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+#endif
+
+	m_iWidth		= _iWidth;
+	m_iHeight		= _iHeight;
+	D_RETURN( m_pSwapChain->ResizeBuffers(1, m_iWidth, m_iHeight, DXGI_FORMAT_R8G8B8A8_UNORM, flags) );
+
+	return S_OK;
 }

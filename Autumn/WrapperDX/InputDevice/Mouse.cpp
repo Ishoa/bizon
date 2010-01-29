@@ -29,13 +29,16 @@ HRESULT Mouse::Create()
 
 	D_RETURN( g_pDxInputDevice->CreateDevice(GUID_SysMouse, &m_pInputController, NULL) );
 	D_RETURN( m_pInputController->SetDataFormat(&c_dfDIMouse) );
-	D_RETURN( m_pInputController->SetCooperativeLevel( g_pInputDevice->GetHandle(), INPUT_COOPLEVEL) );
+	D_RETURN( m_pInputController->SetCooperativeLevel( g_pInputDevice->GetHandle(), MOUSE_COOPLEVEL) );
 
 	return S_OK;
 }
 
 HRESULT Mouse::Poll()
 {
+	if( m_bDirty )
+		m_vDeltaScreenPosition = Vector2(0,0);
+
 	if( ! m_pInputController )
 		return E_FAIL;
 
@@ -54,9 +57,8 @@ HRESULT Mouse::Poll()
 			return E_FAIL;
 		}
 	}
-	Vector2 ScreenPos((float)m_Data.lX / (float)g_pDevice->GetWidth(), (float)m_Data.lY / (float)g_pDevice->GetHeight() );
-	m_vDeltaScreenPosition = ScreenPos - m_vScreenPosition;
-	m_vScreenPosition = ScreenPos;
+
+	m_bDirty = true;
 
 	return S_OK;
 }
@@ -84,4 +86,23 @@ long Mouse::GetWheel() const
 const Vector2 &  Mouse::GetDeltaPosition() const
 {
 	return m_vDeltaScreenPosition;
+}
+
+long Mouse::GetDeltaX() const
+{
+	return m_Data.lX;
+}
+
+long Mouse::GetDeltaY() const
+{
+	return m_Data.lY;
+}
+
+void Mouse::SetPosition( int _x, int _y )
+{
+	Vector2 ScreenPos(  2.0f * ( (float)_x - (float)g_pDevice->GetWidth()  * 0.5f ) / (float)g_pDevice->GetWidth(),
+						2.0f * ( (float)( g_pDevice->GetHeight() - _y ) - (float)g_pDevice->GetHeight() * 0.5f ) / (float)g_pDevice->GetHeight() );
+	m_vDeltaScreenPosition = ScreenPos - m_vScreenPosition;
+	m_vScreenPosition = ScreenPos;
+	m_bDirty = false;
 }

@@ -94,6 +94,7 @@ HRESULT RenderTarget::Create( unsigned int _iWidth, unsigned int _iHeight, eRend
 
 HRESULT RenderTarget::Resize()
 {
+	D_RETURN( Destroy() );
 	D_RETURN( Create() );
 	return S_OK;
 }

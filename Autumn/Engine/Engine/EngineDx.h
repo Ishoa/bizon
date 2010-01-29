@@ -79,6 +79,7 @@ public:
 	virtual void EndRender();
 
 	// input
+	void SetMousePosition(int _x, int _y);
 	virtual void	UpdateKeyboard();
 	virtual void	UpdateMouse();
 
