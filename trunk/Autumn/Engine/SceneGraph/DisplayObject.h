@@ -1,6 +1,10 @@
 #ifndef _DISPLAY_OBJECT_
 #define _DISPLAY_OBJECT_
 
+#ifndef _SAMPLER_POINT_
+#include "WrapperDX/Texture/Sampler/SamplerPoint.h"
+#endif
+
 #ifndef _SAMPLER_LINEAR_
 #include "WrapperDX/Texture/Sampler/SamplerLinear.h"
 #endif
@@ -36,7 +40,7 @@ protected:
 	VertexLayout<DisplayObjectTypeVertex>	* m_pVertexLayout;
 	Texture2D								* m_pNormalMap;
 	Texture2D								* m_pTexture;
-	Sampler<SamplerLinear>					* m_pSampler;
+	Sampler<SamplerPoint>					* m_pSampler;
 
  	virtual HRESULT	CompileShaders() = 0;
 	virtual HRESULT	BuildGeometry() = 0;

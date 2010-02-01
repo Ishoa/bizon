@@ -71,7 +71,7 @@ void PLYObject::Render( EngineCamera * _pCamera, Light * _pLight )
 	m_pPixelShader->SetTexture(1, m_pTexture);
 	m_pPixelShader->SetSampler(0, m_pSampler);
 	g_pDevice->UnbindGeometryShader();
-	g_pDxDeviceContext->DrawIndexed( m_nIndex, 0, 0 );
+	g_pDevice->DrawIndexed( m_nIndex );
 }
 
 bool PLYObject::Culling()
@@ -169,7 +169,7 @@ HRESULT PLYObject::BuildGeometry()
 			else
 				angle2 = 0.0f;
 
-			VertexData[i].u = 0.5f + ( 0.5f * angle2/(float)M_PI);
+			VertexData[i].u = 1.0f - (0.5f + ( 0.5f * angle2/(float)M_PI));
 			VertexData[i].v = angle1 / (float)M_PI;
 		}
 

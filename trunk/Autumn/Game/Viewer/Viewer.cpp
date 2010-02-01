@@ -63,9 +63,6 @@ void Viewer::Render()
 {
 	BeginRender();
 
-	if( m_bDisplayText )
-		RenderText();
-
 	m_pRoot->Render( m_pCamera, m_pLight );
 
 	EndRender();

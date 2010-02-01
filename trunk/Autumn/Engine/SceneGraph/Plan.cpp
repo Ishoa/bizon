@@ -69,7 +69,7 @@ void Plan::Render( EngineCamera * _pCamera, Light * _pLight )
 	m_pPixelShader->SetTexture(1, m_pTexture);
 	m_pPixelShader->SetSampler(0, m_pSampler);
 	g_pDevice->UnbindGeometryShader();
-	g_pDxDeviceContext->DrawIndexed( m_nIndex, 0, 0 );
+	g_pDevice->DrawIndexed( m_nIndex );
 }
 
 bool Plan::Culling()
@@ -125,8 +125,8 @@ HRESULT Plan::BuildGeometry()
 			VertexData[uIndex++] = 0.0f;
 			VertexData[uIndex++] = 1.0f;
 			// Tangent
-			VertexData[uIndex++] = 0.0f;
 			VertexData[uIndex++] = -1.0f;
+			VertexData[uIndex++] = 0.0f;
 			VertexData[uIndex++] = 0.0f;
 			// TexCoord
 			for(unsigned int j = 0; j < 2; j++)

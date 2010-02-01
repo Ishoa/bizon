@@ -41,12 +41,14 @@ HRESULT EngineCamera::Destroy()
 
 void EngineCamera::Set(const Matrix4x4 & _mWorld, Light * _pLight)
 {
-	Vector4 CameraDir( m_vAt - m_vPos );
+	Vector3 CameraDir( m_vAt - m_vPos );
+
 	sCameraShaderParam * pShaderParam = (sCameraShaderParam *)m_pCameraShaderParamBuffer->Map();
 	pShaderParam->m_mWorldViewProj	= _mWorld * GetViewProj();
-	pShaderParam->m_LightDir		= _pLight->GetDirection() * _mWorld.GetInverse();
+	pShaderParam->m_mWorld			= _mWorld;
+	pShaderParam->m_LightDir		= (_pLight->GetDirection() * _mWorld.GetInverse()).Normalize();
 	pShaderParam->m_LightColor		= _pLight->GetColor();
-	pShaderParam->m_CameraDir		= CameraDir * _mWorld.GetInverse();
+	pShaderParam->m_CameraDir		= (CameraDir * _mWorld.GetInverse()).Normalize();
 	m_pCameraShaderParamBuffer->Unmap();
 }
 

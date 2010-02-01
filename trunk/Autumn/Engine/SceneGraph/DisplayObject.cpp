@@ -32,7 +32,7 @@ HRESULT DisplayObject::Create()
 {
 	D_RETURN( Node::Create() );
 
-	m_pSampler = new Sampler< SamplerLinear >;
+	m_pSampler = new Sampler< SamplerPoint >;
 	D_RETURN( m_pSampler->Create() );
 
 	return S_OK;
