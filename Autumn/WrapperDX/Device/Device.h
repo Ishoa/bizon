@@ -28,6 +28,8 @@ private:
 	unsigned int	m_iHeight;
 	bool			m_bFullscreen;
 
+	unsigned int	m_nTriangles;
+	unsigned int	m_nDrawCalls;
 public:
 	// Constructor
 	Device3D();
@@ -52,6 +54,13 @@ public:
 	// check resolution compatible
 	HRESULT CheckResolution(unsigned int _iWidth, unsigned int _iHeight);
 
+	// Draw Primitive Indexed
+	void DrawIndexed(unsigned int _nIndexes);
+
+	// number of draw calls
+	inline unsigned int			GetNumDrawCalls()		const { return m_nDrawCalls; }
+	// number of triangles displayed on screen
+	inline unsigned int			GetNumTriangles()		const { return m_nTriangles; }
 	// Retrieve Directx 11 Device
 	inline ID3D11Device			* GetDevice()			const { return m_pDevice; }
 	// Retrieve Directx 11 Device Context

@@ -44,9 +44,8 @@ Matrix4x4 operator * (const Matrix4x4 & _m1, const Matrix4x4 & _m2)
 
 Vector3 operator*( const Vector3 & _v, const Matrix4x4 & _m )
 {
-	D3DXVECTOR4 vRes;
-	D3DXVec3Transform(&vRes, &_v.GetVector(), &_m.m_mMatrix);
-	vRes /= vRes.w;
+	D3DXVECTOR4 vRes, v(_v.X(), _v.Y(), _v.Z(), 0);
+	D3DXVec4Transform(&vRes, &v, &_m.m_mMatrix);
 	return Vector3(vRes.x, vRes.y, vRes.z);
 }
 

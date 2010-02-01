@@ -21,6 +21,9 @@ HRESULT Device3D::Create(HWND _hWnd, unsigned int _iWidth, unsigned int _iHeight
 	m_iHeight		= _iHeight;
 	m_bFullscreen	= _bFullscreen;
 
+	m_nTriangles = 0;
+	m_nDrawCalls = 0;
+
 	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
 	ZeroMemory( &SwapChainDesc, sizeof(SwapChainDesc) );
 	// DXGI_MODE_DESC
@@ -65,6 +68,9 @@ HRESULT Device3D::Destroy()
 void Device3D::EndRender()
 {
 	m_pSwapChain->Present(0,0);
+
+	m_nTriangles = 0;
+	m_nDrawCalls = 0;
 }
 
 HRESULT Device3D::Reset(unsigned int _iWidth, unsigned int _iHeight, bool _bFullscreen)
@@ -182,4 +188,11 @@ HRESULT Device3D::Resize( unsigned int _iWidth, unsigned int _iHeight, bool _bFu
 	D_RETURN( m_pSwapChain->ResizeBuffers(1, m_iWidth, m_iHeight, DXGI_FORMAT_R8G8B8A8_UNORM, flags) );
 
 	return S_OK;
+}
+
+void Device3D::DrawIndexed( unsigned int _nIndexes )
+{
+	++m_nDrawCalls;
+	m_nTriangles += _nIndexes / 3;
+	m_pDeviceContext->DrawIndexed( _nIndexes, 0, 0 );
 }

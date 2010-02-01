@@ -14,6 +14,7 @@ protected:
 	struct sCameraShaderParam
 	{
 		Matrix4x4	m_mWorldViewProj;
+		Matrix4x4	m_mWorld;
 		Vector4		m_LightDir;
 		Color		m_LightColor;
 		Vector4		m_CameraDir;

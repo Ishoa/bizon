@@ -1,6 +1,7 @@
 cbuffer cb : register(b0)
 {
 	row_major float4x4 mWorldViewProj;
+	row_major float4x4 mWorld;
 	float4 vLightDir;
 	float4 vLightColor;
 	float4 vCamera;

@@ -5,6 +5,7 @@ SamplerState sTexSampler : register(s0);
 cbuffer cb : register(b0)
 {
 	row_major float4x4 mWorldViewProj;
+	row_major float4x4 mWorld;
 	float4 vLightDir;
 	float4 vLightColor;
 	float4 vCamera;
@@ -33,8 +34,13 @@ float4 PSMain( PSin Pin ) : SV_Target
 	
 	float3 fNorm = 2.0f * ( tNormalMap.Sample( sTexSampler, Pin.Tex ).rgb - float3(0.5f, 0.5f, 0.5f) );
 	fNorm = mul(fNorm, mTBN);
+
 	N = normalize( fNorm );
-	L = normalize( vLightDir.xyz );
+	L = vLightDir.xyz;
+	
+	float3 col = mul( N, mWorld );	
+	//return float4( 0.5*(col+float3(1,1,1)), 1);
+
 	
 	// couleur et texture du materiaux
 	MatColor = tTexture.Sample(sTexSampler, Pin.Tex );
@@ -42,12 +48,12 @@ float4 PSMain( PSin Pin ) : SV_Target
 	// calcul de la sortie
 	float Ls = 0;
 	float Ld = max(0, dot(N,L)); // diffus
-	Ld2 = dot( normalize(Pin.Norm), L );
-
+	Ld2 = dot( N, L );
+	
 	if (Ld > 0)
 	{
 		float3 V,H;
-		V = normalize( vCamera.xyz - Pin.Pos );
+		V = vCamera.xyz;
 		H = normalize( V+L );
 		Ls = 0.0f;//pow(max(dot(N,H),0),40); // specular
 		if(Ld2 < 0)

@@ -97,7 +97,7 @@ HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	// Camera
 	m_pCamera = new EngineCamera;
 	D_RETURN( m_pCamera->Create() );
-	m_pCamera->SetView(Vector3(-25.0f, 10.0f, 10.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
+	m_pCamera->SetView(Vector3(-25.0f, 0.0f, 5.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 	m_pCamera->BuildViewMatrix();
 	float fAspect = (float)uWidth / (float)uHeight;
 	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 100.0f);
@@ -107,7 +107,7 @@ HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	E_RETURN( m_pScreenText->Create(), "Create ScreenText : " );
 
 	// Light
-	m_pLight = new Light( Color(1,1,1,1), Vector4(-1,1,1,0) );
+	m_pLight = new Light( Color(1,1,1,1), Vector4(0.0,1.0,1,0) );
 	E_RETURN( m_pLight->Create(), "Create Light : " );
 
 	
@@ -219,6 +219,12 @@ void Engine::RenderText()
 
 	sprintf_s(buf, "FPS : %.2f", fCurrentFrames );
 	m_pScreenText->DrawText(buf, 0, 20, Color(1.0f, 1.0f, 1.0f, 1.0f));
+
+	sprintf_s(buf, "Num Triangles  : %d", g_pDevice->GetNumTriangles() );
+	m_pScreenText->DrawText(buf, 0, 40, Color(1.0f, 1.0f, 1.0f, 1.0f));
+
+	sprintf_s(buf, "Num Draw Calls : %d", g_pDevice->GetNumDrawCalls() );
+	m_pScreenText->DrawText(buf, 0, 60, Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void Engine::BeginRender()
@@ -233,6 +239,9 @@ void Engine::BeginRender()
 
 void Engine::EndRender()
 {
+	if( m_bDisplayText )
+		RenderText();
+
 	if( m_bDisplayText )
 		m_pScreenText->End();
 
