@@ -16,7 +16,7 @@ VertexBuffer::~VertexBuffer()
 {
 }
 
-HRESULT VertexBuffer::Create(unsigned int size, unsigned int nElts, const void * data)
+HRESULT VertexBuffer::Create(unsigned int size, unsigned int nElts, const void * data, bool IsFlaggedStreamOutput)
 {
 	m_uSize   = size;
 	m_uElts   = nElts;
@@ -24,7 +24,7 @@ HRESULT VertexBuffer::Create(unsigned int size, unsigned int nElts, const void *
 	D3D11_BUFFER_DESC bd;
 	bd.Usage			= D3D11_USAGE_DEFAULT;
 	bd.ByteWidth		= size * nElts;
-	bd.BindFlags		= D3D11_BIND_VERTEX_BUFFER /*| D3D10_BIND_SHADER_RESOURCE */ ;
+	bd.BindFlags		= D3D11_BIND_VERTEX_BUFFER  | ( IsFlaggedStreamOutput ? D3D11_BIND_STREAM_OUTPUT : NULL );
 	bd.CPUAccessFlags	= 0;
 	bd.MiscFlags		= 0;
 

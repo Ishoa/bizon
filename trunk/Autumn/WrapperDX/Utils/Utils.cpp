@@ -8,6 +8,10 @@
 #include "WrapperDX/Device/DepthStencil.h"
 #endif
 
+#ifndef _BLEND_STATE_
+#include "WrapperDX/Device/State/BlendState.h"
+#endif
+
 #ifndef _RENDER_TARGET_
 #include "WrapperDX/Device/RenderTarget.h"
 #endif

@@ -19,7 +19,7 @@ ConstantBufferUpdate::~ConstantBufferUpdate()
 {
 }
 
-HRESULT ConstantBufferUpdate::Create(unsigned int size, unsigned int nElts, const void * data)
+HRESULT ConstantBufferUpdate::Create(unsigned int size, unsigned int nElts, const void * data, bool IsFlaggedStreamOutput)
 {
 	UNREF_PARAM( nElts );
 
@@ -27,7 +27,7 @@ HRESULT ConstantBufferUpdate::Create(unsigned int size, unsigned int nElts, cons
 
 	D3D11_BUFFER_DESC cbDesc;
 	cbDesc.ByteWidth = size;
-	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER | ( IsFlaggedStreamOutput ? D3D11_BIND_STREAM_OUTPUT : NULL );
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	cbDesc.MiscFlags = 0;

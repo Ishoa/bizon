@@ -196,3 +196,10 @@ void Device3D::DrawIndexed( unsigned int _nIndexes )
 	m_nTriangles += _nIndexes / 3;
 	m_pDeviceContext->DrawIndexed( _nIndexes, 0, 0 );
 }
+
+void Device3D::Draw( unsigned int _nVertexes )
+{
+	++m_nDrawCalls;
+	m_nTriangles += _nVertexes / 3;
+	m_pDeviceContext->Draw( _nVertexes, 0 );
+}

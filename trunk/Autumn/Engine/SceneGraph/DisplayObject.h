@@ -40,7 +40,7 @@ protected:
 	VertexLayout<DisplayObjectTypeVertex>	* m_pVertexLayout;
 	Texture2D								* m_pNormalMap;
 	Texture2D								* m_pTexture;
-	Sampler<SamplerPoint>					* m_pSampler;
+	Sampler<SamplerLinear>					* m_pSampler;
 
  	virtual HRESULT	CompileShaders() = 0;
 	virtual HRESULT	BuildGeometry() = 0;

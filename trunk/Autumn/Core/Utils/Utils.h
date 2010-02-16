@@ -32,6 +32,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 // Shaders
+#define TERRAIN_PATH			"..\\Data\\Terrain\\"
 #define TEXTURE_PATH			"..\\Data\\Textures\\"
 #define OBJECT_PATH				"..\\Data\\Objects\\"
 #define OBJECT_PLY_PATH			"..\\Data\\Objects\\PLY\\"

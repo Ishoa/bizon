@@ -246,6 +246,14 @@
 				RelativePath=".\SceneGraph\PLYObject.h"
 				>
 			</File>
+			<File
+				RelativePath=".\SceneGraph\Terrain.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SceneGraph\Terrain.h"
+				>
+			</File>
 			<Filter
 				Name="ReadPLY"
 				>
@@ -280,6 +288,66 @@
 			</File>
 			<File
 				RelativePath=".\Light\Light.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Buffer"
+			>
+			<File
+				RelativePath="..\WrapperDX\Buffer\Buffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\Buffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\ConstantBuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\ConstantBuffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\ConstantBufferUpdate.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\ConstantBufferUpdate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\IndexBuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\IndexBuffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\VertexBuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\VertexBuffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\VertexBufferEx.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\VertexBufferEx.h"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\VertexLayout.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\WrapperDX\Buffer\VertexLayout.h"
 				>
 			</File>
 		</Filter>

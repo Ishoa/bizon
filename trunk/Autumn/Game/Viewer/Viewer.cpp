@@ -22,16 +22,20 @@ HRESULT Viewer::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	m_pRoot = new Node;
 	D_RETURN( m_pRoot->Create() );
 
-	m_pPlan = new Plan;
-	m_pPlan->Set( 10.0f );
-	m_pPlan->SetTexture( "Four" );
-	D_RETURN( m_pPlan->Create() );
-	m_pRoot->AddChild( m_pPlan );
+// 	m_pPlan = new Plan;
+// 	m_pPlan->Set( 10.0f );
+// 	m_pPlan->SetTexture( "Four" );
+// 	D_RETURN( m_pPlan->Create() );
+//	m_pRoot->AddChild( m_pPlan );
 
 	m_pTeapot = new PLYObject("sphere.ply");
 	m_pTeapot->SetTexture( "Earth" );
 	D_RETURN( m_pTeapot->Create() );
 	m_pRoot->AddChild( m_pTeapot );
+
+	m_pTerrain = new Terrain("Terrain01");
+	D_RETURN( m_pTerrain->Create() );
+	m_pRoot->AddChild( m_pTerrain );
 
 	return S_OK;
 }
@@ -40,6 +44,7 @@ HRESULT Viewer::Destroy()
 {
 	D_RETURN( Engine::Destroy() );
 
+	// delete all sub-nodes
 	SAFE_DESTROY( m_pRoot );
 
 	return S_OK;
@@ -50,7 +55,7 @@ void Viewer::Update()
 	UpdateManager();
 
 	Matrix4x4 mMatrix;
-	mMatrix.SetTranslation(0,0,2);
+	mMatrix.SetTranslation(0,0,3);
 	float fAngle =GetTimeManager()->GetCurrentTime() * (float)M_PI / 1000.0f;
 	mMatrix.Rotate(0,0, fAngle );
 	m_pTeapot->SetLocalMatrix(mMatrix);

@@ -178,6 +178,58 @@
 				RelativePath=".\Device\ViewPort.h"
 				>
 			</File>
+			<Filter
+				Name="State"
+				>
+				<File
+					RelativePath=".\Device\State\BlendOperationAdd.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationAdd.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationMax.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationMax.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationMin.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationMin.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationNone.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationNone.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationSub.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendOperationSub.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\BlendState.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Utils"
@@ -192,68 +244,16 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Buffer"
-			>
-			<File
-				RelativePath=".\Buffer\Buffer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\Buffer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\ConstantBuffer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\ConstantBuffer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\ConstantBufferUpdate.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\ConstantBufferUpdate.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\IndexBuffer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\IndexBuffer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\VertexBuffer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\VertexBuffer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\VertexBufferEx.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\VertexBufferEx.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\VertexLayout.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Buffer\VertexLayout.h"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="Shader"
 			>
+			<File
+				RelativePath=".\Shader\GeometryShader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Shader\GeometryShader.h"
+				>
+			</File>
 			<File
 				RelativePath=".\Shader\PixelShader.cpp"
 				>
@@ -296,6 +296,14 @@
 			</File>
 			<File
 				RelativePath=".\Geometry\ScreenTextTypeVertex.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Geometry\TerrainTypeVertex.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Geometry\TerrainTypeVertex.h"
 				>
 			</File>
 			<File

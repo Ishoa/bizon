@@ -12,7 +12,7 @@ public:
 	Buffer();
 	virtual ~Buffer();
 
-	virtual HRESULT Create(unsigned int size, unsigned int nElts, const void * data) = 0;
+	virtual HRESULT Create(unsigned int size, unsigned int nElts, const void * data, bool IsFlaggedStreamOutput = false) = 0;
 	virtual HRESULT Destroy();
 
 	inline ID3D11Buffer * GetBuffer() const { return m_pBuffer; }

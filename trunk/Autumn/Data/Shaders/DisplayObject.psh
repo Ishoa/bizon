@@ -38,10 +38,6 @@ float4 PSMain( PSin Pin ) : SV_Target
 	N = normalize( fNorm );
 	L = vLightDir.xyz;
 	
-	float3 col = mul( N, mWorld );	
-	//return float4( 0.5*(col+float3(1,1,1)), 1);
-
-	
 	// couleur et texture du materiaux
 	MatColor = tTexture.Sample(sTexSampler, Pin.Tex );
 	

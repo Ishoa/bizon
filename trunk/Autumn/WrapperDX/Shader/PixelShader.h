@@ -14,7 +14,7 @@ private:
 public:
 	PixelShader();
 	PixelShader(const char * name);
-	~PixelShader();
+	virtual ~PixelShader();
 
 	virtual const char *	GetEntryPoint();
 	virtual const char *	GetShaderVersion();

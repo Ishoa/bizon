@@ -15,6 +15,7 @@ ScreenText::ScreenText()
 , m_pVertexBuffer(NULL)
 , m_pAtlas(NULL)
 , m_pSampler(NULL)
+, m_pBlendStateAdd(NULL)
 {
 
 }
@@ -52,6 +53,10 @@ HRESULT ScreenText::Create()
 	m_pSampler = new Sampler< SamplerLinear >;
 	D_RETURN( m_pSampler->Create() );
 
+	// BlendState
+	m_pBlendStateAdd = new BlendState< BlendOperationAdd >;
+	D_RETURN( m_pBlendStateAdd->Create() );
+
 	return S_OK;
 }
 
@@ -63,6 +68,8 @@ HRESULT ScreenText::Destroy()
 	SAFE_DESTROY( m_pVertexBuffer );
 	SAFE_DESTROY( m_pAtlas );
 	SAFE_DESTROY( m_pSampler );
+	SAFE_DESTROY( m_pBlendStateAdd );
+
 	return S_OK;
 }
 
@@ -77,6 +84,7 @@ void ScreenText::End()
 	CopyMemory( pData, (void*)m_tSprite, sizeof(float) * m_nVertex * 8 );
 	m_pVertexBuffer->Unmap();
 
+	SetBlendState( m_pBlendStateAdd );
 	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 	m_pVertexBuffer->Bind();
 	m_pVertexLayout->Bind();
@@ -86,7 +94,7 @@ void ScreenText::End()
 	m_pPixelShader->SetSampler(0, m_pSampler);
 	g_pDevice->UnbindGeometryShader();
 
-	g_pDxDeviceContext->Draw( m_nVertex, 0 );
+	g_pDevice->Draw( m_nVertex );
 }
 
 HRESULT ScreenText::DrawText(const char * _str, unsigned int _x, unsigned int _y, const Color & _rgba)

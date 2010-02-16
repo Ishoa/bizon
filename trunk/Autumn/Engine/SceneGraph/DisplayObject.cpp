@@ -20,7 +20,7 @@ DisplayObject::DisplayObject()
 , m_pTexture(NULL)
 , m_pSampler(NULL)
 {
-
+	SetTexture("Default");
 }
 
 DisplayObject::~DisplayObject()
@@ -32,7 +32,7 @@ HRESULT DisplayObject::Create()
 {
 	D_RETURN( Node::Create() );
 
-	m_pSampler = new Sampler< SamplerPoint >;
+	m_pSampler = new Sampler< SamplerLinear >;
 	D_RETURN( m_pSampler->Create() );
 
 	return S_OK;

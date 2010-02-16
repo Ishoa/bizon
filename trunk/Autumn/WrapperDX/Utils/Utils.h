@@ -8,6 +8,7 @@
 class DepthStencil;
 class RenderTarget;
 class ViewPort;
+template< class T >class BlendState;
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -35,5 +36,13 @@ void ClearRenderTarget( RenderTarget * _pRenderTarget, const Color & _oColor = C
 void ClearDepthStencil(DepthStencil * _pDS, float _fClearDepth = 1.0f);
 // clear depth & stencil buffers
 void ClearDepthStencil(DepthStencil * _pDS, float _fClearDepth, unsigned char _uClearStencil);
+// Set Blend State
+template < class T >
+void SetBlendState( BlendState<T> * _pBlendState )
+{
+	float rgba[] = {1,1,1,1};
+	g_pDxDeviceContext->OMSetBlendState( _pBlendState->GetBlendState(), rgba, 0xffffffff );
+}
+
 
 #endif
