@@ -14,7 +14,7 @@ private:
 public:
 	VertexShader();
 	VertexShader(const char * name);
-	~VertexShader();
+	virtual ~VertexShader();
 
 	virtual const char *	GetEntryPoint();
 	virtual const char *	GetShaderVersion();

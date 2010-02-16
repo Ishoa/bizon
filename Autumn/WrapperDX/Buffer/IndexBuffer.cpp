@@ -17,7 +17,7 @@ IndexBuffer::~IndexBuffer()
 {
 }
 
-HRESULT IndexBuffer::Create(unsigned int size, unsigned int nElts, const void * data)
+HRESULT IndexBuffer::Create(unsigned int size, unsigned int nElts, const void * data, bool IsFlaggedStreamOutput)
 {
 	m_uSize	  = size;
 	m_uElts	  = nElts;
@@ -25,7 +25,7 @@ HRESULT IndexBuffer::Create(unsigned int size, unsigned int nElts, const void * 
 	D3D11_BUFFER_DESC bd;
 	bd.Usage			= D3D11_USAGE_DEFAULT;
 	bd.ByteWidth		= m_uSize * m_uElts;
-	bd.BindFlags		= D3D11_BIND_INDEX_BUFFER;
+	bd.BindFlags		= D3D11_BIND_INDEX_BUFFER | ( IsFlaggedStreamOutput ? D3D11_BIND_STREAM_OUTPUT : NULL );
 	bd.CPUAccessFlags	= 0;
 	bd.MiscFlags		= 0;
 

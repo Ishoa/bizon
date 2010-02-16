@@ -60,6 +60,10 @@
 #include "WrapperDX/Geometry/DisplayObjectTypeVertex.h"
 #endif
 
+#ifndef _TERRAIN_TYPE_VERTEX_
+#include "WrapperDX/Geometry/TerrainTypeVertex.h"
+#endif
+
 #ifndef _VERTEX_BUFFER_
 #include "WrapperDX/Buffer/VertexBuffer.h"
 #endif
@@ -114,6 +118,30 @@
 
 #ifndef _SAMPLER_
 #include "WrapperDX/Texture/Sampler/Sampler.h"
+#endif
+
+#ifndef _BLEND_OPERATION_ADD_
+#include "WrapperDX/Device/State/BlendOperationAdd.h"
+#endif
+
+#ifndef _BLEND_OPERATION_SUB_
+#include "WrapperDX/Device/State/BlendOperationSub.h"
+#endif
+
+#ifndef _BLEND_OPERATION_MIN_
+#include "WrapperDX/Device/State/BlendOperationMin.h"
+#endif
+
+#ifndef _BLEND_OPERATION_MAX_
+#include "WrapperDX/Device/State/BlendOperationMax.h"
+#endif
+
+#ifndef _BLEND_OPERATION_NONE_
+#include "WrapperDX/Device/State/BlendOperationNone.h"
+#endif
+
+#ifndef _BLEND_STATE_
+#include "WrapperDX/Device/State/BlendState.h"
 #endif
 
 //////////////////////////////////////////////////////////////////////////

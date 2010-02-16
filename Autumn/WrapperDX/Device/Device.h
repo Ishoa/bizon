@@ -56,6 +56,8 @@ public:
 
 	// Draw Primitive Indexed
 	void DrawIndexed(unsigned int _nIndexes);
+	// Draw Primitive non-Indexed
+	void Draw(unsigned int _nVertexes);
 
 	// number of draw calls
 	inline unsigned int			GetNumDrawCalls()		const { return m_nDrawCalls; }

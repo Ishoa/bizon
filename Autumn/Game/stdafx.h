@@ -53,6 +53,10 @@
 #include "Engine/SceneGraph/Plan.h"
 #endif
 
+#ifndef _TERRAIN_
+#include "Engine/SceneGraph/Terrain.h"
+#endif
+
 #ifndef _PLY_OBJECT_
 #include "Engine/SceneGraph/PLYObject.h"
 #endif

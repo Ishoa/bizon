@@ -1,6 +1,10 @@
 #ifndef _ENGINE_DX_ 
 #define _ENGINE_DX_
 
+#ifndef _BLEND_OPERATION_NONE_
+#include "WrapperDX/Device/State/BlendOperationNone.h"
+#endif
+
 #ifndef _MANAGER_
 #include "Engine/Manager/Manager.h"
 #endif
@@ -16,6 +20,7 @@
 class Device3D;
 class RenderTarget;
 class DepthStencil;
+template< class T >class BlendState;
 class Manager;
 class TimeManager;
 class InputManager;
@@ -41,10 +46,11 @@ protected:
 	unsigned int			  m_uWindowedHeight;
 
 	// Render
-	Device3D				* m_pDevice;
-	RenderTarget			* m_pDefaultRenderTarget;
-	DepthStencil			* m_pDefaultDepthStencil;
-	ViewPort				  m_oDefaultViewPort;
+	Device3D						* m_pDevice;
+	RenderTarget					* m_pDefaultRenderTarget;
+	DepthStencil					* m_pDefaultDepthStencil;
+	BlendState<BlendOperationNone>	* m_pDefaultBlendState;
+	ViewPort						m_oDefaultViewPort;
 
 	// Manager
 	Manager					* m_pManager[Manager::eManager_COUNT];

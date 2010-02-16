@@ -12,12 +12,12 @@ ConstantBuffer::~ConstantBuffer()
 {
 }
 
-HRESULT ConstantBuffer::Create(unsigned int size, unsigned int nElts, const void * data)
+HRESULT ConstantBuffer::Create(unsigned int size, unsigned int nElts, const void * data, bool IsFlaggedStreamOutput)
 {
 	UNREF_PARAM( nElts );
 	D3D11_BUFFER_DESC cbDesc;
 	cbDesc.ByteWidth = size;
-	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER | ( IsFlaggedStreamOutput ? D3D11_BIND_STREAM_OUTPUT : NULL );
 	cbDesc.Usage = D3D11_USAGE_DEFAULT;
 	cbDesc.CPUAccessFlags = 0;
 	cbDesc.MiscFlags = 0;

@@ -14,7 +14,7 @@ public:
 	ConstantBufferUpdate();
 	virtual ~ConstantBufferUpdate();
 
-	virtual HRESULT Create(unsigned int size, unsigned int nElts, const void * data);
+	virtual HRESULT Create(unsigned int size, unsigned int nElts, const void * data, bool IsFlaggedStreamOutput = false);
 	virtual HRESULT Destroy();
 	void *	Map();
 	void	Unmap();

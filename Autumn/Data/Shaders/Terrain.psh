@@ -1,0 +1,67 @@
+Texture2D tNormalMap : register(t0);
+Texture2D tHeightMap : register(t1);
+Texture2D tGrass	 : register(t2);
+Texture2D tRock		 : register(t3);
+SamplerState sTexSampler : register(s0);
+
+cbuffer cb : register(b0)
+{
+	row_major float4x4 mWorldViewProj;
+	row_major float4x4 mWorld;
+	float4 vLightDir;
+	float4 vLightColor;
+	float4 vCamera;
+}
+
+struct PSin
+{
+	float4	ScreenPos	: SV_POSITION;
+	float3	Pos			: POSITION0;
+	float3	Norm		: NORMAL0;
+	float3	Tan			: TANGENT0;
+	float2	Tex0		: TEXCOORD0;
+	float2	Tex1		: TEXCOORD1;
+};
+
+
+float4 PSMain( PSin Pin ) : SV_Target
+{
+
+	float3 N,L;
+	float4 MatColor;
+	float Ld2;
+	
+	// Calcul de la matrice de transformation repere texture <-> repere objet
+	row_major float3x3 mTBN;
+	float3 Binorm = normalize( cross(normalize(Pin.Norm), normalize(Pin.Tan)) );
+	mTBN = float3x3( Pin.Tan, Binorm, Pin.Norm );
+	
+	float3 fNorm = 2.0f * ( tNormalMap.Sample( sTexSampler, Pin.Tex0 ).rgb - float3(0.5f, 0.5f, 0.5f) );
+	
+	float4 GrassColor = float4(tGrass.Sample(sTexSampler, Pin.Tex1 ).rgb, 1);
+	float4 RockColor = float4(tRock.Sample(sTexSampler, Pin.Tex1 ).rgb, 1);
+
+	N = normalize( mul(fNorm, mTBN) );
+	L = vLightDir.xyz;
+	
+	// couleur et texture du materiaux
+	float slope = (1.0f - dot( float3(0,0,1), fNorm )) * 2.0f;
+	
+	MatColor = (1.0-slope) * GrassColor + slope * RockColor;
+	
+	// calcul de la sortie
+	float Ls = 0;
+	float Ld = max(0, dot(N,L)); // diffus
+	Ld2 = dot( N, L );
+	
+	if (Ld > 0)
+	{
+		float3 V,H;
+		V = vCamera.xyz;
+		H = normalize( V+L );
+		if(Ld2 < 0)
+			Ld = 0;
+	}
+	
+	return vLightColor * MatColor * Ld;
+}

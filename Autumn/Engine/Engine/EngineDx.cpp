@@ -28,6 +28,7 @@ Engine::Engine()
 : m_pDevice(NULL)
 , m_pDefaultRenderTarget(NULL)
 , m_pDefaultDepthStencil(NULL)
+, m_pDefaultBlendState(NULL)
 , m_pCamera(NULL)
 , m_pScreenText(NULL)
 , m_pLight(NULL)
@@ -77,10 +78,15 @@ HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	m_pDefaultDepthStencil = new DepthStencil;
 	E_RETURN( m_pDefaultDepthStencil->Create(GetWidth(), GetHeight()), "Create DepthStencil : " );
 
+	// blend state
+	m_pDefaultBlendState = new BlendState< BlendOperationNone >;
+	E_RETURN( m_pDefaultBlendState->Create(), "Create BlendState : "  );
+
 	// association RenderTarget with the Device
 	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
 	ClearRenderTarget(m_pDefaultRenderTarget);
 	ClearDepthStencil(m_pDefaultDepthStencil);
+	SetBlendState( m_pDefaultBlendState );
 
 	// Viewport
 	E_RETURN( m_oDefaultViewPort.Create( 0, 0, (float)GetWidth(), (float)GetHeight(), 0.0f, 1.0f), "Create ViewPort : " );
@@ -100,7 +106,7 @@ HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	m_pCamera->SetView(Vector3(-25.0f, 0.0f, 5.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 	m_pCamera->BuildViewMatrix();
 	float fAspect = (float)uWidth / (float)uHeight;
-	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 100.0f);
+	m_pCamera->BuildProjectionMatrix((float)M_PI * 0.25f, fAspect, 0.1f, 1000.0f);
 
 	// Screen Text
 	m_pScreenText = new ScreenText;
@@ -122,6 +128,7 @@ HRESULT Engine::Destroy()
 	SAFE_DESTROY( m_pDevice );
 	SAFE_DESTROY( m_pDefaultRenderTarget );
 	SAFE_DESTROY( m_pDefaultDepthStencil );
+	SAFE_DESTROY( m_pDefaultBlendState );
 	SAFE_DESTROY( m_pCamera );
 	SAFE_DESTROY( m_pScreenText );
 	SAFE_DESTROY( m_pLight );
@@ -179,7 +186,7 @@ HRESULT Engine::Resize(unsigned int _uWidth, unsigned int _uHeight)
 	if( m_pCamera->IsPerspectiveProj() )
 		m_pCamera->SetAspect( (float)GetWidth() / (float)GetHeight() );
 
-	m_oDefaultViewPort.Resize(GetWidth(), GetHeight());
+	m_oDefaultViewPort.Resize((float)GetWidth(), (float)GetHeight());
 	SetViewPorts(&m_oDefaultViewPort);
 
 	return S_OK;
@@ -232,6 +239,7 @@ void Engine::BeginRender()
 	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
 	ClearRenderTarget(m_pDefaultRenderTarget, Color(0,0,0,1));
 	ClearDepthStencil(m_pDefaultDepthStencil);
+	SetBlendState( m_pDefaultBlendState );
 
 	if( m_bDisplayText )
 		m_pScreenText->Begin();

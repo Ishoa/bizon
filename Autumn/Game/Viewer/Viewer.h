@@ -8,6 +8,7 @@
 class Node;
 class Plan;
 class PLYObject;
+class Terrain;
 
 class Viewer : public Engine
 {
@@ -15,6 +16,7 @@ protected:
 	Node		* m_pRoot;
 	Plan		* m_pPlan;
 	PLYObject	* m_pTeapot;
+	Terrain		* m_pTerrain;
 
 public:
 	Viewer();
