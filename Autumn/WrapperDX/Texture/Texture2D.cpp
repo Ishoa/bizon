@@ -48,7 +48,7 @@ HRESULT Texture2D::Create(bool _bUseTexturePath/* = true*/)
 	LoadInfo.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 	LoadInfo.MiscFlags = 0;
 	LoadInfo.FirstMipLevel = 0;
-	LoadInfo.MipLevels = 1;
+	LoadInfo.MipLevels = 0;
 
 	ID3D11Resource * pResource = NULL;
 

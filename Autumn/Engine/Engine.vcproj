@@ -247,6 +247,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SceneGraph\Sky.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SceneGraph\Sky.h"
+				>
+			</File>
+			<File
 				RelativePath=".\SceneGraph\Terrain.cpp"
 				>
 			</File>

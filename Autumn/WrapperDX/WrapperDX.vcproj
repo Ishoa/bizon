@@ -229,6 +229,14 @@
 					RelativePath=".\Device\State\BlendState.h"
 					>
 				</File>
+				<File
+					RelativePath=".\Device\State\RasterizerState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Device\State\RasterizerState.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -247,11 +255,27 @@
 			Name="Shader"
 			>
 			<File
+				RelativePath=".\Shader\DomainShader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Shader\DomainShader.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Shader\GeometryShader.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Shader\GeometryShader.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Shader\HullShader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Shader\HullShader.h"
 				>
 			</File>
 			<File
@@ -296,6 +320,14 @@
 			</File>
 			<File
 				RelativePath=".\Geometry\ScreenTextTypeVertex.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Geometry\SkyTypeVertex.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Geometry\SkyTypeVertex.h"
 				>
 			</File>
 			<File

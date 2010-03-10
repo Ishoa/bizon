@@ -6,17 +6,17 @@
 #endif
 
 class Node;
-class Plan;
 class PLYObject;
 class Terrain;
+class Sky;
 
 class Viewer : public Engine
 {
 protected:
 	Node		* m_pRoot;
-	Plan		* m_pPlan;
 	PLYObject	* m_pTeapot;
 	Terrain		* m_pTerrain;
+	Sky			* m_pSky;
 
 public:
 	Viewer();
@@ -26,6 +26,8 @@ public:
 	virtual HRESULT Destroy();
 	virtual void	Update();
 	virtual void	Render();
+
+	virtual HRESULT Resize(unsigned int _uWidth, unsigned int _uHeight);
 };
 
 #endif // _VIEWER_

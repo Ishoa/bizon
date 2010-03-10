@@ -10,13 +10,16 @@
 
 Terrain::Terrain()
 : m_nTiles( 10 )
-, m_fSize( 100.0f )
+, m_fWidth( 100.0f )
+, m_fHeight( 100.0f )
 , m_nIndex(0)
 , m_nVertex(0)
 , m_pVertexBuffer(NULL)
 , m_pIndexBuffer(NULL)
 , m_pVertexLayout(NULL)
 , m_pVertexShader(NULL)
+, m_pHullShader(NULL)
+, m_pDomainShader(NULL)
 , m_pPixelShader(NULL)
 , m_pNormalMap(NULL)
 , m_pSampler(NULL)
@@ -30,13 +33,16 @@ Terrain::Terrain()
 
 Terrain::Terrain( const char * _strTerrain )
 : m_nTiles( 10 )
-, m_fSize( 100.0f )
+, m_fWidth( 100.0f )
+, m_fHeight( 100.0f )
 , m_nIndex(0)
 , m_nVertex(0)
 , m_pVertexBuffer(NULL)
 , m_pIndexBuffer(NULL)
 , m_pVertexLayout(NULL)
 , m_pVertexShader(NULL)
+, m_pHullShader(NULL)
+, m_pDomainShader(NULL)
 , m_pPixelShader(NULL)
 , m_pNormalMap(NULL)
 , m_pSampler(NULL)
@@ -55,6 +61,68 @@ HRESULT Terrain::Create()
 {
 	D_RETURN( Node::Create() );
 
+	// Load Textures
+	{
+		char strTerrain[64];
+		strcpy_s(strTerrain, TERRAIN_PATH);
+		strcat_s(strTerrain, m_strTerrain);
+		strcat_s(strTerrain, ".xml");
+		TiXmlDocument doc( strTerrain );
+		bool bLoadOkay = doc.LoadFile();
+		if( ! bLoadOkay )
+			return E_FAIL;
+
+		TiXmlElement * pElement = doc.FirstChildElement("Size");
+		if( pElement )
+		{
+			if( pElement->QueryFloatAttribute("width", &m_fWidth) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+			if( pElement->QueryFloatAttribute("height", &m_fHeight) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+			if( pElement->QueryIntAttribute("tile", &m_nTiles) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+		}
+		else
+		{
+			return E_FAIL;
+		}
+
+		pElement = doc.FirstChildElement("Texture");
+		if( pElement )
+		{
+ 			char buf[32];
+			std::string strNormalMap, strHeightMap, strGrass, strRock;
+			if( pElement->QueryValueAttribute("NormalMap", &strNormalMap) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+			if( pElement->QueryValueAttribute("HeightMap", &strHeightMap) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+			if( pElement->QueryValueAttribute("Grass", &strGrass) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+			if( pElement->QueryValueAttribute("Rock", &strRock) == TIXML_NO_ATTRIBUTE )
+				return E_FAIL;
+
+			// Normal Map
+			m_pNormalMap = new Texture2D(strNormalMap.c_str());
+			D_RETURN( m_pNormalMap->Create() );
+
+			// Height Map
+			m_pHeightMap = new Texture2D(strHeightMap.c_str());
+			D_RETURN( m_pHeightMap->Create() );
+
+			// Grass Texture
+			m_pGrassTexture = new Texture2D(strGrass.c_str());
+			D_RETURN( m_pGrassTexture->Create() );
+
+			// Grass Texture
+			m_pRockTexture = new Texture2D(strRock.c_str());
+			D_RETURN( m_pRockTexture->Create() );
+		}
+		else
+		{
+			return E_FAIL;
+		}
+	}
+
 	// Shader
 	D_RETURN( CompileShaders() );
 
@@ -64,23 +132,6 @@ HRESULT Terrain::Create()
 	// Sampler
 	m_pSampler = new Sampler< SamplerLinear >;
 	D_RETURN( m_pSampler->Create() );
-
-	// Texture
-	// Normal Map
-	m_pNormalMap = new Texture2D("Terrain2NormalMap.png");
-	D_RETURN( m_pNormalMap->Create() );
-
-	// Height Map
-	m_pHeightMap = new Texture2D("Terrain2HeightMap.png");
-	D_RETURN( m_pHeightMap->Create() );
-
-	// Grass Texture
-	m_pGrassTexture = new Texture2D("Grass.png");
-	D_RETURN( m_pGrassTexture->Create() );
-
-	// Grass Texture
-	m_pRockTexture = new Texture2D("Rock.png");
-	D_RETURN( m_pRockTexture->Create() );
 
 	return S_OK;
 }
@@ -92,11 +143,13 @@ HRESULT Terrain::Destroy()
 	SAFE_DESTROY( m_pIndexBuffer );
 	SAFE_DESTROY( m_pVertexLayout );
 	SAFE_DESTROY( m_pVertexShader );
+	SAFE_DESTROY( m_pHullShader );
+	SAFE_DESTROY( m_pDomainShader );
 	SAFE_DESTROY( m_pPixelShader );
 	SAFE_DESTROY( m_pNormalMap );
-	SAFE_DESTROY(m_pHeightMap);
-	SAFE_DESTROY(m_pGrassTexture);
-	SAFE_DESTROY(m_pRockTexture);
+	SAFE_DESTROY( m_pHeightMap );
+	SAFE_DESTROY( m_pGrassTexture );
+	SAFE_DESTROY( m_pRockTexture );
 	SAFE_DESTROY( m_pSampler );
 	return S_OK;
 }
@@ -105,6 +158,7 @@ void Terrain::Render( EngineCamera * _pCamera, Light * _pLight )
 {
 	Node::Render(_pCamera, _pLight);
 
+	// g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST );
 	g_pDxDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 	_pCamera->Set( m_mGlobalMatrix, _pLight );
 	m_pIndexBuffer->Bind();
@@ -135,6 +189,14 @@ HRESULT Terrain::CompileShaders()
 	m_pVertexShader = new VertexShader("Terrain.vsh");
 	D_RETURN( m_pVertexShader->CompileAndCreate() );
 
+// 	// Hull Shader
+// 	m_pHullShader = new HullShader("Terrain.hsh");
+// 	D_RETURN( m_pHullShader->CompileAndCreate() );
+// 
+// 	// Domain Shader
+// 	m_pDomainShader = new DomainShader("Terrain.dsh");
+// 	D_RETURN( m_pDomainShader->CompileAndCreate() );
+
 	// Pixel Shader
 	m_pPixelShader = new PixelShader("Terrain.psh");
 	D_RETURN( m_pPixelShader->CompileAndCreate() );
@@ -162,9 +224,9 @@ HRESULT Terrain::BuildGeometry()
 	// Index
 	{
 		unsigned int uFanceInd = 0;
-		for( unsigned int i = 0; i < m_nTiles; ++i )
+		for( int i = 0; i < m_nTiles; ++i )
 		{
-			for( unsigned int j = 0; j < m_nTiles; ++j )
+			for( int j = 0; j < m_nTiles; ++j )
 			{
 				IndexData[uFanceInd++] = j + i * (m_nTiles+1);
 				IndexData[uFanceInd++] = j + ( i + 1) * (m_nTiles+1);
@@ -182,14 +244,12 @@ HRESULT Terrain::BuildGeometry()
 
 	// Vertex Buffer
 	{
-		float fTileSize = m_fSize / (float)(m_nTiles+1);
-		float fStartTile = - m_fSize * 0.5f;
-		for( unsigned int i = 0; i <= m_nTiles; ++i )
+		for( int i = 0; i <= m_nTiles; ++i )
 		{
-			for( unsigned int j = 0; j <= m_nTiles; ++j )
+			for( int j = 0; j <= m_nTiles; ++j )
 			{
-				VertexData[ i * (m_nTiles+1) + j ].x = fStartTile + fTileSize * i;
-				VertexData[ i * (m_nTiles+1) + j ].y = fStartTile + fTileSize * j;
+				VertexData[ i * (m_nTiles+1) + j ].x = -m_fWidth * 0.5f + m_fWidth * i / (float)(m_nTiles+1);
+				VertexData[ i * (m_nTiles+1) + j ].y = -m_fHeight * 0.5f + m_fHeight * j / (float)(m_nTiles+1);
 				VertexData[ i * (m_nTiles+1) + j ].z = 0.0f;
 
 				VertexData[ i * (m_nTiles+1) + j ].u0 = (float)i / (float)(m_nTiles+1);

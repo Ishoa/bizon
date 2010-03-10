@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Size width="100" height="100" tile="10"/>
+<Texture NormalMap="Terrain2NormalMap.png" HeightMap="Terrain2HeightMap.png" Grass="Grass.png" Rock="Rock.png"/>

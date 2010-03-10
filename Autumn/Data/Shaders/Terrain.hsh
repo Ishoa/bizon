@@ -1,0 +1,11 @@
+
+struct HSin
+{
+	float4	ScreenPos	: SV_POSITION;
+	float3	Pos			: POSITION0;
+	float3	Norm		: NORMAL0;
+	float3	Tan			: TANGENT0;
+	float2	Tex0		: TEXCOORD0;
+	float2	Tex1		: TEXCOORD1;
+};
+

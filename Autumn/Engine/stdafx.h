@@ -64,6 +64,10 @@
 #include "WrapperDX/Geometry/TerrainTypeVertex.h"
 #endif
 
+#ifndef _SKY_TYPE_VERTEX_
+#include "WrapperDX/Geometry/SkyTypeVertex.h"
+#endif
+
 #ifndef _VERTEX_BUFFER_
 #include "WrapperDX/Buffer/VertexBuffer.h"
 #endif
@@ -82,6 +86,18 @@
 
 #ifndef _VERTEX_SHADER_
 #include "WrapperDX/Shader/VertexShader.h"
+#endif
+
+#ifndef _DOMAIN_SHADER_
+#include "WrapperDX/Shader/DomainShader.h"
+#endif
+
+#ifndef _HULL_SHADER_
+#include "WrapperDX/Shader/HullShader.h"
+#endif
+
+#ifndef _GEOMETRY_SHADER_
+#include "WrapperDX/Shader/GeometryShader.h"
 #endif
 
 #ifndef _PIXEL_SHADER_
@@ -118,6 +134,10 @@
 
 #ifndef _SAMPLER_
 #include "WrapperDX/Texture/Sampler/Sampler.h"
+#endif
+
+#ifndef _RASTERIZER_STATE_
+#include "WrapperDX/Device/State/RasterizerState.h"
 #endif
 
 #ifndef _BLEND_OPERATION_ADD_
