@@ -64,6 +64,8 @@ public:
 	Matrix4x4 GetViewProj() const;
 	inline Matrix4x4 GetView()		const { return m_mView; }
 	inline Matrix4x4 GetProj()		const { return m_mProjection; }
+	inline float	 GetFOV()		const { return m_fFov; }
+	inline float	 GetAspect()	const { return m_fAspect; }
 };
 
 #endif // _CAMERA_

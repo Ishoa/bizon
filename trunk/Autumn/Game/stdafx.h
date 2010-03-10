@@ -57,12 +57,20 @@
 #include "Engine/SceneGraph/Terrain.h"
 #endif
 
+#ifndef _DSKY_
+#include "Engine/SceneGraph/Sky.h"
+#endif
+
 #ifndef _PLY_OBJECT_
 #include "Engine/SceneGraph/PLYObject.h"
 #endif
 
 #ifndef _TIME_MANAGER_
 #include "Engine/Manager/TimeManager.h"
+#endif
+
+#ifndef _ENGINE_CAMERA_
+#include "Engine/Engine/EngineCamera.h"
 #endif
 
 #ifndef _VECTOR1_

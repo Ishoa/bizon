@@ -27,6 +27,7 @@ class InputManager;
 class EngineCamera;
 class ScreenText;
 class Light;
+class RasterizerState;
 
 
 class Engine
@@ -51,6 +52,8 @@ protected:
 	DepthStencil					* m_pDefaultDepthStencil;
 	BlendState<BlendOperationNone>	* m_pDefaultBlendState;
 	ViewPort						m_oDefaultViewPort;
+	RasterizerState					* m_pDefaultRasterizerState;
+	RasterizerState					* m_pRasterizerWireFrame;
 
 	// Manager
 	Manager					* m_pManager[Manager::eManager_COUNT];
@@ -73,8 +76,8 @@ public:
 	virtual HRESULT Destroy();
 	virtual void	Update() = 0;
 
-	HRESULT ToggleFullScreen();
-	HRESULT Resize(unsigned int _uWidth, unsigned int _uHeight);
+	virtual HRESULT ToggleFullScreen();
+	virtual HRESULT Resize(unsigned int _uWidth, unsigned int _uHeight);
 	unsigned int GetWidth();
 	unsigned int GetHeight();
 

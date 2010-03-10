@@ -59,7 +59,7 @@ HRESULT	DepthStencil::Create(unsigned int _uWidth, unsigned int _uHeight)
 	D3D11_DEPTH_STENCIL_DESC DPdesc;
 	ZeroMemory(&DPdesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
 	DPdesc.DepthEnable = true;
-	DPdesc.DepthFunc = D3D11_COMPARISON_LESS;
+	DPdesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 	DPdesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 	DPdesc.StencilEnable = false;
 	DPdesc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;

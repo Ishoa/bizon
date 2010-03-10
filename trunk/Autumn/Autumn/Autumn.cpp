@@ -7,7 +7,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	lpCmdLine;
 	hPrevInstance;
 
-	WindowApp * MyWindowApp = new WindowApp(800, 600, false, "Autumn");
+	WindowApp * MyWindowApp = new WindowApp(1024, 768, false, "Autumn");
 	if( FAILED( MyWindowApp->Create(hInstance, nCmdShow) ) )
 	{
 		LOG_PAUSE();

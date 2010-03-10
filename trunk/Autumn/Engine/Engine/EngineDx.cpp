@@ -82,6 +82,14 @@ HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	m_pDefaultBlendState = new BlendState< BlendOperationNone >;
 	E_RETURN( m_pDefaultBlendState->Create(), "Create BlendState : "  );
 
+	// Rasterizer States
+	m_pDefaultRasterizerState = new RasterizerState;
+	E_RETURN( m_pDefaultRasterizerState->Create(false, true), "Create Default Rasterizer State" );
+	m_pRasterizerWireFrame = new RasterizerState;
+	E_RETURN( m_pRasterizerWireFrame->Create(true, true), "Create Wireframe Rasterizer State" );
+
+	m_pDefaultRasterizerState->Bind();
+
 	// association RenderTarget with the Device
 	SetRenderTargets(&m_pDefaultRenderTarget, 1, m_pDefaultDepthStencil);
 	ClearRenderTarget(m_pDefaultRenderTarget);
@@ -113,7 +121,7 @@ HRESULT Engine::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	E_RETURN( m_pScreenText->Create(), "Create ScreenText : " );
 
 	// Light
-	m_pLight = new Light( Color(1,1,1,1), Vector4(0.0,1.0,1,0) );
+	m_pLight = new Light( Color(1,1,1,1), Vector4(0.0,0.0,1,0) );
 	E_RETURN( m_pLight->Create(), "Create Light : " );
 
 	
@@ -132,6 +140,8 @@ HRESULT Engine::Destroy()
 	SAFE_DESTROY( m_pCamera );
 	SAFE_DESTROY( m_pScreenText );
 	SAFE_DESTROY( m_pLight );
+	SAFE_DESTROY( m_pDefaultRasterizerState );
+	SAFE_DESTROY( m_pRasterizerWireFrame );
 	
 	return S_OK;
 }
@@ -318,6 +328,15 @@ void Engine::UpdateKeyboard()
 		// RIGHT : Move Camera
 		if( GetInputManager()->KeyPressed( DIK_RIGHTARROW ) )
 			m_pCamera->StrafeRight( m_fSpeedCam * GetTimeManager()->GetDeltaTime() );
+	}
+
+	// F3 / Shift + F3 : Solid / WireFrame mode
+	if( GetInputManager()->KeyPressed( DIK_F3 ) )
+	{
+		if( GetInputManager()->KeyPressed( DIK_LSHIFT ) )
+			m_pDefaultRasterizerState->Bind();
+		else
+			m_pRasterizerWireFrame->Bind();
 	}
 }
 

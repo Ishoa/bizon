@@ -1,0 +1,26 @@
+
+cbuffer cb : register(b0)
+{
+	row_major float4x4 mWorldViewProj;
+	row_major float4x4 mWorld;
+	float4 vLightDir;
+	float4 vLightColor;
+	float4 vCamera;
+}
+
+cbuffer cb : register(b1)
+{
+	float fFOV;
+	float fScreenRatio;
+}
+
+struct PSin
+{
+	float4	ScreenPos	: SV_POSITION;
+};
+
+
+float4 PSMain( PSin Pin ) : SV_Target
+{
+	return float4(0,0,1,1);
+}

@@ -6,6 +6,8 @@
 
 Viewer::Viewer()
 : m_pRoot(NULL)
+, m_pTerrain(NULL)
+, m_pSky(NULL)
 {
 
 }
@@ -22,20 +24,18 @@ HRESULT Viewer::Create(HWND _hWnd, HINSTANCE _hInstance, unsigned int _uWidth, u
 	m_pRoot = new Node;
 	D_RETURN( m_pRoot->Create() );
 
-// 	m_pPlan = new Plan;
-// 	m_pPlan->Set( 10.0f );
-// 	m_pPlan->SetTexture( "Four" );
-// 	D_RETURN( m_pPlan->Create() );
-//	m_pRoot->AddChild( m_pPlan );
-
-	m_pTeapot = new PLYObject("sphere.ply");
-	m_pTeapot->SetTexture( "Earth" );
-	D_RETURN( m_pTeapot->Create() );
-	m_pRoot->AddChild( m_pTeapot );
+// 	m_pTeapot = new PLYObject("sphere.ply");
+// 	m_pTeapot->SetTexture( "Earth" );
+// 	D_RETURN( m_pTeapot->Create() );
+// 	m_pRoot->AddChild( m_pTeapot );
 
 	m_pTerrain = new Terrain("Terrain01");
 	D_RETURN( m_pTerrain->Create() );
 	m_pRoot->AddChild( m_pTerrain );
+
+// 	m_pSky = new Sky;
+// 	D_RETURN( m_pSky->Create(m_pCamera) );
+// 	m_pRoot->AddChild( m_pSky );
 
 	return S_OK;
 }
@@ -54,11 +54,11 @@ void Viewer::Update()
 {
 	UpdateManager();
 
-	Matrix4x4 mMatrix;
-	mMatrix.SetTranslation(0,0,3);
-	float fAngle =GetTimeManager()->GetCurrentTime() * (float)M_PI / 1000.0f;
-	mMatrix.Rotate(0,0, fAngle );
-	m_pTeapot->SetLocalMatrix(mMatrix);
+// 	Matrix4x4 mMatrix;.
+// 	mMatrix.SetTranslation(0,0,3);
+// 	float fAngle = GetTimeManager()->GetCurrentTime() * (float)M_PI / 1000.0f;
+// 	mMatrix.Rotate(0,0, fAngle );
+// 	m_pTeapot->SetLocalMatrix(mMatrix);
 
 	Render();
 }
@@ -71,4 +71,14 @@ void Viewer::Render()
 	m_pRoot->Render( m_pCamera, m_pLight );
 
 	EndRender();
+}
+
+HRESULT Viewer::Resize( unsigned int _uWidth, unsigned int _uHeight )
+{
+	D_RETURN( Engine::Resize(_uWidth, _uHeight) );
+
+	if( m_pSky && m_pCamera )
+		m_pSky->SetParam( m_pCamera->GetFOV(), m_pCamera->GetAspect() );
+
+	return S_OK;
 }

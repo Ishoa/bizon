@@ -13,6 +13,8 @@ class VertexBuffer;
 class IndexBuffer;
 class VertexShader;
 class PixelShader;
+class HullShader;
+class DomainShader;
 template< class Vertextype >class VertexLayout;
 class EngineCamera;
 class Texture2D;
@@ -30,14 +32,17 @@ protected:
 		float u1, v1;
 	};
 
-	unsigned int							m_nTiles;
-	float									m_fSize;
+	int										m_nTiles;
+	float									m_fWidth;
+	float									m_fHeight;
 	char									m_strTerrain[32];
 	unsigned int							m_nIndex;
 	unsigned int							m_nVertex;
 	VertexBuffer							* m_pVertexBuffer;
 	IndexBuffer								* m_pIndexBuffer;
 	VertexShader							* m_pVertexShader;
+	HullShader								* m_pHullShader;
+	DomainShader							* m_pDomainShader;
 	PixelShader								* m_pPixelShader;
 	VertexLayout<TerrainTypeVertex>			* m_pVertexLayout;
 	Texture2D								* m_pNormalMap;

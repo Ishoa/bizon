@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{31A6
 		Data\Shaders\DisplayObject.vsh = Data\Shaders\DisplayObject.vsh
 		Data\Shaders\ScreenText.psh = Data\Shaders\ScreenText.psh
 		Data\Shaders\ScreenText.vsh = Data\Shaders\ScreenText.vsh
+		Data\Shaders\Sky.psh = Data\Shaders\Sky.psh
+		Data\Shaders\Sky.vsh = Data\Shaders\Sky.vsh
+		Data\Shaders\Terrain.dsh = Data\Shaders\Terrain.dsh
+		Data\Shaders\Terrain.hsh = Data\Shaders\Terrain.hsh
 		Data\Shaders\Terrain.psh = Data\Shaders\Terrain.psh
 		Data\Shaders\Terrain.vsh = Data\Shaders\Terrain.vsh
 	EndProjectSection
